@@ -24,7 +24,7 @@ public class AberturaActivity extends AppCompatActivity implements Runnable{
     @Override
     public void run() {
         try{
-            Thread.sleep(20000);
+            Thread.sleep(2000);
         } catch (Exception e){
 
         }
