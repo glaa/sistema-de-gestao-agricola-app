@@ -46,6 +46,8 @@ public class ConexaoAPI {
                 this.conexao.setRequestMethod("POST");
             }
             this.codigoStatus = this.conexao.getResponseCode();
+            Log.d("testeX","response: " + this.conexao.getResponseMessage());
+
 
         } catch (MalformedURLException e) {
             String[] m = {"Erro com a url da conexão!", "Tente novamente em alguns minutos"};
@@ -78,5 +80,9 @@ public class ConexaoAPI {
 
     public int getCodigoStatus(){
         return codigoStatus;
+    }
+
+    public HttpURLConnection getConexao(){
+        return this.conexao;
     }
 }
