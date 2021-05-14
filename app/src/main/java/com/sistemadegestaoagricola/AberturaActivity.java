@@ -28,7 +28,7 @@ public class AberturaActivity extends AppCompatActivity implements Runnable{
             String rota = "index";
             String parametros = "";
             String metodo = "GET";
-            ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo);
+            ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,null);
             String[] m = con.iniciar();
             mensagens = m;
             con.fechar();

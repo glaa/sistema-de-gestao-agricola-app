@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     private String email = "";
     private String password = "";
     private ConexaoAPI conexao;
-    private static String tokenSessao = "";
     private int status;
 
     @Override
@@ -38,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         tvCpfCnjp= findViewById(R.id.edtCpfEmailMain);
         tvSenha = findViewById(R.id.edtSenhaMain);
         btEntrar = findViewById(R.id.btEntrarMain);
+
+        tvCpfCnjp.setText("00011122233344");
+        tvSenha.setText("123456");
 
         tvCpfCnjp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -107,9 +109,8 @@ public class MainActivity extends AppCompatActivity {
             String rota = "login";
             String parametros = "?email="+email+"&password="+password;
             String metodo = "POST";
-            conexao = new ConexaoAPI(rota,parametros,metodo);
+            conexao = new ConexaoAPI(rota,parametros,metodo,null);
             String[] mensagens = conexao.iniciar();
-            Log.d("testeX",String.valueOf(conexao.getCodigoStatus()));
             status = conexao.getCodigoStatus();
             return null;
         }
@@ -117,32 +118,29 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
-            Log.d("testeX", "stat: "+ status);
+            Log.d("testeX", "status: " + status);
             if(status == 200){
                 try {
-                    InputStream responseBody = conexao.getConexao().getInputStream();
-//                    InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
-//                    JsonReader jsonReader = new JsonReader(responseBodyReader);
-//
-//                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//                    StrictMode.setThreadPolicy(policy);
-//                    jsonReader.beginObject(); // Start processing the JSON object
-//                    Log.d("testeX","hasNext: " + jsonReader.hasNext() + " key: " + jsonReader.nextString());
-//                    while (jsonReader.hasNext()) { // Loop through all keys
-//                        String key = jsonReader.nextName(); // Fetch the next key
-//                        if (key.equals("organization_url")) { // Check if desired key
-//                            // Fetch the value as a String
-//                            String value = jsonReader.nextString();
-//
-//                            // Do something with the value
-//                            // ...
-//
-//                            break; // Break out of the loop
-//                        } else {
-//                            jsonReader.skipValue(); // Skip values of other keys
-//                        }
-//                        Log.d("testeX","chave: " + jsonReader.nextName() + " valor: " + jsonReader.nextString());
-//                    }
+                    InputStream responseBody = conexao.getConexaoHttp().getInputStream();
+                    InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
+                    JsonReader jsonReader = new JsonReader(responseBodyReader);
+
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                    jsonReader.beginObject();
+
+                    while (jsonReader.hasNext()) {
+                        String key = jsonReader.nextName();
+                        if (key.equals("token")) {
+                            String value = jsonReader.nextString();
+                            conexao.setToken(value);
+                            //ConexaoAPI.setToken(value);
+                            break;
+                        } else {
+                            jsonReader.skipValue();
+                        }
+                    }
+                    jsonReader.close();
                 } catch (IOException e) {
                     Toast.makeText(getApplicationContext(),"Erro com os dados obtidos",Toast.LENGTH_LONG).show();
                     e.printStackTrace();
@@ -155,7 +153,10 @@ public class MainActivity extends AppCompatActivity {
 //                builder.setMessage("CPF / CNPJ ou Senha inválido.").setTitle("Aviso");
 //                AlertDialog alerta = builder.create();
 //                alerta.show();
+            } else {
+                Toast.makeText(getApplicationContext(),"Erro com a conexão" + status,Toast.LENGTH_LONG).show();
             }
+            conexao.fechar();
         }
     }
 

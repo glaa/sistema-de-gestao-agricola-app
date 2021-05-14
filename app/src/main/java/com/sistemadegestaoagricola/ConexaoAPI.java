@@ -9,17 +9,19 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.Map;
 
 public class ConexaoAPI {
 
     private HttpURLConnection conexao;
     private URL agroEndpoint;
-    private String url = "http://%s/api/%s/%s";
-    private String host = "192.168.0.108:8000";
+    private String url = "http://%s/api/%s%s";
+    private String host = "192.168.0.105/site/sistema-de-gestao-agricola/public";
     private String rota;
     private String parametros;
     private String metodo;
-    private String token;
+    private Map<String,String> propriedades;
+    private static String token = null;
     private int codigoStatus;
 
     /*
@@ -27,12 +29,14 @@ public class ConexaoAPI {
      * @param rota rota para o recurso desejado
      * @param parametros parametros a serem passado junto com a rota
      * @param metodo verbo da URL
+     * @param propriedades cabeçalho que acompanha a requisão, será null caso não haja nenhum
      */
-    public ConexaoAPI(String rota, String parametros, String metodo){
+    public ConexaoAPI(String rota, String parametros, String metodo,Map<String,String> propriedades){
         this.rota = rota;
         this.parametros = parametros;
         this.url = String.format(url,this.host,this.rota,this.parametros);
         this.metodo = metodo;
+        this.propriedades = propriedades;
     }
 
     public String[] iniciar(){
@@ -41,12 +45,18 @@ public class ConexaoAPI {
         try {
             this.agroEndpoint = new URL(this.url);
             this.conexao = (HttpURLConnection) this.agroEndpoint.openConnection();
+
+            if(propriedades != null){
+                this.setPropriedades(propriedades);
+            }
+
             this.conexao.setConnectTimeout(30000);
             if(this.metodo == "POST"){
                 this.conexao.setRequestMethod("POST");
             }
             this.codigoStatus = this.conexao.getResponseCode();
-            Log.d("testeX","response: " + this.conexao.getResponseMessage());
+            Log.d("testeX","url: " + this.url);
+            Log.d("testeX","response: " + this.conexao.getContent().toString());
 
 
         } catch (MalformedURLException e) {
@@ -82,7 +92,22 @@ public class ConexaoAPI {
         return codigoStatus;
     }
 
-    public HttpURLConnection getConexao(){
+    public HttpURLConnection getConexaoHttp(){
         return this.conexao;
+    }
+
+    public static String getToken() {
+        return token;
+    }
+
+    public static void setToken(String token) {
+        ConexaoAPI.token = token;
+    }
+
+    private void setPropriedades(Map<String,String> propriedades){
+        for(String key : propriedades.keySet()){
+            String value = propriedades.get(key);
+            this.conexao.setRequestProperty(key,value);
+        }
     }
 }
