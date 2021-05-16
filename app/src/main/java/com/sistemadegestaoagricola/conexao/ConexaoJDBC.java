@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.conexao;
 
 import android.os.StrictMode;
 
@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 
 
-public class Conexao {
+public class ConexaoJDBC {
     private Connection connection;
 
     // private final String host = "ssprojectinstance.csv2nbvvgbcb.us-east-2.rds.amazonaws.com"  // For Amazon Postgresql
@@ -18,7 +18,7 @@ public class Conexao {
     private String url = "jdbc:postgresql://%s:%d/%s";
     private boolean status;
 
-    public Conexao() {
+    public ConexaoJDBC() {
         this.url = String.format(this.url, this.host, this.port, this.database);
         connect();
         //this.disconnect();

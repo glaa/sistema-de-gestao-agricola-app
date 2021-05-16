@@ -1,23 +1,24 @@
 package com.sistemadegestaoagricola;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.StrictMode;
-import android.util.JsonReader;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import com.sistemadegestaoagricola.conexao.ConexaoAPI;
+import com.sistemadegestaoagricola.conexao.ConexaoAPIVelha;
+import com.sistemadegestaoagricola.conexao.RotaGetUser;
+import com.sistemadegestaoagricola.conexao.RotaLogin;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,6 +29,9 @@ public class MainActivity extends AppCompatActivity {
     private String password = "";
     private ConexaoAPI conexao;
     private int status;
+    private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
+    private String[] mensagensErro;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 email = tvCpfCnjp.getText().toString();
+                /** Apresenta mensagem de campo obrigatório */
                 if(!hasFocus){
                     if(email.isEmpty()){
                         findViewById(R.id.tvCpfCnpjInvalidoMain).setVisibility(View.VISIBLE);
@@ -61,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 password = tvSenha.getText().toString();
+                /** Apresenta mensagem de campo obrigatório */
                 if(!hasFocus){
                     if(password.isEmpty()){
                         findViewById(R.id.tvSenhaInvalidaMain).setVisibility(View.VISIBLE);
@@ -80,90 +86,60 @@ public class MainActivity extends AppCompatActivity {
                 password = tvSenha.getText().toString();
 
                 if(!email.isEmpty() && !password.isEmpty()){
-//                    AsyncTask.execute(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            String rota = "login";
-//                            String parametros = "?email="+email+"&password="+password;
-//                            String metodo = "POST";
-//                            ConexaoAPI conexao = new ConexaoAPI(rota,parametros,metodo);
-//                            String[] mensagens = conexao.iniciar();
-//                            Log.d("testeX",String.valueOf(conexao.getCodigoStatus()));
-//                            status = conexao.getCodigoStatus();
-//                        }
-//                    });
-                    new Conectar().execute();
+
+                    /**
+                     *  Chama a classe Login que irá se conectar com a rota /api/login em uma thread
+                     */
+                    RotaLogin login = new RotaLogin(getApplicationContext(),email,password);
+                    Future<ConexaoAPI> future1 = threadpool.submit(login);
+
+                    //** Aguarda a classe Index terminar a conexao */
+                    while(!future1.isDone()){
+                        //Aguardando o termino da conexão
+                    }
+                    RotaGetUser getUser = new RotaGetUser(getApplicationContext());
+                    Future<ConexaoAPI> future2 = threadpool.submit(getUser);
+                    while(!future2.isDone()){
+                        //Aguardando o termino da conexão
+                    }
+
+                    ConexaoAPI conexao = null;
+                    try {
+                        conexao = future1.get();
+                        mensagensErro = conexao.getMensagensErro();
+                        if(mensagensErro == null && conexao.getToken() != null){
+                            conexao.fechar();
+                            Log.d("testeX","token: " + conexao.getToken());
+                            conexao = future2.get();
+                            Log.d("testeX","get: " + conexao.getMensagensErro());
+
+                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Erro(mensagensErro[0],mensagensErro[1]);
+                        }
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                        Erro("Erro","Falha com a conexão, tente novamente em alguns minutos");
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        Erro("Erro","Falha com a conexão, tente novamente em alguns minutos");
+                    }
+                    /** Fechar conexão caso esteja aberta */
+                    if(conexao != null){
+                        conexao.fechar();
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(),"CPF / CNPJ e Senha devem ser preenchidos!",Toast.LENGTH_LONG).show();
                 }
-
-
             }
         });
     }
 
-    private class Conectar extends AsyncTask{
-
-        @Override
-        protected Object doInBackground(Object[] objects) {
-            String rota = "login";
-            String parametros = "?email="+email+"&password="+password;
-            String metodo = "POST";
-            conexao = new ConexaoAPI(rota,parametros,metodo,null);
-            String[] mensagens = conexao.iniciar();
-            status = conexao.getCodigoStatus();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Object o) {
-            super.onPostExecute(o);
-            Log.d("testeX", "status: " + status);
-            if(status == 200){
-                try {
-                    InputStream responseBody = conexao.getConexaoHttp().getInputStream();
-                    InputStreamReader responseBodyReader = new InputStreamReader(responseBody, "UTF-8");
-                    JsonReader jsonReader = new JsonReader(responseBodyReader);
-
-                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                    StrictMode.setThreadPolicy(policy);
-                    jsonReader.beginObject();
-
-                    while (jsonReader.hasNext()) {
-                        String key = jsonReader.nextName();
-                        if (key.equals("token")) {
-                            String value = jsonReader.nextString();
-                            conexao.setToken(value);
-                            //ConexaoAPI.setToken(value);
-                            break;
-                        } else {
-                            jsonReader.skipValue();
-                        }
-                    }
-                    jsonReader.close();
-                } catch (IOException e) {
-                    Toast.makeText(getApplicationContext(),"Erro com os dados obtidos",Toast.LENGTH_LONG).show();
-                    e.printStackTrace();
-                }
-                startActivity(new Intent(getApplicationContext(),HomeActivity.class));
-            } else if(status == 401){
-                Toast.makeText(getApplicationContext(),"CPF / CNPJ ou Senha inválido",Toast.LENGTH_LONG).show();
-
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                builder.setMessage("CPF / CNPJ ou Senha inválido.").setTitle("Aviso");
-//                AlertDialog alerta = builder.create();
-//                alerta.show();
-            } else {
-                Toast.makeText(getApplicationContext(),"Erro com a conexão" + status,Toast.LENGTH_LONG).show();
-            }
-            conexao.fechar();
-        }
+    private void Erro(String titulo, String subtitulo){
+        Intent intent = new Intent(this, ErroActivity.class);
+        intent.putExtra("TITULO", titulo);
+        intent.putExtra("SUBTITULO", subtitulo);
+        this.startActivity(intent);
     }
-
-    private void alerta(){
-        LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.alerta,null);
-
-    }
-
 }

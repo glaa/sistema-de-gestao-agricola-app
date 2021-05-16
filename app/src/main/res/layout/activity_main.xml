@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f3f4"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <TextView
@@ -40,7 +40,7 @@
         android:layout_marginTop="40dp"
         android:text="Entrar"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
@@ -55,6 +55,7 @@
         android:layout_marginTop="16dp"
         android:text="CPF / CNPJ"
         android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +72,8 @@
         android:ems="10"
         android:inputType="number"
         android:textColor="@color/black"
+        android:textSize="14sp"
+        app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,6 +87,7 @@
         android:layout_marginTop="16dp"
         android:text="Senha"
         android:textColor="@color/black"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.017"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +104,8 @@
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="@color/black"
+        android:textSize="14sp"
+        app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.049"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,14 +118,14 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@android:color/holo_green_dark"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:drawableLeft="@drawable/ic_baseline_input_24"
-        android:paddingStart="40dp"
         android:paddingEnd="40dp"
         android:text="Entrar"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -207,5 +213,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtSenhaMain" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="?android:attr/listDivider"
+        android:backgroundTint="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEsqueceuSenhaMain" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
