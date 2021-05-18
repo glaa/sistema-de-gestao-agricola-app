@@ -5,91 +5,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    tools:context=".HomeActivity">
+    tools:context=".MinhasInformacoesActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMinhasInformacoes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FF9800"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
+        app:titleTextColor="@color/black" />
 
     <TextView
-        android:id="@+id/tvSaudacaoHome"
-        android:layout_width="match_parent"
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:text="Minhas Informações"
+        android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbarMinhasInformacoes" />
 
     <Button
-        android:id="@+id/btMinhaPropriedadeHome"
+        android:id="@+id/button6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#FFC107"
-        android:drawableLeft="@drawable/ic_baseline_home_24"
+        android:backgroundTint="#FF9800"
+        android:drawableLeft="@drawable/ic_baseline_person_24"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:text="Minha Propriedade"
+        android:text="Informações Pessoais"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSaudacaoHome" />
+        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
     <Button
-        android:id="@+id/btMinhasInformacoesHome"
+        android:id="@+id/button7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#FF9800"
-        android:drawableLeft="@drawable/ic_baseline_person_24"
+        android:drawableLeft="@drawable/ic_baseline_location_on_24"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:text="Minhas Informações"
+        android:text="Endereço"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btMinhaPropriedadeHome" />
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/button8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="#F66969"
-        android:drawableLeft="@drawable/ic_baseline_people_24"
+        android:backgroundTint="#FF9800"
+        android:drawableLeft="@drawable/ic_baseline_phone_24"
         android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:text="Reunião"
+        android:text="Contato"
         android:textAllCaps="false"
         android:textColor="@color/black"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btMinhasInformacoesHome" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:backgroundTint="#4CAF50"
-        android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:text="Sair do aplicativo"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        app:cornerRadius="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button7" />
 </androidx.constraintlayout.widget.ConstraintLayout>

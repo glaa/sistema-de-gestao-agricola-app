@@ -19,6 +19,7 @@ public class HomeActivity extends AppCompatActivity {
     private String nome;
     private TextView tvSaudacao;
     private Button btMinhaPropriedade;
+    private Button btMinhasInformacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,20 @@ public class HomeActivity extends AppCompatActivity {
         tvSaudacao.setText("Olá, " + Usuario.getNome() + "!");
 
         btMinhaPropriedade = findViewById(R.id.btMinhaPropriedadeHome);
+        btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
 
         btMinhaPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MinhaPropriedadeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btMinhasInformacoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MinhasInformacoesActivity.class);
                 startActivity(intent);
             }
         });
