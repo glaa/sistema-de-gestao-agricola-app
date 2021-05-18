@@ -26,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         tvSaudacao = findViewById(R.id.tvSaudacaoHome);
-        tvSaudacao.setText("Olá," + Usuario.getNome() + "!");
+        tvSaudacao.setText("Olá, " + Usuario.getNome() + "!");
 
         btMinhaPropriedade = findViewById(R.id.btMinhaPropriedadeHome);
 
