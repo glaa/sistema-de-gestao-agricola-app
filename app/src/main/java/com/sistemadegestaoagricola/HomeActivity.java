@@ -20,6 +20,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tvSaudacao;
     private Button btMinhaPropriedade;
     private Button btMinhasInformacoes;
+    private Button btReuniao;
+    private Button btSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class HomeActivity extends AppCompatActivity {
 
         btMinhaPropriedade = findViewById(R.id.btMinhaPropriedadeHome);
         btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
+        btReuniao = findViewById(R.id.btReuniaoHome);
+        btSair = findViewById(R.id.btSairHome);
 
         btMinhaPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,6 +52,25 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        btReuniao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ReuniaoActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        btSair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finishAffinity();
+            }
+        });
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

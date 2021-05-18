@@ -88,36 +88,47 @@ public class MainActivity extends AppCompatActivity {
                 if(!email.isEmpty() && !password.isEmpty()){
 
                     /**
-                     *  Chama a classe Login que irá se conectar com a rota /api/login em uma thread
+                     *  Chama a classe RotaLogin que irá se conectar com a rota /api/login em uma thread
                      */
                     RotaLogin login = new RotaLogin(getApplicationContext(),email,password);
                     Future<ConexaoAPI> future1 = threadpool.submit(login);
 
-                    //** Aguarda a classe Index terminar a conexao */
+                    //** Aguarda a classe RotaLogin terminar a thread */
                     while(!future1.isDone()){
-                        //Aguardando o termino da conexão
+                        //Aguardando o termino da thread
                     }
+
+                    //** Chama a classe RotaGetUser que ira se conectar coma a rota /api/get-user em uma thread
                     RotaGetUser getUser = new RotaGetUser(getApplicationContext());
                     Future<ConexaoAPI> future2 = threadpool.submit(getUser);
+
+                    //** Aguarda a classe RotaGetUser terminar a thread */
                     while(!future2.isDone()){
-                        //Aguardando o termino da conexão
+                        //Aguardando o termino da thread
                     }
 
                     ConexaoAPI conexao = null;
                     try {
                         conexao = future1.get();
-                        mensagensErro = conexao.getMensagensErro();
-                        if(mensagensErro == null && conexao.getToken() != null){
-                            conexao.fechar();
-                            Log.d("testeX","token: " + conexao.getToken());
-                            conexao = future2.get();
-                            Log.d("testeX","get: " + conexao.getMensagensErro());
-
-                            Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(intent);
-                            finish();
+                        status = conexao.getCodigoStatus();
+                        if(status == 200) {
+                            Log.d("testeX", "statusX: " + conexao.getCodigoStatus());
+                            mensagensErro = conexao.getMensagensErro();
+                            if (mensagensErro == null && conexao.getToken() != null) {
+                                conexao.fechar();
+                                Log.d("testeX", "token: " + conexao.getToken());
+                                conexao = future2.get();
+                                Log.d("testeX", "get: " + conexao.getMensagensErro());
+                                status = conexao.getCodigoStatus();
+                                conexao.fechar();
+                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                startActivity(intent);
+                                finish();
+                            } else {
+                                Erro(mensagensErro[0], mensagensErro[1]);
+                            }
                         } else {
-                            Erro(mensagensErro[0],mensagensErro[1]);
+                            Toast.makeText(getApplicationContext(),"CPF / CNPJ ou Senha inválido!",Toast.LENGTH_LONG).show();
                         }
                     } catch (ExecutionException e) {
                         e.printStackTrace();
