@@ -14,12 +14,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
         <activity
-            android:name=".ReuniaoActivity"
+            android:name=".ExibirInformacoesPessoaisActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
         <activity
-            android:name=".MinhasInformacoesActivity"
+            android:name=".ReuniaoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity
+            android:name=".MinhasInformacoesActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".MinhaPropriedadeActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

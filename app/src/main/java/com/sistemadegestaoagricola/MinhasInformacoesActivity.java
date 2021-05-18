@@ -3,9 +3,16 @@ package com.sistemadegestaoagricola;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MinhasInformacoesActivity extends AppCompatActivity {
+
+    private Button btInformacoesPessoais;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +22,16 @@ public class MinhasInformacoesActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarMinhasInformacoes);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Voltar");
+
+        btInformacoesPessoais = findViewById(R.id.btInformacoesPessoaisMinhasInformacoes);
+
+        btInformacoesPessoais.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),ExibirInformacoesPessoaisActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
