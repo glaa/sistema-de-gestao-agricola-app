@@ -13,12 +13,11 @@ import java.util.Map;
 import java.util.concurrent.Callable;
 
 public class RotaLogin implements Callable<ConexaoAPI> {
-    Context context;
     private String email;
     private String password;
+    private String[] mensagensExceptions = null;
 
-    public RotaLogin(Context context, String email, String password){
-        this.context = context;
+    public RotaLogin(String email, String password){
         this.email = email;
         this.password = password;
     }
@@ -30,7 +29,6 @@ public class RotaLogin implements Callable<ConexaoAPI> {
         String metodo = "POST";
         Map<String,String> propriedades = null;
         ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,propriedades);
-        Log.d("testeX","conectou");
 
         if(con.getCodigoStatus() == 200){
             try {
@@ -54,7 +52,8 @@ public class RotaLogin implements Callable<ConexaoAPI> {
                 }
                 jsonReader.close();
             } catch (IOException e) {
-                Toast.makeText(context,"Erro com os dados obtidos",Toast.LENGTH_LONG).show();
+                mensagensExceptions = new String[]{"Erro com os dados obtidos no Login", "Tente novamente em alguns minutos"};
+                con.setMensagensExceptions(mensagensExceptions);
                 e.printStackTrace();
             }
         }
@@ -64,4 +63,5 @@ public class RotaLogin implements Callable<ConexaoAPI> {
     public void setEmail(String email){this.email = email;}
 
     public void setPassword(String password){this.password = password;}
+
 }

@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="background">#f5f3f4</color>
+    <color name="verde_padrao">#07987f</color>
+    <color name="verde_claro">#79ce50</color>
+    <color name="vermelho_alerta">#ff4b4b</color>
 </resources>

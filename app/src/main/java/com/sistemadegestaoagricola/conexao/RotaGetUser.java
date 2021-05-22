@@ -17,10 +17,10 @@ import java.util.concurrent.Callable;
 
 public class RotaGetUser implements Callable<ConexaoAPI> {
 
-    private Context context;
+    private String[] mensagensExceptions = null;
 
-    public RotaGetUser(Context context) {
-        this.context = context;
+    public RotaGetUser() {
+
     }
 
     @Override
@@ -32,7 +32,7 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
         propriedades.put("Accept","application/json");
         propriedades.put("Authorization","Bearer " + ConexaoAPI.getToken());
         ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,propriedades);
-        Log.d("testeX","status: " + con.getCodigoStatus());
+        Log.d("testeX","status user: " + con.getCodigoStatus());
 
         if(con.getCodigoStatus() == 200){
             try {
@@ -84,7 +84,8 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
                 }
                 Log.d("testeX","users");
             } catch (IOException e) {
-                Toast.makeText(context,"Erro com os dados obtidos",Toast.LENGTH_LONG).show();
+                mensagensExceptions = new String[] {"Erro com os dados obtidos do Usuário","Tente novamente em alguns minutos"};
+                con.setMensagensExceptions(mensagensExceptions);
                 e.printStackTrace();
             }
         }

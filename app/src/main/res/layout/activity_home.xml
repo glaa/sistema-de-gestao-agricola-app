@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/verde_padrao"
     tools:context=".HomeActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
@@ -24,7 +24,7 @@
     <Button
         android:id="@+id/btMinhaPropriedadeHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -34,6 +34,7 @@
         android:text="Minha Propriedade"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        android:textSize="24sp"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +43,7 @@
     <Button
         android:id="@+id/btMinhasInformacoesHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -52,6 +53,7 @@
         android:text="Minhas Informações"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        android:textSize="24sp"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +62,7 @@
     <Button
         android:id="@+id/btReuniaoHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -70,6 +72,7 @@
         android:text="Reunião"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        android:textSize="24sp"
         app:cornerRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +81,7 @@
     <Button
         android:id="@+id/btSairHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
@@ -88,6 +91,7 @@
         android:text="Sair do aplicativo"
         android:textAllCaps="false"
         android:textColor="@color/black"
+        android:textSize="24sp"
         app:cornerRadius="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

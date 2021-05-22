@@ -1,5 +1,7 @@
 package com.sistemadegestaoagricola.conexao;
 
+import android.util.Log;
+
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -11,13 +13,13 @@ public class ConexaoAPI {
     public static HttpURLConnection conexao;
     private URL agroEndpoint;
     private String url = "http://%s/api/%s%s";
-    private final String host = "192.168.0.104/site/sistema-de-gestao-agricola/public";
+    private final String host = "192.168.0.105/site/sistema-de-gestao-agricola/public";
     private String rota;
     private String parametros;
     private String metodo;
     private Map<String,String> propriedades;
     private static String token = null;
-    private String[] mensagensErro = null;
+    private String[] mensagensExceptions = null;
     private int codigoStatus;
 
     /**
@@ -47,37 +49,38 @@ public class ConexaoAPI {
                 this.setPropriedades(propriedades);
             }
 
-            this.conexao.setConnectTimeout(3000);
+            this.conexao.setConnectTimeout(10000);
             if(this.metodo == "POST"){
                 this.conexao.setRequestMethod("POST");
             }
             this.codigoStatus = this.conexao.getResponseCode();
+            Log.d("testeX","url: " + url);
 
         } catch (MalformedURLException e) {
             String[] m = {"Erro com a url da conexão!", "Tente novamente em alguns minutos"};
-            mensagensErro = m;
+            this.mensagensExceptions = m;
         } catch (ConnectException ce) {
             /*
              * Servidor desligado ou host incorreto
              */
             String[] m = {"Falha ao conectar ao servidor!", "Tente novamente em alguns minutos"};
-            mensagensErro = m;
+            this.mensagensExceptions = m;
 
         }catch (SocketTimeoutException ste) {
             /*
              * Host incorreto e estorou o tempo ou conexao lenta
              */
             String[] m = {"Tempo excedido com a conexão!", "Tente novamente em alguns minutos"};
-            mensagensErro = m;
+            this.mensagensExceptions = m;
 
         } catch (Exception e){
             String[] m = {"Erro com a conexão!", "Tente novamente em alguns minutos"};
-            mensagensErro = m;
+            this.mensagensExceptions = m;
         }
-        return mensagensErro;
+        return mensagensExceptions;
     }
 
-    /** Fecha a conexão da instancia atual*/
+    /** Fecha a conexão */
     public void fechar(){
         this.conexao.disconnect();
     }
@@ -91,8 +94,12 @@ public class ConexaoAPI {
     }
 
     /** Retorna null em caso de sucesso com a conexão, caso contrário os erros */
-    public String[] getMensagensErro() {
-        return mensagensErro;
+    public String[] getMensagensExceptions() {
+        return this.mensagensExceptions;
+    }
+
+    public void setMensagensExceptions(String[] mensagensExceptions) {
+        this.mensagensExceptions = mensagensExceptions;
     }
 
     /** Retorna o código de status da recebido na resposta da requisão */

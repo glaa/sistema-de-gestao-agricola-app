@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/verde_padrao"
+    android:orientation="vertical"
+    android:weightSum="5"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center_horizontal"
+            android:text="LOGO"
+            android:textColor="@color/white"
+            android:textSize="48sp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="16dp"
+            android:text="CPF / CNPJ"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edtCpfCnpjLogin"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvCpfCnpjInvalidoLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:text="CPF/CNPJ inválido"
+            android:textColor="@color/vermelho_alerta"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:text="Senha"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/edtSenhaLogin"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvSenhaInvalidaLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/white"
+            android:text="Senha Inválida"
+            android:textColor="@color/vermelho_alerta"
+            android:textSize="12sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/bg_inferior"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btEntrarLogin"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/bt_arredondado"
+            android:backgroundTint="@color/verde_claro"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Entrar"
+            android:textAllCaps="false"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toTopOf="@+id/tvEsqueceuSenhaLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvEsqueceuSenhaLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/teal_200"
+            android:gravity="center_horizontal"
+            android:text="Esqueceu a senha?"
+            android:textColor="@color/teal_200"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView23"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:gravity="center_horizontal"
+            android:text="Desenvolvido por:"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="bottom|center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="60dp"
+                android:layout_height="70dp"
+                app:srcCompat="@drawable/ufape_logo_preto" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/logo_lmts" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
