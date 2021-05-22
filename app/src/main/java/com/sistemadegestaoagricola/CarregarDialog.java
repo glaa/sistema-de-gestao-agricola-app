@@ -17,28 +17,23 @@ public class CarregarDialog {
         activity = minhaActivity;
     }
 
-    public AlertDialog cirarDialogCarregamento(){
+    public AlertDialog criarDialogCarregamento(){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         LayoutInflater inflater = activity.getLayoutInflater();
         builder.setView(inflater.inflate(R.layout.progressbar_carregamento,null));
         builder.setCancelable(false);
-//        dialog = builder.create();
-//        dialog.show();
         Log.d("testeX","exibir");
         return builder.create();
     }
 
-//    public void encerrarDialog(){
-//        dialog.dismiss();
-//        Log.d("testeX","encerrar");
-//
-//    }
-//
-//    public void ocultar(){
-//        dialog.hide();
-//    }
-//
-//    public void exibir(){
-//        dialog.show();
-//    }
+    public AlertDialog criarDialogAvisoPerfil(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
+        builder.setTitle("Seu perfil de usuário não é permitido!");
+        builder.setMessage("Entre com uma conta de Produtor ou Coordenador.");
+        builder.setCancelable(true);
+
+        Log.d("testeX","exibir");
+        return builder.create();
+    }
+
 }

@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaGetUser;
 import com.sistemadegestaoagricola.conexao.RotaLogin;
+import com.sistemadegestaoagricola.entidades.Usuario;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         tvSenha.setText("123456");
 
         CarregarDialog carregarDialog = new CarregarDialog(MainActivity.this);
-        carregamento = carregarDialog.cirarDialogCarregamento();
+        carregamento = carregarDialog.criarDialogCarregamento();
 
         /** Sublinhar o texto "Esqueceu a senha?" */
         tvEsqueceuSenha.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
@@ -99,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
                 if(!email.isEmpty() && !password.isEmpty()){
                     carregamento.show();
-                    Log.d("testeX","clicou");
 
                     thread = new Thread(MainActivity.this);
                     thread.start();
@@ -164,9 +164,19 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                             if(status == 200){
                                 //Dados obitidos com sucesso
                                 conexao.fechar();
-                                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                                startActivity(intent);
-                                finish();
+                                if(Usuario.getPerfil().equals("Coordenador") || Usuario.getPerfil().equals("Produtor")){
+                                    Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            new CarregarDialog(MainActivity.this).criarDialogAvisoPerfil().show();
+                                        }
+                                    });
+                                }
+
                             } else {
                                 runOnUiThread(new Runnable() {
                                     @Override
