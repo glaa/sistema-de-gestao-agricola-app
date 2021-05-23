@@ -17,7 +17,7 @@
         android:weightSum="5">
 
         <TextView
-            android:id="@+id/textView24"
+            android:id="@+id/tvSaudacaoCadastroInicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
@@ -92,8 +92,8 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="409dp"
-        android:layout_height="821dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="4"
         android:background="@drawable/bg_inferior"
         android:gravity="center"
@@ -102,7 +102,7 @@
         tools:layout_editor_absoluteY="1dp">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btComecarCadastroInicio"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginLeft="48dp"

@@ -111,12 +111,12 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
 
     private void lerUsuario(JsonReader jsonReader) throws IOException{
         int id = -1;
-        String nome = "";
-        String cpfCnpj = "";
-        String email = "";
+        String nome = null;
+        String cpfCnpj = null;
+        String email = null;
         int enderecoId = -1;
-        String telefone = "";
-        String perfil = "";
+        String telefone = null;
+        String perfil = null;
 
         jsonReader.beginObject();
         while(jsonReader.hasNext()){
@@ -142,17 +142,29 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
 
                     break;
                 case "email2":
-                    email = jsonReader.nextString();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        email = jsonReader.nextString();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     Log.d("testeXe","key: " + key + " value: " + email);
 
                     break;
                 case "endereco_id":
-                    enderecoId = jsonReader.nextInt();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        enderecoId = jsonReader.nextInt();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     Log.d("testeXe","key: " + key + " value: " + enderecoId);
 
                     break;
                 case "telefone":
-                    telefone = jsonReader.nextString();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        telefone = jsonReader.nextString();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     Log.d("testeXe","key: " + key + " value: " + telefone);
 
                     break;
@@ -179,10 +191,10 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
 
     private void lerProdutor(JsonReader jsonReader) throws IOException{
         int id = -1;
-        String dataNascimento = "";
-        String rg = "";
-        String nomeConjuge = "";
-        String nomeFilhos = "";
+        String dataNascimento = null;
+        String rg = null;
+        String nomeConjuge = null;
+        String nomeFilhos = null;
         boolean primeiroAcesso = false;
         int ocsId = -1;
 
@@ -191,19 +203,39 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
             String key = jsonReader.nextName();
             switch (key){
                 case "id":
-                    id = jsonReader.nextInt();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        id = jsonReader.nextInt();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     break;
                 case "data_nascimento":
-                    dataNascimento = jsonReader.nextString();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        dataNascimento = jsonReader.nextString();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     break;
                 case "rg":
-                    rg = jsonReader.nextString();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        rg = jsonReader.nextString();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     break;
                 case "nome_conjugue":
-                    nomeConjuge = jsonReader.nextString();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        nomeConjuge = jsonReader.nextString();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     break;
                 case "nome_filhos":
-                    nomeFilhos = jsonReader.nextString();
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        nomeFilhos = jsonReader.nextString();
+                    } else {
+                        jsonReader.skipValue();
+                    }
                     break;
                 case "primeiro_acesso":
                     primeiroAcesso = jsonReader.nextBoolean();
