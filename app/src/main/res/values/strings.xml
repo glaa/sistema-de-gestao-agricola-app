@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sistema de Gestão Agrícola</string>
+    <string name="mensagemCadastroInical">Para o uso adequado do aplicativo precisamos que preencha algumas informações
+    sobre os itens abaixo.</string>
 </resources>

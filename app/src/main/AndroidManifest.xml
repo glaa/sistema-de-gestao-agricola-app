@@ -13,13 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
+        <activity android:name=".CadastroInicioActivity"></activity>
+
         <meta-data
             android:name="com.google.android.actions"
             android:resource="@drawable/et_style" />
 
         <activity
             android:name=".ExibirInformacoesPessoaisActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ReuniaoActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
