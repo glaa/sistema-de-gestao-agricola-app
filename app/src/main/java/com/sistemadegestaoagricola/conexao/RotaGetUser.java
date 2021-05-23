@@ -1,11 +1,11 @@
 package com.sistemadegestaoagricola.conexao;
 
-import android.content.Context;
 import android.os.StrictMode;
 import android.util.JsonReader;
+import android.util.JsonToken;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.sistemadegestaoagricola.entidades.Produtor;
 import com.sistemadegestaoagricola.entidades.Usuario;
 
 import java.io.IOException;
@@ -47,42 +47,59 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
                 while (jsonReader.hasNext()) {
                     String key = jsonReader.nextName();
                     if (key.equals("user")) {
-                        jsonReader.beginObject();
-                        Usuario usuario = new Usuario();
-                        while(jsonReader.hasNext()){
-                            key = jsonReader.nextName();
-                            String value = jsonReader.nextString();
-                            switch (key){
-                                case "id":
-                                    usuario.setId(value);
-                                    break;
-                                case "nome":
-                                    usuario.setNome(value);
-                                    break;
-                                case "email":
-                                    usuario.setCpfCnpj(value);
-                                    break;
-                                case "email2":
-                                    usuario.setEmail(value);
-                                    break;
-                                case "telefone":
-                                    usuario.setEmail(value);
-                                case "tipo_perfil":
-                                    usuario.setPerfil(value);
-                                    break;
-                                default:
-                                    break;
-                            }
-                            Log.d("testeXb", "key: " + key + " value: " + value);
-                        }
-                        jsonReader.endObject();
-                        jsonReader.close();
-                        break;
+                        lerUsuario(jsonReader);
+//                        jsonReader.beginObject();
+//                        Usuario usuario = new Usuario();
+//                        while(jsonReader.hasNext()){
+//                            key = jsonReader.nextName();
+//                            //jsonReader.
+//                            //String value = jsonReader.nextString();
+//                            switch (key){
+//                                case "id":
+//                                    usuario.setId(jsonReader.nextInt());
+//                                    break;
+//                                case "nome":
+//                                    usuario.setNome(jsonReader.nextString());
+//                                    break;
+//                                case "email":
+//                                    usuario.setCpfCnpj(jsonReader.nextString());
+//                                    break;
+//                                case "email2":
+//                                    usuario.setEmail(jsonReader.nextString());
+//                                    break;
+//                                case "telefone":
+//                                    usuario.setTelefone(jsonReader.nextString());
+//                                    break;
+//                                case "tipo_perfil":
+//                                    usuario.setPerfil(jsonReader.nextString());
+//                                    break;
+//                                case "endereco_id":
+//                                    usuario.setEnderecoId(jsonReader.nextInt());
+//                                    break;
+//                                case "produtor":
+//                                    //if()
+//                                    //jsonReader.beginObject();
+////                                    if(jsonReader.hasNext()){
+////                                        Log.d("testeXb", "key: " + jsonReader.nextName() + " value: " + jsonReader.nextString());
+////
+////                                    }
+//                                    break;
+//
+//                                default:
+//                                    break;
+//                            }
+//                            Log.d("testeXb", "key: " + key + " value: " );
+//                        }
+//                        jsonReader.endObject();
+//                        jsonReader.close();
+//                        break;
                     } else {
                         jsonReader.skipValue();
                     }
                 }
-                Log.d("testeX","users");
+                //Log.d("testeX","users");
+                jsonReader.endObject();
+                jsonReader.close();
             } catch (IOException e) {
                 mensagensExceptions = new String[] {"Erro com os dados obtidos do Usuário","Tente novamente em alguns minutos"};
                 con.setMensagensExceptions(mensagensExceptions);
@@ -90,5 +107,117 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
             }
         }
         return con;
+    }
+
+    private void lerUsuario(JsonReader jsonReader) throws IOException{
+        int id = -1;
+        String nome = "";
+        String cpfCnpj = "";
+        String email = "";
+        int enderecoId = -1;
+        String telefone = "";
+        String perfil = "";
+
+        jsonReader.beginObject();
+        while(jsonReader.hasNext()){
+            //jsonReader.nextName();
+            //jsonReader.nextName();
+            Log.d("testeXe","value: " + jsonReader.toString());
+            String key = jsonReader.nextName();
+            Log.d("testeXe","key: " + key + " value: teste");
+
+            switch (key) {
+                case "id":
+                    id = jsonReader.nextInt();
+                    Log.d("testeXe","key: " + key + " value: " + id);
+                    break;
+                case "nome":
+                    nome = jsonReader.nextString();
+                    Log.d("testeXe","key: " + key + " value: " + nome);
+
+                    break;
+                case "email":
+                    cpfCnpj = jsonReader.nextString();
+                    Log.d("testeXe","key: " + key + " value: " + cpfCnpj);
+
+                    break;
+                case "email2":
+                    email = jsonReader.nextString();
+                    Log.d("testeXe","key: " + key + " value: " + email);
+
+                    break;
+                case "endereco_id":
+                    enderecoId = jsonReader.nextInt();
+                    Log.d("testeXe","key: " + key + " value: " + enderecoId);
+
+                    break;
+                case "telefone":
+                    telefone = jsonReader.nextString();
+                    Log.d("testeXe","key: " + key + " value: " + telefone);
+
+                    break;
+                case "tipo_perfil":
+                    perfil = jsonReader.nextString();
+                    Log.d("testeXe","key: " + key + " value: " + perfil);
+                    break;
+                case "produtor":
+                    if(jsonReader.peek() != JsonToken.NULL){
+                        lerProdutor(jsonReader);
+                    } else {
+                        Log.d("testeXe","produtor null");
+                        jsonReader.skipValue();
+                    }
+                    break;
+                default:
+                    jsonReader.skipValue();
+                    break;
+            }
+        }
+        jsonReader.endObject();
+        new Usuario(id,nome,cpfCnpj,email,enderecoId,telefone,perfil);
+    }
+
+    private void lerProdutor(JsonReader jsonReader) throws IOException{
+        int id = -1;
+        String dataNascimento = "";
+        String rg = "";
+        String nomeConjuge = "";
+        String nomeFilhos = "";
+        boolean primeiroAcesso = false;
+        int ocsId = -1;
+
+        jsonReader.beginObject();
+        while(jsonReader.hasNext()){
+            String key = jsonReader.nextName();
+            switch (key){
+                case "id":
+                    id = jsonReader.nextInt();
+                    break;
+                case "data_nascimento":
+                    dataNascimento = jsonReader.nextString();
+                    break;
+                case "rg":
+                    rg = jsonReader.nextString();
+                    break;
+                case "nome_conjugue":
+                    nomeConjuge = jsonReader.nextString();
+                    break;
+                case "nome_filhos":
+                    nomeFilhos = jsonReader.nextString();
+                    break;
+                case "primeiro_acesso":
+                    primeiroAcesso = jsonReader.nextBoolean();
+                    break;
+                case "ocs_id":
+                    ocsId = jsonReader.nextInt();
+                    break;
+                default:
+                    jsonReader.skipValue();
+                    break;
+            }
+        }
+        jsonReader.endObject();
+        new Produtor(id,dataNascimento,rg,nomeConjuge,nomeFilhos,primeiroAcesso,ocsId);
+        Log.d("testeXe","leu Produtor");
     }
 }
