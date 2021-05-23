@@ -48,51 +48,6 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
                     String key = jsonReader.nextName();
                     if (key.equals("user")) {
                         lerUsuario(jsonReader);
-//                        jsonReader.beginObject();
-//                        Usuario usuario = new Usuario();
-//                        while(jsonReader.hasNext()){
-//                            key = jsonReader.nextName();
-//                            //jsonReader.
-//                            //String value = jsonReader.nextString();
-//                            switch (key){
-//                                case "id":
-//                                    usuario.setId(jsonReader.nextInt());
-//                                    break;
-//                                case "nome":
-//                                    usuario.setNome(jsonReader.nextString());
-//                                    break;
-//                                case "email":
-//                                    usuario.setCpfCnpj(jsonReader.nextString());
-//                                    break;
-//                                case "email2":
-//                                    usuario.setEmail(jsonReader.nextString());
-//                                    break;
-//                                case "telefone":
-//                                    usuario.setTelefone(jsonReader.nextString());
-//                                    break;
-//                                case "tipo_perfil":
-//                                    usuario.setPerfil(jsonReader.nextString());
-//                                    break;
-//                                case "endereco_id":
-//                                    usuario.setEnderecoId(jsonReader.nextInt());
-//                                    break;
-//                                case "produtor":
-//                                    //if()
-//                                    //jsonReader.beginObject();
-////                                    if(jsonReader.hasNext()){
-////                                        Log.d("testeXb", "key: " + jsonReader.nextName() + " value: " + jsonReader.nextString());
-////
-////                                    }
-//                                    break;
-//
-//                                default:
-//                                    break;
-//                            }
-//                            Log.d("testeXb", "key: " + key + " value: " );
-//                        }
-//                        jsonReader.endObject();
-//                        jsonReader.close();
-//                        break;
                     } else {
                         jsonReader.skipValue();
                     }
