@@ -11,4 +11,5 @@
     <color name="verde_padrao">#07987f</color>
     <color name="verde_claro">#79ce50</color>
     <color name="vermelho_alerta">#ff4b4b</color>
+    <color name="botao_verde">#77c28d</color>
 </resources>

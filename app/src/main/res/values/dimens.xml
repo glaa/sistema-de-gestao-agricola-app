@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bt_altura_padrao">55dp</dimen>
+    <dimen name="bt_margem_lateral">48dp</dimen>
+    <dimen name="bt_tamanho_fonte">24sp</dimen>
+    <dimen name="bt_mrgem_lateral_principal">16dp</dimen>
+    <dimen name="bt_altura_principal">80dp</dimen>
+    <dimen name="ed_altura_padrao">45dp</dimen>
+</resources>

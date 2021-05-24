@@ -1,201 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    tools:context=".ExibirInformacoesPessoaisActivity">
+    android:background="@color/verde_padrao"
+    tools:contex=".ExibirInformacoesPessoaisActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarExibirInformacoesPessoais"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FF9800"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
-        app:titleTextColor="@color/black" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="Informações Pessoais"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarExibirInformacoesPessoais" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarExibirInformacoesPessoais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FF9800"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:navigationIcon="@drawable/ic_baseline_arrow_back_24" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="Nome Completo"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etNomeCompletoExibirInformacoesPessoais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:text="Informações Pessoais"
+                android:textColor="@color/white"
+                android:textSize="34sp" />
 
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="Data de Nascimento"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNomeCompletoExibirInformacoesPessoais" />
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:text="Nome Completo"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/etDataNascimentoExibirInformacoesPessoais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            <EditText
+                android:id="@+id/etNomeCompletoExibirInformacoesPessoais"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ed_altura_padrao"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                android:background="@drawable/et_style"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="RG"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDataNascimentoExibirInformacoesPessoais" />
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="Data de Nascimento"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/etRGExibirInformacoesPessoais"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            <EditText
+                android:id="@+id/etDataNascimentoExibirInformacoesPessoais"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ed_altura_padrao"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                android:background="@drawable/et_style"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="CPF"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etRGExibirInformacoesPessoais" />
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="RG"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            <EditText
+                android:id="@+id/etRGExibirInformacoesPessoais"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ed_altura_padrao"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                android:background="@drawable/et_style"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="OCS"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="CPF"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@color/white"
-        android:clickable="false"
-        android:editable="false"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            <EditText
+                android:id="@+id/editTextTextPersonName4"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ed_altura_padrao"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                android:background="@drawable/et_style"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:text="A alteração da OCS é de responsabilidade do coordenador da associação"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="OCS"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName5"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/ed_altura_padrao"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                android:background="@drawable/et_style"
+                android:clickable="false"
+                android:editable="false"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="A alteração da OCS é de responsabilidade do coordenador da associação"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="164dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_inferior"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/bt_margem_lateral"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="@dimen/bt_margem_lateral"
+                android:text="@string/mensagemExibirMinhasInformacoes"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bt_altura_padrao"
+                android:layout_marginLeft="@dimen/bt_margem_lateral"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="@dimen/bt_margem_lateral"
+                android:background="@drawable/bt_arredondado"
+                android:backgroundTint="@color/verde_claro"
+                android:drawableLeft="@drawable/ic_baseline_check_24"
+                android:drawablePadding="-50dp"
+                android:paddingLeft="50dp"
+                android:text="Atualizar"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/bt_tamanho_fonte" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</ScrollView>
