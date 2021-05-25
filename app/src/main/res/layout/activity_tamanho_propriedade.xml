@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/verde_padrao"
+    android:orientation="vertical"
+    android:weightSum="5"
+    tools:context=".TamanhoPropriedadeActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="@string/pergunta_tamanho_propriedade"
+            android:textColor="@color/white"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="hectare"
+            android:textAlignment="textEnd"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
+
+        <EditText
+            android:id="@+id/etHectareamanhoPropriedade"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/textView30"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="@string/informacao_tamanho_propriedade"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:background="@drawable/bg_inferior"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btProximoTamanhoPropriedade"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_padrao"
+            android:layout_marginLeft="@dimen/bt_margem_lateral"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="@dimen/bt_margem_lateral"
+            android:background="@drawable/bt_arredondado"
+            android:backgroundTint="@color/cinza_claro"
+            android:text="Próximo"
+            android:textAllCaps="false"
+            android:textSize="@dimen/bt_tamanho_fonte" />
+    </LinearLayout>
+</LinearLayout>

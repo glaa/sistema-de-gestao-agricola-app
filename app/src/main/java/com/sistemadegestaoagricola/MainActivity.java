@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.nova_login);
+        setContentView(R.layout.novo_login);
 
         tvCpfCnjp= findViewById(R.id.edtCpfCnpjLogin);
         tvSenha = findViewById(R.id.edtSenhaLogin);

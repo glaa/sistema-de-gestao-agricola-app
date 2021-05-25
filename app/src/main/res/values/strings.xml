@@ -3,4 +3,6 @@
     <string name="mensagemCadastroInical">Para o uso adequado do aplicativo precisamos que preencha algumas informações
     sobre os itens abaixo.</string>
     <string name="mensagemExibirMinhasInformacoes">Clique em atualizar para salvar as alterações</string>
+    <string name="pergunta_tamanho_propriedade">Qual o tamanho do seu sítio?</string>
+    <string name="informacao_tamanho_propriedade">1 hectare = 10.000 metros quadrados</string>
 </resources>
