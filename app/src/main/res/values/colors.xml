@@ -13,4 +13,6 @@
     <color name="vermelho_alerta">#ff4b4b</color>
     <color name="botao_verde">#77c28d</color>
     <color name="cinza_claro">#FFD6D3D3</color>
+    <color name="background_verde">#1cb273</color>
+    <color name="verde_escuro">#005d4d</color>
 </resources>

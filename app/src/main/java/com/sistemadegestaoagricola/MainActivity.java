@@ -27,11 +27,11 @@ import java.util.concurrent.Future;
 
 public class MainActivity extends AppCompatActivity implements Runnable {
 
-    private EditText tvCpfCnjp;
-    private EditText tvSenha;
+    private EditText edtCpfEmail;
+    private EditText edtSenha;
     private Button btEntrar;
     private TextView tvEsqueceuSenha;
-    private String email = "";
+    private String cpfEmail = "";
     private String password = "";
     private ConexaoAPI conexao;
     private int status;
@@ -43,15 +43,15 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.novo_login);
+        setContentView(R.layout.activity_main);
 
-        tvCpfCnjp= findViewById(R.id.edtCpfCnpjLogin);
-        tvSenha = findViewById(R.id.edtSenhaLogin);
-        btEntrar = findViewById(R.id.btEntrarLogin);
-        tvEsqueceuSenha = findViewById(R.id.tvEsqueceuSenhaLogin);
+        edtCpfEmail = findViewById(R.id.edtCpfEmailMain);
+        edtSenha = findViewById(R.id.edtSenhaMain);
+        btEntrar = findViewById(R.id.btEntrarMain);
+        tvEsqueceuSenha = findViewById(R.id.tvEsqueceuSenhaMain);
 
-        tvCpfCnjp.setText("00011122233344");
-        tvSenha.setText("123456");
+        edtCpfEmail.setText("00011122233344");
+        edtSenha.setText("123456");
 
         CarregarDialog carregarDialog = new CarregarDialog(MainActivity.this);
         carregamento = carregarDialog.criarDialogCarregamento();
@@ -59,36 +59,36 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         /** Sublinhar o texto "Esqueceu a senha?" */
         tvEsqueceuSenha.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
 
-        tvCpfCnjp.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        edtCpfEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                email = tvCpfCnjp.getText().toString();
+                cpfEmail = edtCpfEmail.getText().toString();
                 /** Apresenta mensagem de campo obrigatório */
                 if(!hasFocus){
-                    if(email.isEmpty()){
-                        findViewById(R.id.tvCpfCnpjInvalidoLogin).setVisibility(View.VISIBLE);
+                    if(cpfEmail.isEmpty()){
+                        findViewById(R.id.tvCpfCnpjInvalidoMain).setVisibility(View.VISIBLE);
                     } else {
-                        findViewById(R.id.tvCpfCnpjInvalidoLogin).setVisibility(View.GONE);
+                        findViewById(R.id.tvCpfCnpjInvalidoMain).setVisibility(View.GONE);
                     }
                 } else {
-                    findViewById(R.id.tvCpfCnpjInvalidoLogin).setVisibility(View.GONE);
+                    findViewById(R.id.tvCpfCnpjInvalidoMain).setVisibility(View.GONE);
                 }
             }
         });
 
-        tvSenha.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        edtSenha.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                password = tvSenha.getText().toString();
+                password = edtSenha.getText().toString();
                 /** Apresenta mensagem de campo obrigatório */
                 if(!hasFocus){
                     if(password.isEmpty()){
-                        findViewById(R.id.tvSenhaInvalidaLogin).setVisibility(View.VISIBLE);
+                        findViewById(R.id.tvSenhaInvalidaMain).setVisibility(View.VISIBLE);
                     } else {
-                        findViewById(R.id.tvSenhaInvalidaLogin).setVisibility(View.GONE);
+                        findViewById(R.id.tvSenhaInvalidaMain).setVisibility(View.GONE);
                     }
                 } else {
-                    findViewById(R.id.tvSenhaInvalidaLogin).setVisibility(View.GONE);
+                    findViewById(R.id.tvSenhaInvalidaMain).setVisibility(View.GONE);
                 }
             }
         });
@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                email = tvCpfCnjp.getText().toString();
-                password = tvSenha.getText().toString();
+                cpfEmail = edtCpfEmail.getText().toString();
+                password = edtSenha.getText().toString();
 
-                if(!email.isEmpty() && !password.isEmpty()){
+                if(!cpfEmail.isEmpty() && !password.isEmpty()){
                     carregamento.show();
 
                     thread = new Thread(MainActivity.this);
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     btEntrar.setClickable(false);
 
                 } else {
-                    Toast.makeText(getApplicationContext(),"CPF / CNPJ e Senha devem ser preenchidos!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"CPF e Senha devem ser preenchidos!",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         /**
          *  Chama a classe RotaLogin que irá se conectar com a rota /api/login em uma thread
          */
-        RotaLogin login = new RotaLogin(email,password);
+        RotaLogin login = new RotaLogin(cpfEmail,password);
         Future<ConexaoAPI> future1 = threadpool.submit(login);
 
         while(!future1.isDone()){
@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this,"CPF / CNPJ ou Senha inválidos!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,"CPF ou Senha inválidos!",Toast.LENGTH_LONG).show();
 
                         }
                     });
