@@ -12,23 +12,23 @@ import com.sistemadegestaoagricola.entidades.Usuario;
 
 public class CadastroInicioActivity extends AppCompatActivity {
 
-    private TextView tvSaudacao;
+    private TextView tvNome;
     private Button btComecar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_inicio);
+        setContentView(R.layout.activity_cadastro_inicial_novo);
 
-        tvSaudacao = findViewById(R.id.tvSaudacaoCadastroInicio);
-        btComecar = findViewById(R.id.btComecarCadastroInicio);
+        tvNome = findViewById(R.id.tvNomeCadastroInicialNovo);
+        btComecar = findViewById(R.id.btComecarCadastroInicialNovo);
 
-        tvSaudacao.setText("Olá, " + Usuario.getNome() + "!");
+        tvNome.setText(Usuario.getNome() + "!");
 
         btComecar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),TamanhoPropriedadeActivity.class);
+                Intent intent = new Intent(getApplicationContext(),CadastroTamanhoPropriedadeActivity.class);
                 startActivity(intent);
             }
         });

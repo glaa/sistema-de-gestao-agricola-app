@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_verde"
+    tools:context=".CadastroTamanhoPropriedadeActivity">
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="@string/pergunta_tamanho_propriedade"
+        android:textColor="@color/white"
+        android:textSize="@dimen/tv_perguntas_cadastro_propriedade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView34"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="32dp"
+        android:text="Tamanho"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+    <EditText
+        android:id="@+id/edtTamanhoCadastroTamanhoPropriedade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ed_altura_padrao"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:background="@drawable/et_style"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textSize="@dimen/ed_tamanho_fonte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView34" />
+
+    <TextView
+        android:id="@+id/textView35"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="4dp"
+        android:text="Hectare"
+        android:textColor="@color/white"
+        android:textSize="@dimen/rotulo_padrao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTamanhoCadastroTamanhoPropriedade" />
+
+    <TextView
+        android:id="@+id/textView36"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="@string/informacao_tamanho_propriedade"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.045"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+
+    <Button
+        android:id="@+id/btProximoCadastroTamanhoPropriedade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_altura_principal"
+        android:layout_marginStart="@dimen/bt_margem_lateral"
+        android:layout_marginEnd="@dimen/bt_margem_lateral"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bt_arredondado"
+        android:backgroundTint="@color/cinza_escuro"
+        android:text="Próximo"
+        android:textAllCaps="false"
+        android:textColor="@color/verde_escuro"
+        android:textSize="@dimen/bt_tamanho_fonte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

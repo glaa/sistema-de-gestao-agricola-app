@@ -15,4 +15,5 @@
     <color name="cinza_claro">#FFD6D3D3</color>
     <color name="background_verde">#1cb273</color>
     <color name="verde_escuro">#005d4d</color>
+    <color name="cinza_escuro">#aaaaaa</color>
 </resources>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Sistema de Gestão Agrícola</string>
-    <string name="mensagemCadastroInical">Para o uso adequado do aplicativo precisamos que preencha algumas informações
-    sobre os itens abaixo.</string>
+    <string name="mensagemCadastroInical">Para continuar usando o aplicativo precisamos que antes
+        preencha algumas informações sobre a sua propridade.</string>
     <string name="mensagemExibirMinhasInformacoes">Clique em atualizar para salvar as alterações</string>
     <string name="pergunta_tamanho_propriedade">Qual o tamanho do seu sítio?</string>
     <string name="informacao_tamanho_propriedade">1 hectare = 10.000 metros quadrados</string>

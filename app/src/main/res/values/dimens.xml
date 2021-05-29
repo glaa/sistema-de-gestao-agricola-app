@@ -9,4 +9,5 @@
     <dimen name="nome_logo">34sp</dimen>
     <dimen name="rotulo_padrao">18sp</dimen>
     <dimen name="ed_tamanho_fonte">18sp</dimen>
+    <dimen name="tv_perguntas_cadastro_propriedade">48sp</dimen>
 </resources>
