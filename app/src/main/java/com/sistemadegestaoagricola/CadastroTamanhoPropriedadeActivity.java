@@ -16,7 +16,7 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
     private EditText etHectare;
     private Button btProximo;
     private boolean bloquearBotao = true;
-    private int valor = 0;
+    private int valor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,12 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
 
         etHectare = findViewById(R.id.edtTamanhoCadastroTamanhoPropriedade);
         btProximo = findViewById(R.id.btProximoCadastroTamanhoPropriedade);
+
+        if(etHectare.getText().toString().isEmpty()){
+            valor = 0;
+        } else {
+            valor = Integer.parseInt(etHectare.getText().toString());
+        }
 
         etHectare.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -55,7 +61,6 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
         btProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                valor = Integer.parseInt(etHectare.getText().toString());
                 if(!bloquearBotao && valor > 0){
                     Intent intent = new Intent(getApplicationContext(),CadastroMapaPropriedadeActivity.class);
                     startActivity(intent);

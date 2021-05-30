@@ -12,4 +12,5 @@
         infraestrutura.
         \nQuando finalizar o desenho basta tirar uma foto com o telefone e
         anexar ao cadastro</string>
+    <string name="pergunta_fonte_agua">Qual a fonte de água do seu sítio?</string>
 </resources>

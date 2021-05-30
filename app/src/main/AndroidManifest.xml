@@ -15,11 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
         <activity
+            android:name=".CadastroFonteAguaActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
             android:name=".ExibirFotografiaMapaActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ExemploMapaActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroMapaPropriedadeActivity"
             android:screenOrientation="portrait" />

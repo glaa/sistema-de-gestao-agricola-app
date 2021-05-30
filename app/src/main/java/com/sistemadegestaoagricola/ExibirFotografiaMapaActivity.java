@@ -2,6 +2,7 @@ package com.sistemadegestaoagricola;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -40,7 +41,8 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
         btProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(),CadastroFonteAguaActivity.class);
+                startActivity(intent);
             }
         });
 
