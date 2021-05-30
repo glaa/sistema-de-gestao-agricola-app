@@ -55,10 +55,10 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
         btProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                valor = Integer.parseInt(etHectare.getText().toString());
                 if(!bloquearBotao && valor > 0){
-                    Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),CadastroMapaPropriedadeActivity.class);
                     startActivity(intent);
-                    Log.d("testeX","Clicou");
                 } else {
                     Toast.makeText(CadastroTamanhoPropriedadeActivity.this, "Digite um valor maior que 0", Toast.LENGTH_LONG).show();
                 }

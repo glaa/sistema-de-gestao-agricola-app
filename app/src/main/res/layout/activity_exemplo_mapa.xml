@@ -4,6 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bt_arredondado"
     tools:context=".ExemploMapaActivity">
 
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/mapa" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/bg_inferior"
+        android:backgroundTint="@color/background_verde"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btFecharExemploMapa"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/bt_arredondado"
+            android:backgroundTint="@color/white"
+            android:text="Fechar"
+            android:textAllCaps="false"
+            android:textColor="@color/verde_escuro"
+            android:textSize="@dimen/bt_tamanho_fonte" />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

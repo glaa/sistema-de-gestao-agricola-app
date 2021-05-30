@@ -36,4 +36,15 @@ public class CarregarDialog {
         return builder.create();
     }
 
+    public AlertDialog criarDialogPermissaoCamera(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
+        builder.setTitle("Aviso");
+        builder.setMessage("Uso da câmera é necessário para fotograr seu mapa. Sem isso seus dados " +
+                "ficaram incompletos.");
+        builder.setCancelable(false);
+
+        Log.d("testeX","exibir");
+        return builder.create();
+    }
+
 }

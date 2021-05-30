@@ -4,6 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_verde"
     tools:context=".CadastroMapaPropriedadeActivity">
 
+    <TextView
+        android:id="@+id/textView37"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="Mapa da propriedade"
+        android:textColor="@color/white"
+        android:textSize="@dimen/tv_perguntas_cadastro_propriedade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView38"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="@string/mensagem_mapa_propriedade"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+    <Button
+        android:id="@+id/btVerExemploCadastroMapaPropriedade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_altura_principal"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/bt_arredondado"
+        android:backgroundTint="@color/verde_escuro"
+        android:text="Ver exemplo"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/bt_tamanho_fonte"
+        app:layout_constraintBottom_toTopOf="@+id/btFotografarCadastroMapaPropriedade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btFotografarCadastroMapaPropriedade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_altura_principal"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bt_arredondado"
+        android:backgroundTint="@color/white"
+        android:text="Fotografar"
+        android:textAllCaps="false"
+        android:textColor="@color/verde_escuro"
+        android:textSize="@dimen/bt_tamanho_fonte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

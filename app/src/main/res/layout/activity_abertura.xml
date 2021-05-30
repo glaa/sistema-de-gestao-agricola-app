@@ -69,14 +69,13 @@
                 android:id="@+id/imageView4"
                 android:layout_width="60dp"
                 android:layout_height="70dp"
-                android:layout_marginRight="-5dp"
                 app:srcCompat="@drawable/ufape_logo_branco" />
 
             <ImageView
                 android:id="@+id/imageView11"
                 android:layout_width="120dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="-5dp"
+                android:layout_marginStart="-10dp"
                 app:srcCompat="@drawable/lmts_branco" />
         </LinearLayout>
     </LinearLayout>

@@ -6,4 +6,10 @@
     <string name="pergunta_tamanho_propriedade">Qual o tamanho do seu sítio?</string>
     <string name="informacao_tamanho_propriedade">1 hectare = 10.000 metros quadrados</string>
     <string name="nome_logo"><font color="#FFFFFF">agro<b>ecologia</b></font></string>
+    <string name="mensagem_mapa_propriedade">Produtor(a)!
+        \nAqui você vai anexar um desenho da sua propriedade, localizando as principais áreas de
+        produção, os rios e fontes de água e a
+        infraestrutura.
+        \nQuando finalizar o desenho basta tirar uma foto com o telefone e
+        anexar ao cadastro</string>
 </resources>
