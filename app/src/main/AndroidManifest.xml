@@ -15,21 +15,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
         <activity
+            android:name=".ExibirFotografiaMapaActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity
             android:name=".ExemploMapaActivity"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".CadastroMapaPropriedadeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroTamanhoPropriedadeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".TamanhoPropriedadeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroInicioActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.actions"

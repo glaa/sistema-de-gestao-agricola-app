@@ -104,6 +104,10 @@ public class CadastroMapaPropriedadeActivity extends AppCompatActivity {
         if(requestCode == 1 && resultCode == RESULT_OK){
             Bundle extras = data.getExtras();
             Bitmap foto = (Bitmap) extras.get("data");
+
+            Intent intent = new Intent(this,ExibirFotografiaMapaActivity.class);
+            intent.putExtra("FOTO", foto);
+            startActivity(intent);
             Log.d("testeX","recebeu foto");
 
         }
