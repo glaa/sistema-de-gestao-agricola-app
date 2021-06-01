@@ -1,6 +1,7 @@
 package com.sistemadegestaoagricola;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,23 +19,23 @@ public class HomeActivity extends AppCompatActivity {
     private int status;
     private String nome;
     private TextView tvSaudacao;
-    private Button btMinhaPropriedade;
-    private Button btMinhasInformacoes;
-    private Button btReuniao;
-    private Button btSair;
+    private CardView btMinhaPropriedade;
+    private CardView btMinhasInformacoes;
+    private CardView btReuniao;
+    private CardView btSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        tvSaudacao = findViewById(R.id.tvSaudacaoHome);
-        tvSaudacao.setText("Olá, " + Usuario.getNome() + "!");
+        tvSaudacao = findViewById(R.id.tvNomeHome);
+        tvSaudacao.setText(Usuario.getNome() + "!");
 
-        btMinhaPropriedade = findViewById(R.id.btMinhaPropriedadeHome);
-        btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
-        btReuniao = findViewById(R.id.btReuniaoHome);
-        btSair = findViewById(R.id.btSairHome);
+        btMinhaPropriedade = findViewById(R.id.cvPropriedadeHome);
+        //btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
+        btReuniao = findViewById(R.id.cvReunioesHome);
+        btSair = findViewById(R.id.cvSairHome);
 
         btMinhaPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,13 +45,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btMinhasInformacoes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MinhasInformacoesActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btMinhasInformacoes.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(),MinhasInformacoesActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         btReuniao.setOnClickListener(new View.OnClickListener() {
             @Override

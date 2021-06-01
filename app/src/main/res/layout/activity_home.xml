@@ -1,106 +1,388 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="left"
-    android:background="@color/verde_padrao"
+    android:background="@color/background_verde"
     tools:context=".HomeActivity">
 
-    <TextView
-        android:id="@+id/tvSaudacaoHome"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:textColor="@color/white"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btMinhaPropriedadeHome"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bt_arredondado"
-        android:backgroundTint="#FFC107"
-        android:drawableLeft="@drawable/ic_baseline_house_black_24"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:gravity="fill"
-        android:text="Minha Propriedade"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSaudacaoHome" />
 
-    <Button
-        android:id="@+id/btMinhasInformacoesHome"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bt_arredondado"
-        android:backgroundTint="#FF9800"
-        android:drawableLeft="@drawable/ic_baseline_person_24"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:gravity="fill"
-        android:text="Minhas Informações"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:cornerRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btMinhaPropriedadeHome" />
+        <TextView
+            android:id="@+id/textView40"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:text="@string/nome_logo"
+            android:textSize="@dimen/nome_logo"/>
 
-    <Button
-        android:id="@+id/btReuniaoHome"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/bt_arredondado"
-        android:backgroundTint="#F66969"
-        android:drawableLeft="@drawable/ic_baseline_groups_24"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:drawablePadding="10dp"
-        android:gravity="fill"
-        android:paddingLeft="10dp"
-        android:text="Reunião"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btMinhasInformacoesHome" />
+        <TextView
+            android:id="@+id/textView41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="48dp"
+            android:text="Olá,"
+            android:textColor="@color/white"
+            android:textSize="34sp" />
 
-    <Button
-        android:id="@+id/btSairHome"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/bt_arredondado"
-        android:backgroundTint="@color/botao_verde"
-        android:drawableLeft="@drawable/ic_baseline_exit_to_app_24"
-        android:drawableRight="@drawable/ic_baseline_arrow_forward_ios_24"
-        android:text="Sair do aplicativo"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tvNomeHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="Fulano de tal!"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvProximaReuniaoHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        app:srcCompat="@drawable/ic_baseline_access_time_filled_24" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Próxima reunião:"
+                        android:textColor="@color/cardview_dark_background" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Terça,"
+                            android:textColor="@color/verde_escuro"
+                            android:textSize="@dimen/bt_tamanho_fonte" />
+
+
+                        <TextView
+                            android:id="@+id/textView42"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:text="01 de junho"
+                            android:textColor="@color/verde_escuro"
+                            android:textSize="@dimen/bt_tamanho_fonte"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="17h"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/bt_tamanho_fonte"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPropriedadeHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/layout_circulo"
+                    android:backgroundTint="@color/background_verde"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="@dimen/icone_botao"
+                        android:layout_height="@dimen/icone_botao"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_baseline_house_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView43"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Propriedade"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/bt_tamanho_fonte" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvProducaoHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/layout_circulo"
+                    android:backgroundTint="@color/background_verde"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="@dimen/icone_botao"
+                        android:layout_height="@dimen/icone_botao"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_baseline_assignment_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Produção"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/bt_tamanho_fonte" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvReunioesHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/layout_circulo"
+                    android:backgroundTint="@color/background_verde"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="@dimen/icone_botao"
+                        android:layout_height="@dimen/icone_botao"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_baseline_groups_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Reuniões"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/bt_tamanho_fonte" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24"></ImageView>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvSairHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="64dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/layout_circulo"
+                    android:backgroundTint="@color/background_verde"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView17"
+                        android:layout_width="@dimen/icone_botao"
+                        android:layout_height="@dimen/icone_botao"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_baseline_logout_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/textView46"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Sair do aplicativo"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/bt_tamanho_fonte" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24"></ImageView>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
