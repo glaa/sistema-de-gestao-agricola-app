@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".LocalizacaoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_verde"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView47"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="@string/confirme_localizacao"
+            android:textColor="@color/white"
+            android:textSize="@dimen/tv_perguntas_cadastro_propriedade" />
+
+        <TextView
+            android:id="@+id/textView49"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="Logradouro"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao"/>
+
+        <EditText
+            android:id="@+id/edtLogradouroLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/ed_tamanho_fonte" />
+
+        <TextView
+            android:id="@+id/textView50"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="Número"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <EditText
+            android:id="@+id/edtNumeroLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:digits="5"
+            android:ems="10"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/ed_tamanho_fonte" />
+
+        <TextView
+            android:id="@+id/textView51"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="Bairro"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <EditText
+            android:id="@+id/edtBairroLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/ed_tamanho_fonte" />
+
+        <TextView
+            android:id="@+id/textView52"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="Cidade"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <EditText
+            android:id="@+id/edtCidadeLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/ed_tamanho_fonte" />
+
+        <TextView
+            android:id="@+id/textView53"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="Estado"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style" />
+
+        <TextView
+            android:id="@+id/textView54"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="Referência"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <EditText
+            android:id="@+id/edtReferenciaLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <Button
+            android:id="@+id/btConfirmarLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/bt_arredondado"
+            android:backgroundTint="@color/white"
+            android:text="Confirmar"
+            android:textAllCaps="false"
+            android:textColor="@color/verde_escuro"
+            android:textSize="@dimen/bt_tamanho_fonte" />
+
+    </LinearLayout>
+</ScrollView>

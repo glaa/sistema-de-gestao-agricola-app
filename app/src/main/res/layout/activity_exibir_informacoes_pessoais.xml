@@ -120,7 +120,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName4"
+                android:id="@+id/edtBairroLocalizacao"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -143,7 +143,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName5"
+                android:id="@+id/edtCidadeLocalizacao"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"

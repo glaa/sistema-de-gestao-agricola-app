@@ -14,10 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
+        <activity android:name=".LocalizacaoActivity"></activity>
         <activity
             android:name=".CadastroFonteAguaActivity"
-            android:screenOrientation="portrait" >
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".ExibirFotografiaMapaActivity"
             android:screenOrientation="portrait" />
