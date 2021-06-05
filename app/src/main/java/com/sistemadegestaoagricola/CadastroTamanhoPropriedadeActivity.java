@@ -36,7 +36,7 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 String hectare = etHectare.getText().toString();
-
+                //Quando preciona a tecla enter
                 if(i == 66){
                     if(!hectare.isEmpty()){
                         valor = Integer.parseInt(hectare);

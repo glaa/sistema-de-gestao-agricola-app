@@ -16,7 +16,7 @@
         android:layout_weight="1" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/tvMensagemCarregamento"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_marginRight="32dp"

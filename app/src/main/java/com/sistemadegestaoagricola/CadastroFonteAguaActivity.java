@@ -106,7 +106,7 @@ public class CadastroFonteAguaActivity extends AppCompatActivity {
                 if(fonte.isEmpty()){
                     Toast.makeText(CadastroFonteAguaActivity.this, "Selecione algum item", Toast.LENGTH_SHORT).show();
                 } else {
-                    Intent intent = new Intent(CadastroFonteAguaActivity.this,HomeActivity.class);
+                    Intent intent = new Intent(CadastroFonteAguaActivity.this,CadastroCepActivity.class);
                     startActivity(intent);
                     finishAffinity();
                 }
