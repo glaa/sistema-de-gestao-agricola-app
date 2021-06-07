@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.entidades.Propriedade;
+
 public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
 
     private EditText etHectare;
@@ -62,6 +64,7 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(!bloquearBotao && valor > 0){
+                    salvarDados();
                     Intent intent = new Intent(getApplicationContext(),CadastroMapaPropriedadeActivity.class);
                     startActivity(intent);
                 } else {
@@ -69,5 +72,9 @@ public class CadastroTamanhoPropriedadeActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void salvarDados(){
+        Propriedade.setTamanho(valor);
     }
 }

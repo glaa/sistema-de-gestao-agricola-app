@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
-        <activity android:name=".CadastroCepActivity"></activity>
+        <activity android:name=".CadastroCidadeActivity"></activity>
+        <activity android:name=".CadastroCepActivity" />
         <activity android:name=".CadastroLocalizacaoActivity" />
         <activity
             android:name=".CadastroFonteAguaActivity"

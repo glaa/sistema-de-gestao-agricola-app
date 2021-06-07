@@ -16,7 +16,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.sistemadegestaoagricola.conexao.CepAPI;
+import com.sistemadegestaoagricola.conexao.ConexaoAPI;
+import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
 import com.sistemadegestaoagricola.entidades.Propriedade;
+
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class CadastroCepActivity extends AppCompatActivity implements Runnable{
 
@@ -25,8 +32,11 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
     private Button btBuscar;
     private String cep = "";
     private boolean bloquearBotao = true;
-    private AlertDialog buscando;
+    private int status;
+    private AlertDialog buscando, salvando;
     private Thread thread;
+    private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
+    private String[] mensagensExceptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +83,7 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
         btPular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent  = new Intent(getApplicationContext(), CadastroLocalizacaoActivity.class);
+                Intent intent  = new Intent(getApplicationContext(), CadastroCidadeActivity.class);
                 startActivity(intent);
             }
         });
@@ -120,6 +130,9 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
                    alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Não", new DialogInterface.OnClickListener() {
                        @Override
                        public void onClick(DialogInterface dialogInterface, int i) {
+                           CarregarDialog carregarDialog = new CarregarDialog(CadastroCepActivity.this);
+                           salvando = carregarDialog.criarDialogSalvarInformacoes();
+                           salvando.show();
                            Intent intent  = new Intent(getApplicationContext(), HomeActivity.class);
                            startActivity(intent);
                        }
@@ -133,5 +146,50 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
             startActivity(intent);
         }
         buscando.dismiss();
+    }
+
+    public void salvarCadastroAPI(){
+        RotaCadastrarPropriedade rotaCadastrarPropriedade = new RotaCadastrarPropriedade();
+        Future<ConexaoAPI> future = threadpool.submit(rotaCadastrarPropriedade);
+
+        while(!future.isDone()){
+            //Aguardando
+        }
+
+        ConexaoAPI conexao = null;
+        try{
+            conexao = future.get();
+
+            mensagensExceptions = conexao.getMensagensExceptions();
+
+            if(mensagensExceptions == null){
+                //Sem erro de conexão
+                status = conexao.getCodigoStatus();
+
+                if(status == 200){
+                    //Salvo com sucesso
+                    Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show();
+                } else {
+                    //Erro ao salvar
+                    Toast.makeText(this, "Dados não puderam ser salvos", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Erro(mensagensExceptions[0],mensagensExceptions[1]);
+            }
+
+        } catch (InterruptedException | ExecutionException e){
+            e.printStackTrace();
+            Erro("Falha na conexão","Tente novamente em alguns minutos");
+        } finally {
+            salvando.dismiss();
+        }
+    }
+
+    private void Erro(String titulo, String subtitulo){
+        Intent intent = new Intent(this, ErroActivity.class);
+        intent.putExtra("TITULO", titulo);
+        intent.putExtra("SUBTITULO", subtitulo);
+        intent.putExtra("ACTIVITY","MainActivity");
+        this.startActivity(intent);
     }
 }

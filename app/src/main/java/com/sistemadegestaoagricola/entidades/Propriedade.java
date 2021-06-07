@@ -87,4 +87,16 @@ public class Propriedade {
     public static void setCep(String cep) {
         Propriedade.cep = cep;
     }
+
+    public static void zerarAtributos(){
+        tamanho = -1;
+        fonteAgua = null;
+        logradouro = null;
+        id = -1;
+        numero = -1;
+        bairro = null;
+        cidade = null;
+        estado = null;
+        cep = null;
+    }
 }

@@ -141,6 +141,7 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
             }
         }
         jsonReader.endObject();
+        jsonReader.close();
         new Usuario(id,nome,cpfCnpj,email,enderecoId,telefone,perfil);
     }
 

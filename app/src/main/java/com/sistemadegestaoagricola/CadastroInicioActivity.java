@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.sistemadegestaoagricola.entidades.Propriedade;
 import com.sistemadegestaoagricola.entidades.Usuario;
 
 public class CadastroInicioActivity extends AppCompatActivity {
@@ -24,6 +25,9 @@ public class CadastroInicioActivity extends AppCompatActivity {
         btComecar = findViewById(R.id.btComecarCadastroInicialNovo);
 
         tvNome.setText(Usuario.getNome() + "!");
+
+        /* Zerando os atributos da Classe Propriedade */
+        Propriedade.zerarAtributos();
 
         btComecar.setOnClickListener(new View.OnClickListener() {
             @Override

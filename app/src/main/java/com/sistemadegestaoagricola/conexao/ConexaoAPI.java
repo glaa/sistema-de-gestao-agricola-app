@@ -13,7 +13,7 @@ public class ConexaoAPI {
     public static HttpURLConnection conexao;
     private URL agroEndpoint;
     private String url = "http://%s/api/%s%s";
-    private final String host = "192.168.0.101/site/sistema-de-gestao-agricola/public";
+    private final String host = "192.168.0.105/site/sistema-de-gestao-agricola/public";
     private String rota;
     private String parametros;
     private String metodo;

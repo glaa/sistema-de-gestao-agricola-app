@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.entidades.Propriedade;
+
 import java.util.ArrayList;
 
 public class CadastroFonteAguaActivity extends AppCompatActivity {
@@ -106,6 +108,7 @@ public class CadastroFonteAguaActivity extends AppCompatActivity {
                 if(fonte.isEmpty()){
                     Toast.makeText(CadastroFonteAguaActivity.this, "Selecione algum item", Toast.LENGTH_SHORT).show();
                 } else {
+                    salvarDados();
                     Intent intent = new Intent(CadastroFonteAguaActivity.this,CadastroCepActivity.class);
                     startActivity(intent);
                     finishAffinity();
@@ -124,5 +127,15 @@ public class CadastroFonteAguaActivity extends AppCompatActivity {
         botao.setBackgroundTintList(getApplicationContext().getResources().getColorStateList(R.color.verde_escuro));
         botao.setTextColor(getApplicationContext().getResources().getColorStateList(R.color.white));
         botao.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
+    }
+
+    private void salvarDados(){
+        String fonteAgua = "";
+        for(String f: fonte){
+            fonteAgua += f + ", ";
+        }
+        fonteAgua = fonteAgua.substring(0,fonteAgua.length()-2);
+
+        Propriedade.setFonteAgua(fonteAgua);
     }
 }

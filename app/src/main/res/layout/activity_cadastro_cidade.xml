@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_verde"
+    tools:context=".CadastroCidadeActivity">
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="@string/pergunta_cidade"
+        android:textColor="@color/white"
+        android:textSize="@dimen/tv_perguntas_cadastro_propriedade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView57"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="Cidade"
+        android:textColor="@color/white"
+        android:textSize="@dimen/rotulo_padrao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+    <EditText
+        android:id="@+id/edtCidadeCadastroCidade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ed_altura_padrao"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:background="@drawable/et_style"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textSize="@dimen/ed_tamanho_fonte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView57" />
+
+    <TextView
+        android:id="@+id/textView58"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:text="Estado"
+        android:textColor="@color/white"
+        android:textSize="@dimen/rotulo_padrao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtCidadeCadastroCidade" />
+
+    <Spinner
+        android:id="@+id/spinnerCadastroCidade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/ed_altura_padrao"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:background="@drawable/et_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView58" />
+
+    <Button
+        android:id="@+id/btProximoCadastroCidade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_altura_principal"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bt_arredondado"
+        android:backgroundTint="@color/white"
+        android:text="Próximo"
+        android:textAllCaps="false"
+        android:textColor="@color/verde_escuro"
+        android:textSize="@dimen/bt_tamanho_fonte"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
