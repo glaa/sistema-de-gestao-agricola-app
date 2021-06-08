@@ -42,7 +42,7 @@
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:background="@drawable/et_style"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapSentences|textAutoComplete"
             android:textColor="@color/black"
             android:textSize="@dimen/ed_tamanho_fonte" />
 
@@ -64,9 +64,9 @@
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:background="@drawable/et_style"
-            android:digits="5"
             android:ems="10"
             android:inputType="number"
+            android:maxLength="5"
             android:textColor="@color/black"
             android:textSize="@dimen/ed_tamanho_fonte" />
 
@@ -89,7 +89,7 @@
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:background="@drawable/et_style"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapSentences|textAutoComplete"
             android:textColor="@color/black"
             android:textSize="@dimen/ed_tamanho_fonte" />
 
@@ -154,7 +154,7 @@
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:background="@drawable/et_style"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapSentences|textAutoComplete"
             android:textColor="@color/black"
             android:textSize="@dimen/rotulo_padrao" />
 

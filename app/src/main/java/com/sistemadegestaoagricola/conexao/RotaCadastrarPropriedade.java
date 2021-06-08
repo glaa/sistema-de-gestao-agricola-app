@@ -4,6 +4,8 @@ import android.os.StrictMode;
 import android.util.JsonReader;
 import android.util.Log;
 
+import com.sistemadegestaoagricola.entidades.Propriedade;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -21,8 +23,17 @@ public class RotaCadastrarPropriedade implements Callable<ConexaoAPI> {
 
     @Override
     public ConexaoAPI call() throws Exception {
-        String rota = "cadastrar-api";
-        String parametros = "";
+        String rota = "cadastrar-propriedade";
+        String parametros =
+                "?tamanho_total=" + Propriedade.getTamanho() +
+                "&fonte_de_agua="+ Propriedade.getFonteAgua() +
+                "&nome_rua=" + Propriedade.getLogradouro() +
+                "&numero_casa=" + Propriedade.getNumero() +
+                "&bairro=" + Propriedade.getBairro() +
+                "&cidade=" + Propriedade.getCidade() +
+                "&estado=" + Propriedade.getEstado() +
+                "&cep=" + Propriedade.getCep() +
+                "&ponto_referencia=" + Propriedade.getReferencia();
         String metodo = "POST";
         Map<String,String> propriedades = new HashMap<String,String>();
         propriedades.put("Accept","application/json");

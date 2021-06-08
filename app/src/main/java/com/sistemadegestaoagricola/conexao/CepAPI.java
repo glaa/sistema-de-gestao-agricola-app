@@ -25,6 +25,7 @@ public class CepAPI {
     private String[] mensagensExceptions = null;
     private int codigoStatus;
     private boolean sucesso = false;
+    private boolean encontrou = true;
 
     public CepAPI(String cep){
         this.url = String.format(url,host,cep);
@@ -102,17 +103,21 @@ public class CepAPI {
             Propriedade.setLogradouro(logradouro);
             Propriedade.setBairro(bairro);
             Propriedade.setCidade(cidade);
-            if(estado != null){
-                estado = nomeEstado(estado);
-            }
             Propriedade.setEstado(estado);
 
+            if(estado == null || cidade == null){
+                encontrou = false;
+            }
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean encontrouCidade(){
+        return encontrou;
     }
 
     private String nomeEstado(String sigla){

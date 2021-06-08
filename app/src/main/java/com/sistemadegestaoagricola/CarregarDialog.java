@@ -70,7 +70,7 @@ public class CarregarDialog {
         LayoutInflater inflater = activity.getLayoutInflater();
         View view = inflater.inflate(R.layout.progressbar_carregamento,null);
         TextView tvMensagem = view.findViewById(R.id.tvMensagemCarregamento);
-        tvMensagem.setText("Sanvando informações...");
+        tvMensagem.setText("Salvando...");
         builder.setView(view);
         builder.setCancelable(false);
         return builder.create();

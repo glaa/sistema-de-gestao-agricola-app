@@ -15,7 +15,7 @@
     <string name="pergunta_fonte_agua">Qual a fonte de água do seu sítio?</string>
     <string name="confirme_localizacao">Confirme a localização</string>
     <string name="pergunta_localizacao">Qual é o CEP da sua propriedade?</string>
-    <string name="pergunta_cidade">Em qual cidade sua propriedade está localizada?</string>
+    <string name="pergunta_cidade">Em qual cidade está localizada?</string>
     <string-array name="estados">
         <item>Pernambuco</item>
         <item>Acre</item>

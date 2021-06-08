@@ -33,7 +33,7 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
     private String cep = "";
     private boolean bloquearBotao = true;
     private int status;
-    private AlertDialog buscando, salvando;
+    private AlertDialog buscando;
     private Thread thread;
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
     private String[] mensagensExceptions;
@@ -113,10 +113,12 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
 
     @Override
     public void run() {
-        boolean sucesso = new CepAPI(cep).buscar();
-        if(sucesso){
+        CepAPI cepAPI = new CepAPI(cep);
+        boolean sucesso  = cepAPI.buscar();
+
+        if(sucesso && cepAPI.encontrouCidade()){
             CarregarDialog dialog = new CarregarDialog(CadastroCepActivity.this);
-           runOnUiThread(new Runnable() {
+            runOnUiThread(new Runnable() {
                @Override
                public void run() {
                    AlertDialog alertDialog = dialog.criarDialogContinuarCadastroLocalizacao();
@@ -130,9 +132,10 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
                    alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Não", new DialogInterface.OnClickListener() {
                        @Override
                        public void onClick(DialogInterface dialogInterface, int i) {
-                           CarregarDialog carregarDialog = new CarregarDialog(CadastroCepActivity.this);
-                           salvando = carregarDialog.criarDialogSalvarInformacoes();
-                           salvando.show();
+//                           CarregarDialog carregarDialog = new CarregarDialog(CadastroCepActivity.this);
+//                           salvando = carregarDialog.criarDialogSalvarInformacoes();
+//                           salvando.show();
+                           salvarCadastroAPI();
                            Intent intent  = new Intent(getApplicationContext(), HomeActivity.class);
                            startActivity(intent);
                        }
@@ -140,9 +143,9 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
                    alertDialog.show();
                    imprimirPropriedade();
                }
-           });
+            });
         } else {
-            Intent intent  = new Intent(getApplicationContext(), CadastroLocalizacaoActivity.class);
+            Intent intent  = new Intent(getApplicationContext(), CadastroCidadeActivity.class);
             startActivity(intent);
         }
         buscando.dismiss();
@@ -165,7 +168,7 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
             if(mensagensExceptions == null){
                 //Sem erro de conexão
                 status = conexao.getCodigoStatus();
-
+                Log.d("testeX","statusSalvar =" + status);
                 if(status == 200){
                     //Salvo com sucesso
                     Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show();
@@ -181,7 +184,7 @@ public class CadastroCepActivity extends AppCompatActivity implements Runnable{
             e.printStackTrace();
             Erro("Falha na conexão","Tente novamente em alguns minutos");
         } finally {
-            salvando.dismiss();
+            conexao.fechar();
         }
     }
 

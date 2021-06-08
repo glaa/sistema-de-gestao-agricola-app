@@ -6,6 +6,7 @@ import android.util.JsonToken;
 import android.util.Log;
 
 import com.sistemadegestaoagricola.entidades.Produtor;
+import com.sistemadegestaoagricola.entidades.Propriedade;
 import com.sistemadegestaoagricola.entidades.Usuario;
 
 import java.io.IOException;
@@ -141,7 +142,6 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
             }
         }
         jsonReader.endObject();
-        jsonReader.close();
         new Usuario(id,nome,cpfCnpj,email,enderecoId,telefone,perfil);
     }
 
