@@ -3,6 +3,7 @@ package com.sistemadegestaoagricola;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -36,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private ConexaoAPIVelha conexao;
     private int status;
     private String nome;
-    private ScrollView scrollHome;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private TextView tvSaudacao;
     private CardView cvProximaReuniao;
     private CardView btMinhaPropriedade;
@@ -62,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        scrollHome = findViewById(R.id.scrollHome);
+        swipeRefreshLayout = findViewById(R.id.swipeHome);
         tvSaudacao = findViewById(R.id.tvNomeHome);
         tvSaudacao.setText(Usuario.getNome() + "!");
 
@@ -71,15 +73,19 @@ public class HomeActivity extends AppCompatActivity {
         //btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
         btReuniao = findViewById(R.id.cvReunioesHome);
         btSair = findViewById(R.id.cvSairHome);
+
         CarregarDialog carregarDialog = new CarregarDialog(this);
         AlertDialog carregando = carregarDialog.criarDialogCarregamento();
+
         carregando.show();
+        Util.esvaziarAgendamentos();
         buscarReunioes();
         if(exibirProximaReuniao()){
             tvDiaDaSemana = findViewById(R.id.tvDiaSemanaHome);
             tvDiaDoMes = findViewById(R.id.tvDiaMesHome);
             tvMesDoAno = findViewById(R.id.tvMesHome);
             tvHorario = findViewById(R.id.tvHorarioHome);
+            Log.d("testeX", "exibiuReunião");
 
             tvDiaDaSemana.setText(diaDaSemana);
             tvDiaDoMes.setText(diaDoMes);
@@ -87,13 +93,21 @@ public class HomeActivity extends AppCompatActivity {
             if(horario != null){
                 tvHorario.setText(horario);
             } else {
-                tvHorario.setVisibility(View.INVISIBLE);
+                tvHorario.setVisibility(View.GONE);
             }
         } else {
-            cvProximaReuniao.setVisibility(View.INVISIBLE);
+            cvProximaReuniao.setVisibility(View.GONE);
         }
         carregando.dismiss();
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(true);
+                finish();
+                startActivity(getIntent());
+            }
+        });
 
         btMinhaPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,17 +196,31 @@ public class HomeActivity extends AppCompatActivity {
 
     private boolean exibirProximaReuniao(){
         boolean reuniaoAgendada = false;
+        ArrayList<AgendamentoReuniao> agendamentos = new ArrayList<AgendamentoReuniao>();
+
         for(AgendamentoReuniao agendamentoReuniao : Util.getAgendamentos()){
             if(!agendamentoReuniao.isRegistrada()){
-                Date data = agendamentoReuniao.getData();
-                Calendar calendar = Calendar.getInstance();
-                calendar.setTime(data);
-                diaDaSemana = Util.calendarioIntParaStringDia(calendar.get(Calendar.DAY_OF_WEEK));
-                diaDoMes = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
-                mesDoAno =  Util.calendarioIntParaStringMes(calendar.get(Calendar.MONTH));
-                reuniaoAgendada = true;
-                break;
+                agendamentos.add(agendamentoReuniao);
             }
+        }
+
+        if(!agendamentos.isEmpty()){
+            Date data0 = agendamentos.get(0).getData();
+            Calendar calendarMin = Calendar.getInstance();
+            calendarMin.setTime(data0);
+
+            for(AgendamentoReuniao agendamento : agendamentos){
+                Date data1 = agendamento.getData();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTime(data1);
+                if(calendar.compareTo(calendarMin) < 0){
+                    calendarMin = calendar;
+                }
+            }
+            diaDaSemana = Util.calendarioIntParaStringDia(calendarMin.get(Calendar.DAY_OF_WEEK));
+            diaDoMes = String.valueOf(calendarMin.get(Calendar.DAY_OF_MONTH));
+            mesDoAno =  Util.calendarioIntParaStringMes(calendarMin.get(Calendar.MONTH));
+            reuniaoAgendada = true;
         }
         return reuniaoAgendada;
     }

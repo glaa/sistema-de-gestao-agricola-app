@@ -22,6 +22,10 @@ public class Util {
         agendamentos.add(reuniao);
     }
 
+    public static void esvaziarAgendamentos(){
+        Util.agendamentos.clear();
+    }
+
     public static Date converterStringDate(String data) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 
