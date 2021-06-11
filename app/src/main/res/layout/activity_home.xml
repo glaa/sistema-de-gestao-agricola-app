@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_verde"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
             android:text="@string/nome_logo"
-            android:textSize="@dimen/nome_logo"/>
+            android:textSize="@dimen/nome_logo" />
 
         <TextView
             android:id="@+id/textView41"
@@ -42,7 +42,7 @@
             android:text="Fulano de tal!"
             android:textColor="@color/white"
             android:textSize="34sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvProximaReuniaoHome"
@@ -94,31 +94,61 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:id="@+id/tvDiaSemanaHome"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Terça,"
+                            android:text="Terça"
+                            android:textColor="@color/verde_escuro"
+                            android:textSize="@dimen/bt_tamanho_fonte" />
+
+                        <TextView
+                            android:id="@+id/virgulaHome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=","
                             android:textColor="@color/verde_escuro"
                             android:textSize="@dimen/bt_tamanho_fonte" />
 
 
                         <TextView
-                            android:id="@+id/textView42"
-                            android:layout_width="match_parent"
+                            android:id="@+id/tvDiaMesHome"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
-                            android:text="01 de junho"
+                            android:text="06"
                             android:textColor="@color/verde_escuro"
                             android:textSize="@dimen/bt_tamanho_fonte"
                             android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/deHome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" de "
+                            android:textColor="@color/verde_escuro"
+                            android:textSize="@dimen/bt_tamanho_fonte"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvMesHome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="junho"
+                            android:textColor="@color/verde_escuro"
+                            android:textSize="@dimen/bt_tamanho_fonte"
+                            android:textStyle="bold" />
+
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/tvHorarioHome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="17h"
                         android:textColor="@color/verde_escuro"
                         android:textSize="@dimen/bt_tamanho_fonte"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:visibility="visible" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -257,7 +287,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_baseline_chevron_right_24"/>
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -318,7 +348,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_baseline_chevron_right_24"/>
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -380,7 +410,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/ic_baseline_chevron_right_24"/>
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>

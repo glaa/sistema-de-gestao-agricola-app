@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sistema de Gestão Agrícola</string>
+    <string name="app_name">agroecologia</string>
     <string name="mensagemCadastroInical">Este é seu primeiro acesso, para continuar usando o aplicativo precisamos que
         preencha algumas informações sobre a sua propridade.</string>
     <string name="mensagemExibirMinhasInformacoes">Clique em atualizar para salvar as alterações</string>

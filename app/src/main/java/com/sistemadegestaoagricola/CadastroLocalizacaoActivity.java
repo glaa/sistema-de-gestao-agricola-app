@@ -192,7 +192,9 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
             e.printStackTrace();
             Erro("Falha na conexão","Tente novamente em alguns minutos");
         } finally {
-            conexao.fechar();
+            if(conexao != null){
+                conexao.fechar();
+            }
             salvando.dismiss();
             Intent intent = new Intent(this,HomeActivity.class);
             startActivity(intent);
