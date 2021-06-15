@@ -1,16 +1,20 @@
 package com.sistemadegestaoagricola.conexao;
 
+import android.os.FileUtils;
 import android.os.StrictMode;
 import android.util.JsonReader;
 import android.util.Log;
 
 import com.sistemadegestaoagricola.entidades.Propriedade;
 
+import java.io.DataOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 
 public class RotaCadastrarPropriedade implements Callable<ConexaoAPI> {
@@ -34,11 +38,14 @@ public class RotaCadastrarPropriedade implements Callable<ConexaoAPI> {
                 "&estado=" + Propriedade.getEstado() +
                 "&cep=" + Propriedade.getCep() +
                 "&ponto_referencia=" + Propriedade.getReferencia();
+                //"&mapa=" + Propriedade.getMapa();
         String metodo = "POST";
+        String boundary = UUID.randomUUID().toString();
         Map<String,String> propriedades = new HashMap<String,String>();
         propriedades.put("Accept","application/json");
         propriedades.put("Authorization","Bearer " + ConexaoAPI.getToken());
         ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,propriedades);
+
         Log.d("testeX","status user: " + con.getCodigoStatus());
 
         return con;

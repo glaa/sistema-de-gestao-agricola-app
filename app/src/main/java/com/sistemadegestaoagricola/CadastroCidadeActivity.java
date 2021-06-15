@@ -71,28 +71,28 @@ public class CadastroCidadeActivity extends AppCompatActivity implements Adapter
 
                 String cidade = edtCidade.getText().toString();
                 if(!cidade.isEmpty() && !estado.isEmpty()){
-                    CarregarDialog dialog = new CarregarDialog(CadastroCidadeActivity.this);
-                    AlertDialog alertDialog = dialog.criarDialogContinuarCadastroLocalizacao();
-                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Sim", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            //Atribuir dados a Propriedade
-                            Propriedade.setCidade(cidade);
-                            Propriedade.setEstado(estado);
-
-                            Intent intent  = new Intent(getApplicationContext(), CadastroLocalizacaoActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Não", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            salvarCadastroAPI(cidade,estado);
-                            Intent intent  = new Intent(getApplicationContext(), HomeActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    alertDialog.show();
+//                    CarregarDialog dialog = new CarregarDialog(CadastroCidadeActivity.this);
+//                    AlertDialog alertDialog = dialog.criarDialogContinuarCadastroLocalizacao();
+//                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Sim", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            //Atribuir dados a Propriedade
+//                            Propriedade.setCidade(cidade);
+//                            Propriedade.setEstado(estado);
+//
+//                            Intent intent  = new Intent(getApplicationContext(), CadastroLocalizacaoActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Não", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                            salvarCadastroAPI(cidade,estado);
+//                            Intent intent  = new Intent(getApplicationContext(), HomeActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    alertDialog.show();
                 } else {
                     Toast.makeText(getApplicationContext(),"Digite o nome da cidade",Toast.LENGTH_LONG).show();
                 }

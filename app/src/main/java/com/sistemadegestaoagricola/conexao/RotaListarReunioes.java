@@ -32,7 +32,7 @@ public class RotaListarReunioes implements Callable<ConexaoAPI> {
         String parametros = "";
         String metodo = "GET";
         Map<String,String> propriedades = new HashMap<String,String>();
-        propriedades.put("Accept","application/json");
+        propriedades.put("Accept","text/html,application/json");
         propriedades.put("Authorization","Bearer " + ConexaoAPI.getToken());
         ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,propriedades);
         Log.d("testeX","status user: " + con.getCodigoStatus());
@@ -81,40 +81,38 @@ public class RotaListarReunioes implements Callable<ConexaoAPI> {
 
         jsonReader.beginObject();
         while(jsonReader.hasNext()){
-            //jsonReader.nextName();
-            //jsonReader.nextName();
-            Log.d("testeXe","value: " + jsonReader.toString());
+            //Log.d("testeXe","value: " + jsonReader.toString());
             String key = jsonReader.nextName();
-            Log.d("testeXe","key: " + key + " value: teste");
+            //Log.d("testeXe","key: " + key + " value: teste");
 
             switch (key) {
                 case "id":
                     id = jsonReader.nextInt();
-                    Log.d("testeXe","key: " + key + " value: " + id);
+                    //Log.d("testeXe","key: " + key + " value: " + id);
                     break;
                 case "nome":
                     nome = jsonReader.nextString();
-                    Log.d("testeXe","key: " + key + " value: " + nome);
+                    //Log.d("testeXe","key: " + key + " value: " + nome);
 
                     break;
                 case "data":
                     data = jsonReader.nextString();
-                    Log.d("testeXe","key: " + key + " value: " + data);
+                    //Log.d("testeXe","key: " + key + " value: " + data);
 
                     break;
                 case "local":
                     local = jsonReader.nextString();
-                    Log.d("testeXe","key: " + key + " value: " + local);
+                    //Log.d("testeXe","key: " + key + " value: " + local);
 
                     break;
                 case "registrada":
                     registrada = jsonReader.nextBoolean();
-                    Log.d("testeXe","key: " + key + " value: " + registrada);
+                    //Log.d("testeXe","key: " + key + " value: " + registrada);
 
                     break;
                 case "ocs_id":
                     ocs_id = jsonReader.nextInt();
-                    Log.d("testeXe","key: " + key + " value: " + ocs_id);
+                    //Log.d("testeXe","key: " + key + " value: " + ocs_id);
 
                     break;
                 default:

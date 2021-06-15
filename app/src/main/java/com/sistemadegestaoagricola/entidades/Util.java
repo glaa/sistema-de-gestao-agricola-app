@@ -1,5 +1,10 @@
 package com.sistemadegestaoagricola.entidades;
 
+import android.graphics.Bitmap;
+import android.util.Base64;
+import android.widget.EditText;
+
+import java.io.ByteArrayOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -86,5 +91,38 @@ public class Util {
             mesDoAno = "Dezembro";
         }
         return mesDoAno;
+    }
+
+    public static String converterBitmapParaString(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+        byte[] bytesArray = stream.toByteArray();
+        return Base64.encodeToString(bytesArray,Base64.DEFAULT);
+    }
+
+    /*
+     * Criar máscara para o CEP
+     *@param editText Campo a ser aplicado a máscara
+     *@param key Código correspondente ao caracter capturado pelo setOnKeyListener
+     *@autor Gleison Alves de Araujo
+     */
+    public static void mascaraCepOnKeyListener(EditText editText, int key){
+        String strCep = editText.getText().toString();
+        if(key != 67){
+            strCep = strCep.replace("-","");
+            int tamanho = strCep.length();
+            if(tamanho >= 5){
+                strCep = strCep.substring(0,5) + "-" + strCep.substring(5,strCep.length());
+                editText.setText(strCep);
+                editText.setSelection(strCep.length());
+            }
+        } else {
+            int tamanho = strCep.length();
+            if(tamanho < 5){
+                strCep = strCep.replace("-","");
+                editText.setText(strCep);
+                editText.setSelection(strCep.length());
+            }
+        }
     }
 }

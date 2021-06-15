@@ -12,6 +12,7 @@ public class Propriedade {
     private static String estado;
     private static String cep;
     private static String referencia;
+    private static String mapa;
 
     public Propriedade(){
 
@@ -95,6 +96,14 @@ public class Propriedade {
 
     public static void setReferencia(String referencia) {
         Propriedade.referencia = referencia;
+    }
+
+    public static String getMapa() {
+        return mapa;
+    }
+
+    public static void setMapa(String mapa) {
+        Propriedade.mapa = mapa;
     }
 
     public static void zerarAtributos(){

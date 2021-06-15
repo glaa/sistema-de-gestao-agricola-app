@@ -9,11 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.sistemadegestaoagricola.entidades.Propriedade;
+import com.sistemadegestaoagricola.entidades.Util;
+
 public class ExibirFotografiaMapaActivity extends AppCompatActivity {
 
     private ImageView ivFoto;
     private Button btExcluir;
     private Button btProximo;
+    private Bitmap foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,13 +30,14 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
 
         if(getIntent().hasExtra("FOTO")){
             Bundle extras = getIntent().getExtras();
-            Bitmap foto = (Bitmap) extras.get("FOTO");
+            foto = (Bitmap) extras.get("FOTO");
             ivFoto.setImageBitmap(foto);
         }
 
         btExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                foto.recycle();
                 onBackPressed();
                 finish();
             }
@@ -41,10 +46,17 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
         btProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                salvarFoto();
                 Intent intent = new Intent(getApplicationContext(),CadastroFonteAguaActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
+    }
 
+    private void salvarFoto(){
+        String mapa = Util.converterBitmapParaString(foto);
+        Propriedade.setMapa(mapa);
+        foto.recycle();
     }
 }

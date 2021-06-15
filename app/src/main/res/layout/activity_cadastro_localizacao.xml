@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:text="@string/confirme_localizacao"
             android:textColor="@color/white"
@@ -43,6 +43,7 @@
             android:background="@drawable/et_style"
             android:ems="10"
             android:inputType="textPersonName|textCapSentences|textAutoComplete"
+            android:maxLength="50"
             android:textColor="@color/black"
             android:textSize="@dimen/ed_tamanho_fonte" />
 
@@ -90,19 +91,37 @@
             android:background="@drawable/et_style"
             android:ems="10"
             android:inputType="textPersonName|textCapSentences|textAutoComplete"
+            android:maxLength="50"
             android:textColor="@color/black"
             android:textSize="@dimen/ed_tamanho_fonte" />
 
-        <TextView
-            android:id="@+id/textView52"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:text="Cidade"
-            android:textColor="@color/white"
-            android:textSize="@dimen/rotulo_padrao" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView52"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Cidade"
+                android:textColor="@color/white"
+                android:textSize="@dimen/rotulo_padrao" />
+
+            <TextView
+                android:id="@+id/tvCidadaInvalidaLocalizacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cidade inválida"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="12sp"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/edtCidadeLocalizacao"
@@ -112,20 +131,40 @@
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:background="@drawable/et_style"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textPersonName|textCapSentences|textAutoComplete"
+            android:maxLength="50"
             android:textColor="@color/black"
             android:textSize="@dimen/ed_tamanho_fonte" />
 
-        <TextView
-            android:id="@+id/textView53"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:text="Estado"
-            android:textColor="@color/white"
-            android:textSize="@dimen/rotulo_padrao" />
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Estado"
+                android:textColor="@color/white"
+                android:textSize="@dimen/rotulo_padrao" />
+
+            <TextView
+                android:id="@+id/tvEstadoInvalidoLocalizao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado inválido"
+                android:textColor="@color/design_default_color_error"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
 
         <Spinner
             android:id="@+id/spinnerLocalizacao"
@@ -155,6 +194,31 @@
             android:background="@drawable/et_style"
             android:ems="10"
             android:inputType="textPersonName|textCapSentences|textAutoComplete"
+            android:maxEms="100"
+            android:textColor="@color/black"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <TextView
+            android:id="@+id/tvCepLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:text="CEP"
+            android:textColor="@color/white"
+            android:textSize="@dimen/rotulo_padrao" />
+
+        <EditText
+            android:id="@+id/edtCepLocalizacao"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/ed_altura_padrao"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:background="@drawable/et_style"
+            android:ems="10"
+            android:inputType="number"
+            android:maxLength="9"
             android:textColor="@color/black"
             android:textSize="@dimen/rotulo_padrao" />
 

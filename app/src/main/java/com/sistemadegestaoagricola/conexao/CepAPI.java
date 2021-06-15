@@ -27,10 +27,18 @@ public class CepAPI {
     private boolean sucesso = false;
     private boolean encontrou = true;
 
+    /*
+    * Criar uma conexão com a API
+    * @param cep Recebe uma string com o cep sem "-" ou "."
+    */
     public CepAPI(String cep){
         this.url = String.format(url,host,cep);
     }
 
+    /*
+    * @return Devolve true no caso de sucesso na busca ou false caso contrário
+    * @see O método atribui as informações encontradas aos atributos da Classe Propriedade
+    */
     public boolean buscar(){
         try{
             this.agroEndpoint = new URL(this.url);

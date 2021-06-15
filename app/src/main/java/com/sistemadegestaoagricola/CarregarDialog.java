@@ -57,10 +57,10 @@ public class CarregarDialog {
         return builder.create();
     }
 
-    public AlertDialog criarDialogContinuarCadastroLocalizacao(){
+    public AlertDialog criarDialogCepInvalido(){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
-        builder.setTitle("Confirmação de endereço");
-        builder.setMessage("Deseja confirmar o endereço de sua propriedade agora?");
+        builder.setTitle("CEP inválido");
+        builder.setMessage("O CEP deve possuir 8 dígitos ou não será salvo.");
         builder.setCancelable(false);
         return builder.create();
     }

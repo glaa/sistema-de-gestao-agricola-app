@@ -2,18 +2,25 @@ package com.sistemadegestaoagricola.conexao;
 
 import android.util.Log;
 
+import com.sistemadegestaoagricola.entidades.Propriedade;
+
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Map;
+import java.util.UUID;
 
 public class ConexaoAPI {
     public static HttpURLConnection conexao;
     private URL agroEndpoint;
     private String url = "http://%s/api/%s%s";
-    private final String host = "192.168.0.101/site/sistema-de-gestao-agricola/public";
+    private final String host = "192.168.0.104/site/sistema-de-gestao-agricola/public";
     private String rota;
     private String parametros;
     private String metodo;
@@ -51,10 +58,20 @@ public class ConexaoAPI {
 
             this.conexao.setConnectTimeout(10000);
             if(this.metodo == "POST"){
+                this.conexao.setDoOutput(true);
+                this.conexao.setChunkedStreamingMode(0);
                 this.conexao.setRequestMethod("POST");
             }
+
+            if(rota.equals("cadastrar-propriedade")){
+                //criarCorpo();
+            }
+            if(this.rota.equals("login")){
+                //corpoLogin();
+            }
+
             this.codigoStatus = this.conexao.getResponseCode();
-            Log.d("testeX","url: " + url);
+//            Log.d("testeX","url: " + url + this.conexao.getInputStream().toString());
 
         } catch (MalformedURLException e) {
             String[] m = {"Erro com a url da conexão!", "Tente novamente em alguns minutos"};
@@ -75,6 +92,7 @@ public class ConexaoAPI {
 
         } catch (Exception e){
             String[] m = {"Erro com a conexão!", "Tente novamente em alguns minutos"};
+            e.printStackTrace();
             this.mensagensExceptions = m;
         }
         return mensagensExceptions;
@@ -120,5 +138,67 @@ public class ConexaoAPI {
     /** Set no atributo token após a login realizado com sucesso */
     public static void setToken(String token) {
         ConexaoAPI.token = token;
+    }
+
+    private void criarCorpo() throws IOException {
+        Log.d("testeX","Corpo");
+        String boundary = UUID.randomUUID().toString();
+        DataOutputStream request = new DataOutputStream(this.conexao.getOutputStream());
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"tamanho_total\"\r\n\r\n");
+        request.writeBytes(Propriedade.getTamanho() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"fonte_de_agua\"\r\n\r\n");
+        request.writeBytes(Propriedade.getFonteAgua() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"nome_rua\"\r\n\r\n");
+        request.writeBytes(Propriedade.getLogradouro() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"numero_casa\"\r\n\r\n");
+        request.writeBytes(Propriedade.getNumero() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"bairro\"\r\n\r\n");
+        request.writeBytes(Propriedade.getBairro() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"cidade\"\r\n\r\n");
+        request.writeBytes(Propriedade.getCidade() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"estado\"\r\n\r\n");
+        request.writeBytes(Propriedade.getEstado() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"cep\"\r\n\r\n");
+        request.writeBytes(Propriedade.getCep() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"ponto_referencia\"\r\n\r\n");
+        request.writeBytes(Propriedade.getReferencia() + "\r\n");
+
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"mapa\"\r\n\r\n");
+        request.writeBytes(Propriedade.getMapa() + "\r\n");
+        request.writeBytes("--" + boundary + "\r\n");
+        request.flush();
+    }
+
+    private void corpoLogin() throws IOException {
+//        this.conexao.getOutputStream().write("email=11111111111".getBytes());
+//        this.conexao.getOutputStream().write("password=123123123".getBytes());
+        String boundary = "----------GLEISON----------";
+        DataOutputStream request = new DataOutputStream(this.conexao.getOutputStream());
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"email\"\r\n\r\n");
+        request.writeBytes("11111111111" + "\r\n");
+        request.writeBytes("--" + boundary + "\r\n");
+        request.writeBytes("Content-Disposition: form-data; name=\"password\"\r\n\r\n");
+        request.writeBytes("123123123" + "\r\n");
+        request.writeBytes("--" + boundary + "\r\n");
+        request.flush();
     }
 }
