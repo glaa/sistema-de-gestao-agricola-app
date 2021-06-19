@@ -8,17 +8,12 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.ConexaoAPIVelha;
-import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
 import com.sistemadegestaoagricola.conexao.RotaListarReunioes;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Usuario;
@@ -128,7 +123,7 @@ public class HomeActivity extends AppCompatActivity {
         btReuniao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),ReuniaoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ReuniaoCoordenadorActivity.class);
                 startActivity(intent);
             }
         });
@@ -167,7 +162,7 @@ public class HomeActivity extends AppCompatActivity {
                 Log.d("testeX","statusSalvar =" + status);
                 if(status == 200){
                     //Salvo com sucesso
-                    Toast.makeText(this, "Busca de reuniões realizada", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Busca de reuniões realizada", Toast.LENGTH_SHORT).show();
                 } else {
                     //Erro ao salvar
                     Toast.makeText(this, "Erro na busca de reuniões", Toast.LENGTH_SHORT).show();

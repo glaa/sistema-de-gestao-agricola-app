@@ -49,7 +49,8 @@
         android:textSize="@dimen/ed_tamanho_fonte"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView55" />
+        app:layout_constraintTop_toBottomOf="@+id/textView55"
+        tools:text="53360-000" />
 
     <TextView
         android:id="@+id/textView56"

@@ -9,7 +9,10 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.Callable;
 
 public class RotaLogin implements Callable<ConexaoAPI> {
@@ -25,10 +28,20 @@ public class RotaLogin implements Callable<ConexaoAPI> {
     @Override
     public ConexaoAPI call() throws Exception {
         String rota = "login";
-        String parametros = "?email="+email+"&password="+password;
+        String boundary = UUID.randomUUID().toString();
         String metodo = "POST";
-        Map<String,String> propriedades = null;
-        ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,propriedades);
+
+        Map<String,String> cabecalhos = new HashMap<String,String>();
+        cabecalhos.put("Charset", "UTF-8");
+        cabecalhos.put("Content-Type","multipart/form-data; boundary=" + boundary);
+        cabecalhos.put("Accept","application/json");
+
+        ArrayList<Parametro> parametros = new ArrayList<Parametro>();
+        parametros.add(new Parametro("email",null,email));
+        parametros.add(new Parametro("password",null,password));
+
+        Requisicao requisicao = new Requisicao(metodo,cabecalhos,parametros,boundary);
+        ConexaoAPI con = new ConexaoAPI(rota,requisicao);
 
         if(con.getCodigoStatus() == 200){
             try {

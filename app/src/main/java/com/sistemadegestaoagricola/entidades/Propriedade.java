@@ -1,5 +1,7 @@
 package com.sistemadegestaoagricola.entidades;
 
+import android.graphics.Bitmap;
+
 public class Propriedade {
 
     private static int id;

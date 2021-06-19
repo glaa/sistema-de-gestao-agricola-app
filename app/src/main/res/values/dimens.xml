@@ -12,4 +12,5 @@
     <dimen name="tv_perguntas_cadastro_propriedade">48sp</dimen>
     <dimen name="icone_botao">40dp</dimen>
     <dimen name="rotulo_medio">20sp</dimen>
+    <dimen name="rotulo_grande">24sp</dimen>
 </resources>

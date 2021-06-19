@@ -70,6 +70,7 @@ public class AberturaActivity extends AppCompatActivity implements Runnable{
 
         /** Encerrando a conexão pelo atributo static */
         if(conexao != null){
+
             conexao.fechar();
         }
     }

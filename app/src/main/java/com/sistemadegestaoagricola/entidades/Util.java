@@ -43,6 +43,13 @@ public class Util {
         return d1;
     }
 
+    public static String converterDateString(Date data){
+        String d1;
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        d1 = df.format(data);
+        return d1;
+    }
+
     public static String calendarioIntParaStringDia(int dia){
         String diaSemana = null;
         if(dia == 1){
@@ -98,6 +105,12 @@ public class Util {
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
         byte[] bytesArray = stream.toByteArray();
         return Base64.encodeToString(bytesArray,Base64.DEFAULT);
+    }
+
+    public static byte[] converterBitmapParaByte(Bitmap bitmap){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+        return stream.toByteArray();
     }
 
     /*

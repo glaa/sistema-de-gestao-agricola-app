@@ -1,47 +1,61 @@
 package com.sistemadegestaoagricola.conexao;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.sistemadegestaoagricola.entidades.Propriedade;
 
-import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.SocketTimeoutException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
 
 public class ConexaoAPI {
     public static HttpURLConnection conexao;
     private URL agroEndpoint;
-    private String url = "http://%s/api/%s%s";
-    private final String host = "192.168.0.104/site/sistema-de-gestao-agricola/public";
+    private String url = "http://%s/api/%s";
+    private final String host = "192.168.0.106/site/sistema-de-gestao-agricola/public";
     private String rota;
     private String parametros;
     private String metodo;
-    private Map<String,String> propriedades;
+    private Map<String,String> cabecalhos;
+    private ArrayList<Parametro> corpo = new ArrayList<Parametro>();
+    private String boundary;
     private static String token = null;
     private String[] mensagensExceptions = null;
     private int codigoStatus;
 
-    /**
-     * Criar uma conexão com a API
-     * @param rota rota para o recurso desejado
-     * @param parametros parametros a serem passado junto com a rota
-     * @param metodo verbo da URL
-     * @param propriedades cabeçalho que acompanha a requisão, será null caso não haja nenhum
-     */
-    public ConexaoAPI(String rota, String parametros, String metodo, Map<String,String> propriedades){
+//    /**
+//     * Criar uma conexão com a API
+//     * @param rota rota para o recurso desejado
+//     * @param parametros parametros a serem passado junto com a rota
+//     * @param metodo verbo da URL
+//     * @param cabecalhos cabeçalho que acompanha a requisão, será null caso não haja nenhum
+//     */
+//    public ConexaoAPI(String rota, String parametros, String metodo, Map<String,String> cabecalhos){
+//        this.rota = rota;
+//        this.parametros = parametros;
+//        this.url = String.format(url,this.host,this.rota,this.parametros);
+//        this.metodo = metodo;
+//        this.cabecalhos = cabecalhos;
+//        this.iniciar();
+//    }
+
+    public ConexaoAPI(String rota, Requisicao requisicao){
         this.rota = rota;
-        this.parametros = parametros;
-        this.url = String.format(url,this.host,this.rota,this.parametros);
-        this.metodo = metodo;
-        this.propriedades = propriedades;
+        this.url = String.format(url,this.host,this.rota);
+        this.metodo = requisicao.getMetodo();
+        this.cabecalhos = requisicao.getCabecalhos();
+        this.boundary = requisicao.getBoundary();
+        this.corpo = requisicao.getCorpo();
         this.iniciar();
     }
     /**
@@ -52,8 +66,8 @@ public class ConexaoAPI {
             this.agroEndpoint = new URL(this.url);
             this.conexao = (HttpURLConnection) this.agroEndpoint.openConnection();
 
-            if(propriedades != null){
-                this.setPropriedades(propriedades);
+            if(cabecalhos != null){
+                this.setCabecalhos(cabecalhos);
             }
 
             this.conexao.setConnectTimeout(10000);
@@ -61,17 +75,10 @@ public class ConexaoAPI {
                 this.conexao.setDoOutput(true);
                 this.conexao.setChunkedStreamingMode(0);
                 this.conexao.setRequestMethod("POST");
-            }
-
-            if(rota.equals("cadastrar-propriedade")){
-                //criarCorpo();
-            }
-            if(this.rota.equals("login")){
-                //corpoLogin();
+                criarCorpo();
             }
 
             this.codigoStatus = this.conexao.getResponseCode();
-//            Log.d("testeX","url: " + url + this.conexao.getInputStream().toString());
 
         } catch (MalformedURLException e) {
             String[] m = {"Erro com a url da conexão!", "Tente novamente em alguns minutos"};
@@ -104,9 +111,9 @@ public class ConexaoAPI {
     }
 
     /** Cria o cabeçalho para a requisão http */
-    private void setPropriedades(Map<String,String> propriedades){
-        for(String key : propriedades.keySet()){
-            String value = propriedades.get(key);
+    private void setCabecalhos(Map<String,String> cabecalhos){
+        for(String key : cabecalhos.keySet()){
+            String value = cabecalhos.get(key);
             this.conexao.setRequestProperty(key,value);
         }
     }
@@ -140,65 +147,54 @@ public class ConexaoAPI {
         ConexaoAPI.token = token;
     }
 
+
     private void criarCorpo() throws IOException {
-        Log.d("testeX","Corpo");
-        String boundary = UUID.randomUUID().toString();
-        DataOutputStream request = new DataOutputStream(this.conexao.getOutputStream());
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"tamanho_total\"\r\n\r\n");
-        request.writeBytes(Propriedade.getTamanho() + "\r\n");
+        String fim = "\r\n";
+        String doisTracos = "--";
+        String boundary = this.boundary;
 
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"fonte_de_agua\"\r\n\r\n");
-        request.writeBytes(Propriedade.getFonteAgua() + "\r\n");
+        DataOutputStream ds = new DataOutputStream(this.conexao.getOutputStream());
+        for(Parametro parametro : this.corpo){
+            ds.writeBytes(doisTracos + boundary + fim);
+            if(parametro.getFilename() == null){
+                ds.writeBytes("Content-Disposition: form-data; name=\""+parametro.getName()+"\""+
+                        fim+fim+parametro.getValue()+fim);
+                Log.d("testeX",parametro.getName() + " = " + parametro.getValue());
+            } else {
+                ds.writeBytes("Content-Disposition: form-data; name=\""+parametro.getName()+"\" filename=\""+parametro.getFilename()+"\"" +
+                        fim+fim+ parametro.getValue() +fim);
+                Log.d("testeX",parametro.getName() + " = " + parametro.getValue());
 
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"nome_rua\"\r\n\r\n");
-        request.writeBytes(Propriedade.getLogradouro() + "\r\n");
+               // ds.write((byte[]) parametro.getValue());
+//                FileInputStream fStream = new FileInputStream(arquivo);
+//                int bufferSize = 1024;
+//                byte[] buffer = new byte[bufferSize];
+//                int length = -1;
+//
+//                while((length = fStream.read(buffer)) != -1) {
+//                    ds.write(buffer, 0, length);
+//                }
+//                fStream.close();
+            }
 
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"numero_casa\"\r\n\r\n");
-        request.writeBytes(Propriedade.getNumero() + "\r\n");
-
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"bairro\"\r\n\r\n");
-        request.writeBytes(Propriedade.getBairro() + "\r\n");
-
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"cidade\"\r\n\r\n");
-        request.writeBytes(Propriedade.getCidade() + "\r\n");
-
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"estado\"\r\n\r\n");
-        request.writeBytes(Propriedade.getEstado() + "\r\n");
-
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"cep\"\r\n\r\n");
-        request.writeBytes(Propriedade.getCep() + "\r\n");
-
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"ponto_referencia\"\r\n\r\n");
-        request.writeBytes(Propriedade.getReferencia() + "\r\n");
-
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"mapa\"\r\n\r\n");
-        request.writeBytes(Propriedade.getMapa() + "\r\n");
-        request.writeBytes("--" + boundary + "\r\n");
-        request.flush();
+        }
+        ds.writeBytes(doisTracos + boundary + doisTracos + fim);
+        ds.flush();
+        ds.close();
     }
 
     private void corpoLogin() throws IOException {
-//        this.conexao.getOutputStream().write("email=11111111111".getBytes());
-//        this.conexao.getOutputStream().write("password=123123123".getBytes());
-        String boundary = "----------GLEISON----------";
-        DataOutputStream request = new DataOutputStream(this.conexao.getOutputStream());
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"email\"\r\n\r\n");
-        request.writeBytes("11111111111" + "\r\n");
-        request.writeBytes("--" + boundary + "\r\n");
-        request.writeBytes("Content-Disposition: form-data; name=\"password\"\r\n\r\n");
-        request.writeBytes("123123123" + "\r\n");
-        request.writeBytes("--" + boundary + "\r\n");
-        request.flush();
+        String end = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****++++++************++++++++++++";
+
+        DataOutputStream ds = new DataOutputStream(conexao.getOutputStream());
+        ds.writeBytes(twoHyphens + boundary + end);
+        ds.writeBytes("Content-Disposition: form-data; name=\"email\""+end+end+"11111111111"+end);
+        ds.writeBytes(twoHyphens + boundary + end);
+        ds.writeBytes("Content-Disposition: form-data; name=\"password\""+end+end+"123123123"+end);
+        ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
+        ds.flush();
+        ds.close();
     }
 }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -29,12 +30,18 @@ public class RotaListarReunioes implements Callable<ConexaoAPI> {
     @Override
     public ConexaoAPI call() throws Exception {
         String rota = "listar-reunioes";
-        String parametros = "";
+        String boundary = null;
         String metodo = "GET";
-        Map<String,String> propriedades = new HashMap<String,String>();
-        propriedades.put("Accept","text/html,application/json");
-        propriedades.put("Authorization","Bearer " + ConexaoAPI.getToken());
-        ConexaoAPI con = new ConexaoAPI(rota,parametros,metodo,propriedades);
+
+        Map<String,String> cabecalhos = new HashMap<String,String>();
+        cabecalhos.put("Charset", "UTF-8");
+        cabecalhos.put("Accept","text/html,application/json");
+        cabecalhos.put("Authorization","Bearer " + ConexaoAPI.getToken());
+
+        ArrayList<Parametro> parametros = new ArrayList<Parametro>();
+        Requisicao requisicao = new Requisicao(metodo,cabecalhos,parametros,boundary);
+
+        ConexaoAPI con = new ConexaoAPI(rota,requisicao);
         Log.d("testeX","status user: " + con.getCodigoStatus());
 
         if(con.getCodigoStatus() == 200){

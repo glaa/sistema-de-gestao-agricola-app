@@ -270,13 +270,13 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
             if(mensagensExceptions == null){
                 //Sem erro de conexão
                 status = conexao.getCodigoStatus();
-                Log.d("testeX","statusSalvar =" + status);
+                Log.d("testeX","status cadastro Localização = " + status);
                 if(status == 200){
                     //Salvo com sucesso
-                    Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_LONG).show();
                 } else {
                     //Erro ao salvar
-                    Toast.makeText(this, "Dados não puderam ser salvos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Dados não puderam ser salvos", Toast.LENGTH_LONG).show();
                 }
             } else {
                 Erro(mensagensExceptions[0],mensagensExceptions[1]);
