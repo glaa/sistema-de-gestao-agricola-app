@@ -40,7 +40,7 @@ public class CarregarDialog {
     public AlertDialog criarDialogPermissaoCamera(){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
         builder.setTitle("Aviso");
-        builder.setMessage("Uso da câmera é necessário para fotograr seu mapa. Sem isso seus dados " +
+        builder.setMessage("Uso da câmera e armazenamento são necessários para fotograr seu mapa. Sem isso seus dados " +
                 "ficaram incompletos.");
         builder.setCancelable(false);
         return builder.create();
