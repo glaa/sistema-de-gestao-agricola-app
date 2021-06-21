@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -28,10 +29,11 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
         btExcluir = findViewById(R.id.btExcluirExibirFotografiaMapa);
         btProximo = findViewById(R.id.btProximoExibirFotografiaMapa);
 
-        if(getIntent().hasExtra("FOTO")){
+        Uri uri;
+        if(getIntent().hasExtra("PATH")){
             Bundle extras = getIntent().getExtras();
-            foto = (Bitmap) extras.get("FOTO");
-            ivFoto.setImageBitmap(foto);
+            uri = (Uri) extras.get("PATH");
+            ivFoto.setImageURI(uri);
         }
 
         btExcluir.setOnClickListener(new View.OnClickListener() {

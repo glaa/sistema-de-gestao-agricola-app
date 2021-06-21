@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +37,7 @@ import java.util.List;
     private final int CODIGO_PERMISSOES = 1;
     private final int CAMERA = 1;
     private Uri uri;
+    private File arquivo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,126 +55,68 @@ import java.util.List;
             }
         });
 
+        //Acesso negado após a solicitação
+        CarregarDialog dialog = new CarregarDialog(CadastroMapaPropriedadeActivity.this);
+        AlertDialog alertDialog = dialog.criarDialogPermissaoCamera();
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Permitir", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                verificarPermisoes();
+            }
+        });
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Pular etapa", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("testeX","Proxima tela");
+
+            }
+        });
+
         btFotografar.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View view) {
-//                if(ContextCompat.checkSelfPermission(getApplicationContext(),
-//                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-//                    //Pedindo permissão ao primeiro acesso
-//                    ActivityCompat.requestPermissions(CadastroMapaPropriedadeActivity.this,new String[] {Manifest.permission.CAMERA},0);
-//
-//                } else if(ContextCompat.checkSelfPermission(getApplicationContext(),
-//                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-//                    //Pedindo permissão de armazenamento ao primeiro acesso
-//                    ActivityCompat.requestPermissions(CadastroMapaPropriedadeActivity.this,new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},0);
-//                } else {
-//                    //Já tem permissão
-//                    tirarFoto();
-//                    Log.d("testeX","oi else");
-//
-//                }
                 if(verificarPermisoes()){
                     tirarFoto();
                 } else {
-                    //Acesso negado após a solicitação
-                    CarregarDialog dialog = new CarregarDialog(CadastroMapaPropriedadeActivity.this);
-                    AlertDialog alertDialog = dialog.criarDialogPermissaoCamera();
-                    alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Permitir", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            pedirPermissoes();
-                        }
-                    });
-                    alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Pular etapa", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            Log.d("testeX","Proxima tela");
-
-                        }
-                    });
                     alertDialog.show();
                 }
             }
         });
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-//        if(grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-//            //Acesso permitido após solicitação
-//            tirarFoto();
-//
-//        } else {
-//            //Acesso negado após a solicitação
-//            CarregarDialog dialog = new CarregarDialog(CadastroMapaPropriedadeActivity.this);
-//            AlertDialog alertDialog = dialog.criarDialogPermissaoCamera();
-//            alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Permitir", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    pedirPermissoes();
-//                }
-//            });
-//            alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "Pular etapa", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    Log.d("testeX","Proxima tela");
-//
-//                }
-//            });
-//            alertDialog.show();
-//
-//        }
-
-        //Log.d("testeX","requestCode: " + requestCode + " grant: " + grantResults[0]);
-
-    }
-
     private void tirarFoto(){
-        File arquivo = criarArquivo();
-        if(arquivo != null){
-
-            if (Build.VERSION.SDK_INT>=24)
-            {
-                uri = FileProvider.getUriForFile(this,"com.studio.cameraalbumtest.fileprovider",arquivo);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            arquivo = criarArquivo();
+            if(arquivo != null){
+                uri = FileProvider.getUriForFile(this,"com.sistemadegestaoagricola.provider",arquivo);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT,uri);
+                startActivityForResult(intent,CAMERA);
             }
-            else
-            {
-                uri = Uri.fromFile(arquivo);
-            }
-
-            uri = Uri.fromFile(arquivo);
-
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-            startActivityForResult(intent,CAMERA);
         }
-//        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if(intent.resolveActivity(getPackageManager()) != null){
-//            startActivityForResult(intent,1);
-//        }
     }
 
     /*Recebe a imagem que foi capturada com a câmera */
     @Override
     protected void onActivityResult(int requestCode, int resultCode,Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode == 1 && resultCode == RESULT_OK){
-//            Bundle extras = data.getExtras();
-//            Bitmap foto = (Bitmap) extras.get("data");
-//
-//            Intent intent = new Intent(this,ExibirFotografiaMapaActivity.class);
-//            intent.putExtra("FOTO", foto);
-//            startActivity(intent);
-//            Log.d("testeX","recebeu foto");
-//
-//        }
+
         if(requestCode == CAMERA && resultCode == RESULT_OK){
-            Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
-            sendBroadcast(intent);
+            Bundle extras = data.getExtras();
+            Log.d("testeX", "byte =" + extras.getSize("data"));
+            //Adiciona foto na galeria
+            Intent mediaIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri);
+            sendBroadcast(mediaIntent);
+
+            Intent intent = new Intent(this,ExibirFotografiaMapaActivity.class);
+            intent.putExtra("PATH", uri);
+            startActivity(intent);
+
             Log.d("testeX", "caminho imagem = " + uri.getPath());
+        } else {
+            //Excluir arquivo no caso de não haver fotografia
+            arquivo.delete();
         }
         Log.d("testeX", "entrou no activity result ");
 
@@ -193,38 +137,42 @@ import java.util.List;
 
     private boolean verificarPermisoes(){
         List<String> permissoesRequeridas = new ArrayList<>();
+        boolean permissao = false;
 
         for(String permisao : permisoes){
+            //Pedi permissão caso ainda não tenha
+            if(ContextCompat.checkSelfPermission(this,permisao) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,new String[]{permisao},CODIGO_PERMISSOES);
+            }
+            //Acrescenta no array as permissões não concedidas
             if(ContextCompat.checkSelfPermission(this,permisao) != PackageManager.PERMISSION_GRANTED){
                 permissoesRequeridas.add(permisao);
             }
-
-            if(!permissoesRequeridas.isEmpty()){
-                ActivityCompat.requestPermissions(this,permissoesRequeridas.toArray(new String[permissoesRequeridas.size()]), CODIGO_PERMISSOES);
-            }
-        }
-        permissoesRequeridas.clear();
-
-        for(String permisao : permisoes){
-            if(ContextCompat.checkSelfPermission(this,permisao) != PackageManager.PERMISSION_GRANTED){
-                permissoesRequeridas.add(permisao);
-                return false;
-            }
         }
 
-        return true;
+        if(permissoesRequeridas.isEmpty()){
+            permissao = true;
+        }
+
+        return permissao;
     }
 
     private File criarArquivo(){
-        File diretorio = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES),"agroecologia");
+        String filename = "Mapa_" + System.currentTimeMillis();
+        File diretorio = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File arquivo = null;
+        try {
+            arquivo = File.createTempFile(filename,".jpg",diretorio);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         if(!diretorio.exists()){
             if(!diretorio.mkdirs()){
                 Log.d("testeX","falha ao criar diretorio");
                 return null;
             }
         }
-        String filename = System.currentTimeMillis() + ".jpg";
-        File arquivo = new File(diretorio.getPath()+File.separator+filename);
 
         return arquivo;
     }
