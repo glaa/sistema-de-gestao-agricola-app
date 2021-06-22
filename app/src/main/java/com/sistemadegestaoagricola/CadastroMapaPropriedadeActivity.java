@@ -110,7 +110,8 @@ import java.util.List;
             sendBroadcast(mediaIntent);
 
             Intent intent = new Intent(this,ExibirFotografiaMapaActivity.class);
-            intent.putExtra("PATH", uri);
+            intent.putExtra("PATH", arquivo.getAbsolutePath());
+            intent.putExtra("URI", uri);
             startActivity(intent);
 
             Log.d("testeX", "caminho imagem = " + uri.getPath());

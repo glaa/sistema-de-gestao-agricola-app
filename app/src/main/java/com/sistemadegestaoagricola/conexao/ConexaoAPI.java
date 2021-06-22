@@ -1,12 +1,10 @@
 package com.sistemadegestaoagricola.conexao;
 
-import android.content.Context;
 import android.util.Log;
 
-import com.sistemadegestaoagricola.entidades.Propriedade;
+import com.sistemadegestaoagricola.entidades.Parametro;
 
 import java.io.DataOutputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.ConnectException;
@@ -16,7 +14,6 @@ import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.UUID;
 
 public class ConexaoAPI {
     public static HttpURLConnection conexao;
@@ -161,20 +158,22 @@ public class ConexaoAPI {
                         fim+fim+parametro.getValue()+fim);
                 Log.d("testeX",parametro.getName() + " = " + parametro.getValue());
             } else {
-                ds.writeBytes("Content-Disposition: form-data; name=\""+parametro.getName()+"\" filename=\""+parametro.getFilename()+"\"" +
-                        fim+fim+ parametro.getValue() +fim);
+                ds.writeBytes("Content-Disposition: form-data; name=\""+parametro.getName()+"\"; filename=\""+parametro.getFilename()+"\"" + fim);
+                ds.writeBytes(fim);
                 Log.d("testeX",parametro.getName() + " = " + parametro.getValue());
 
-               // ds.write((byte[]) parametro.getValue());
-//                FileInputStream fStream = new FileInputStream(arquivo);
-//                int bufferSize = 1024;
-//                byte[] buffer = new byte[bufferSize];
-//                int length = -1;
-//
-//                while((length = fStream.read(buffer)) != -1) {
-//                    ds.write(buffer, 0, length);
-//                }
-//                fStream.close();
+                //ds.write((byte[]) parametro.getValue());
+                FileInputStream fStream = new FileInputStream((String) parametro.getValue());
+                Log.d("testeX","hhh"+fStream.available());
+                int bufferSize = 1024;
+                byte[] buffer = new byte[bufferSize];
+                int length = -1;
+
+                while((length = fStream.read(buffer)) != -1) {
+                    ds.write(buffer, 0, length);
+                }
+                ds.writeBytes(fim);
+                fStream.close();
             }
 
         }

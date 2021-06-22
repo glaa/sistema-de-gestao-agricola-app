@@ -1,19 +1,9 @@
 package com.sistemadegestaoagricola.conexao;
 
-import android.os.FileUtils;
-import android.os.StrictMode;
-import android.util.JsonReader;
-import android.util.Log;
-
+import com.sistemadegestaoagricola.entidades.Parametro;
 import com.sistemadegestaoagricola.entidades.Propriedade;
 
-import java.io.DataOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +51,7 @@ public class RotaCadastrarPropriedade implements Callable<ConexaoAPI> {
         parametros.add(new Parametro("estado",null,Propriedade.getEstado()));
         parametros.add(new Parametro("cep",null,Propriedade.getCep()));
         parametros.add(new Parametro("ponto_referencia",null,Propriedade.getReferencia()));
-        parametros.add(new Parametro("mapa", new Date().getTime()+".jpeg", Propriedade.getMapa()));
+        parametros.add(new Parametro("mapa", new Date().getTime()+".jpg", Propriedade.getMapa()));
 
         Requisicao requisicao = new Requisicao(metodo,cabecalhos,parametros,boundary);
 

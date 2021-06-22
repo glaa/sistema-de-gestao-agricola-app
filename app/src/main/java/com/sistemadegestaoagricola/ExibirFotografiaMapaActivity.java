@@ -18,7 +18,8 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
     private ImageView ivFoto;
     private Button btExcluir;
     private Button btProximo;
-    private Bitmap foto;
+    private Uri uri;
+    private String path;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,17 +30,16 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
         btExcluir = findViewById(R.id.btExcluirExibirFotografiaMapa);
         btProximo = findViewById(R.id.btProximoExibirFotografiaMapa);
 
-        Uri uri;
         if(getIntent().hasExtra("PATH")){
             Bundle extras = getIntent().getExtras();
-            uri = (Uri) extras.get("PATH");
+            uri = (Uri) extras.get("URI");
+            path = (String) extras.get("PATH");
             ivFoto.setImageURI(uri);
         }
 
         btExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                foto.recycle();
                 onBackPressed();
                 finish();
             }
@@ -57,8 +57,7 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
     }
 
     private void salvarFoto(){
-        String mapa = Util.converterBitmapParaString(foto);
+        String mapa = path;
         Propriedade.setMapa(mapa);
-        foto.recycle();
     }
 }

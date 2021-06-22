@@ -5,6 +5,7 @@ import android.util.JsonReader;
 import android.util.Log;
 
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
+import com.sistemadegestaoagricola.entidades.Parametro;
 import com.sistemadegestaoagricola.entidades.Util;
 
 import java.io.IOException;
@@ -16,8 +17,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
-
-import static com.sistemadegestaoagricola.entidades.Util.converterStringDate;
 
 public class RotaListarReunioes implements Callable<ConexaoAPI> {
 

@@ -5,8 +5,8 @@ import android.util.JsonReader;
 import android.util.JsonToken;
 import android.util.Log;
 
+import com.sistemadegestaoagricola.entidades.Parametro;
 import com.sistemadegestaoagricola.entidades.Produtor;
-import com.sistemadegestaoagricola.entidades.Propriedade;
 import com.sistemadegestaoagricola.entidades.Usuario;
 
 import java.io.IOException;

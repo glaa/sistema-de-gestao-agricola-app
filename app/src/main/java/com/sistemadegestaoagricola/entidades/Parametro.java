@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola.conexao;
+package com.sistemadegestaoagricola.entidades;
 
 public class Parametro {
     private String name;

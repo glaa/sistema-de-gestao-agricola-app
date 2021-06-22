@@ -41,7 +41,7 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
     private String[] mensagensExceptions;
     private int status;
-    CarregarDialog carregarDialog = new CarregarDialog(CadastroLocalizacaoActivity.this);;
+    CarregarDialog carregarDialog = new CarregarDialog(CadastroLocalizacaoActivity.this);
     AlertDialog salvando;
 
     @Override
@@ -66,6 +66,9 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
 
         //Setar valores da Propriedade nos campos
         preencherValores();
+
+        //Criando o AlertDialog do salvamento
+        salvando = carregarDialog.criarDialogSalvarInformacoes();
 
         edtCidade.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -120,6 +123,7 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
                     alertaCep.setButton(DialogInterface.BUTTON_POSITIVE, "Continuar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
+                            salvando.show();
                             verificarCampos();
                         }
                     });
@@ -131,17 +135,16 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
                     });
                     alertaCep.show();
                 } else {
+                    salvando.show();
+                    btConfirmar.setClickable(false);
                     verificarCampos();
                 }
-
             }
         });
     }
 
     private void verificarCampos(){
         if(!edtCidade.getText().toString().isEmpty() && !estado.isEmpty()){
-            salvando = carregarDialog.criarDialogSalvarInformacoes();
-            salvando.show();
             //Propriedade.setMapa(null);
             Log.d("testeX","" + Propriedade.getMapa());
             salvarCadastroAPI();
@@ -235,65 +238,81 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
     }
 
     private void salvarCadastroAPI(){
-        //Atribuindo dados a Propriedade
-        Propriedade.setLogradouro(edtLogradouro.getText().toString());
-        Propriedade.setBairro(edtBairro.getText().toString());
-        Propriedade.setCidade(edtCidade.getText().toString());
-        Propriedade.setEstado(estado);
-        Propriedade.setReferencia(edtReferencia.getText().toString());
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                //Atribuindo dados a Propriedade
+                Propriedade.setLogradouro(edtLogradouro.getText().toString());
+                Propriedade.setBairro(edtBairro.getText().toString());
+                Propriedade.setCidade(edtCidade.getText().toString());
+                Propriedade.setEstado(estado);
+                Propriedade.setReferencia(edtReferencia.getText().toString());
 
-        if(!edtNumero.getText().toString().isEmpty()){
-            Propriedade.setNumero(Integer.parseInt(edtNumero.getText().toString()));
-        } else {
-            Propriedade.setNumero(0);
-        }
-
-        if(edtCep.getText().toString().length() == 9){
-            Propriedade.setCep(edtCep.getText().toString());
-        } else {
-            Propriedade.setCep(null);
-        }
-
-        RotaCadastrarPropriedade rotaCadastrarPropriedade = new RotaCadastrarPropriedade();
-        Future<ConexaoAPI> future = threadpool.submit(rotaCadastrarPropriedade);
-
-        while(!future.isDone()){
-            //Aguardando
-        }
-
-        ConexaoAPI conexao = null;
-        try{
-            conexao = future.get();
-
-            mensagensExceptions = conexao.getMensagensExceptions();
-
-            if(mensagensExceptions == null){
-                //Sem erro de conexão
-                status = conexao.getCodigoStatus();
-                Log.d("testeX","status cadastro Localização = " + status);
-                if(status == 200){
-                    //Salvo com sucesso
-                    Toast.makeText(this, "Dados salvos com sucesso", Toast.LENGTH_LONG).show();
+                if(!edtNumero.getText().toString().isEmpty()){
+                    Propriedade.setNumero(Integer.parseInt(edtNumero.getText().toString()));
                 } else {
-                    //Erro ao salvar
-                    Toast.makeText(this, "Dados não puderam ser salvos", Toast.LENGTH_LONG).show();
+                    Propriedade.setNumero(0);
                 }
-            } else {
-                Erro(mensagensExceptions[0],mensagensExceptions[1]);
-            }
 
-        } catch (InterruptedException | ExecutionException e){
-            e.printStackTrace();
-            Erro("Falha na conexão","Tente novamente em alguns minutos");
-        } finally {
-            if(conexao != null){
-                conexao.fechar();
+                if(edtCep.getText().toString().length() == 9){
+                    Propriedade.setCep(edtCep.getText().toString());
+                } else {
+                    Propriedade.setCep(null);
+                }
+
+                RotaCadastrarPropriedade rotaCadastrarPropriedade = new RotaCadastrarPropriedade();
+                Future<ConexaoAPI> future = threadpool.submit(rotaCadastrarPropriedade);
+
+                while(!future.isDone()){
+                    //Aguardando
+                }
+
+                ConexaoAPI conexao = null;
+                try{
+                    conexao = future.get();
+
+                    mensagensExceptions = conexao.getMensagensExceptions();
+
+                    if(mensagensExceptions == null){
+                        //Sem erro de conexão
+                        status = conexao.getCodigoStatus();
+                        Log.d("testeX","status cadastro Localização = " + status);
+                        if(status == 200){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //Salvo com sucesso
+                                    Toast.makeText(CadastroLocalizacaoActivity.this, "Dados salvos com sucesso", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //Erro ao salvar
+                                    Toast.makeText(CadastroLocalizacaoActivity.this, "Dados não puderam ser salvos", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    } else {
+                        Erro(mensagensExceptions[0],mensagensExceptions[1]);
+                    }
+
+                } catch (InterruptedException | ExecutionException e){
+                    e.printStackTrace();
+                    Erro("Falha na conexão","Tente novamente em alguns minutos");
+                } finally {
+                    if(conexao != null){
+                        conexao.fechar();
+                    }
+                    salvando.dismiss();
+                    Intent intent = new Intent(CadastroLocalizacaoActivity.this,HomeActivity.class);
+                    startActivity(intent);
+                    finishAffinity();
+                }
             }
-            salvando.dismiss();
-            Intent intent = new Intent(this,HomeActivity.class);
-            startActivity(intent);
-            finishAffinity();
-        }
+        });
+        thread.start();
     }
 
     private void Erro(String titulo, String subtitulo){

@@ -2,10 +2,11 @@ package com.sistemadegestaoagricola.conexao;
 
 import android.util.Log;
 
+import com.sistemadegestaoagricola.entidades.Parametro;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.Callable;
 
 public class RotaIndex implements Callable<ConexaoAPI> {

@@ -1,10 +1,9 @@
 package com.sistemadegestaoagricola.conexao;
 
-import android.content.Context;
 import android.os.StrictMode;
 import android.util.JsonReader;
-import android.util.Log;
-import android.widget.Toast;
+
+import com.sistemadegestaoagricola.entidades.Parametro;
 
 import java.io.IOException;
 import java.io.InputStream;

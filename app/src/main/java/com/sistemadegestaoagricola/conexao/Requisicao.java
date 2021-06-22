@@ -1,5 +1,7 @@
 package com.sistemadegestaoagricola.conexao;
 
+import com.sistemadegestaoagricola.entidades.Parametro;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
