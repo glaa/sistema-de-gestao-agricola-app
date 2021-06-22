@@ -16,23 +16,36 @@
         android:paddingTop="8dp"
         android:paddingBottom="8dp">
 
-        <ImageView
-            android:id="@+id/ivVoltarReuniaoCoordenador"
-            android:layout_width="@dimen/icone_botao"
-            android:layout_height="@dimen/icone_botao"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:background="@drawable/layout_circulo"
-            android:backgroundTint="@color/verde_escuro"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-
-        <TextView
-            android:id="@+id/textView42"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:text="Voltar"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivVoltarReuniaoCoordenador"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Voltar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/rotulo_padrao" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView61"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Reuniões"
             android:textColor="@color/white"
-            android:textSize="@dimen/rotulo_grande" />
+            android:textSize="28sp" />
     </LinearLayout>
 
     <ScrollView
@@ -47,35 +60,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="88dp">
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:text="Reunião"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="34sp" />
-
                 <Button
                     android:id="@+id/button2"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/bt_altura_padrao"
                     android:layout_gravity="left"
-                    android:layout_marginRight="16dp"
                     android:background="@drawable/bt_arredondado"
-                    android:backgroundTint="#03A9F4"
-                    android:padding="5dp"
-                    android:text="Criar Reunião"
+                    android:backgroundTint="@color/white"
+                    android:paddingStart="50dp"
+                    android:paddingEnd="50dp"
+                    android:text="Adicionar reunião"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"
+                    android:textColor="@color/verde_padrao"
                     android:textSize="24sp" />
             </LinearLayout>
 
@@ -89,12 +92,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
                     android:layout_weight="1"
                     android:text="Próxima reunião"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/rotulo_medio" />
+                    android:textSize="32sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -118,7 +121,7 @@
                     android:layout_weight="1"
                     android:text="Reunião passada"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/rotulo_medio" />
+                    android:textSize="32sp" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView

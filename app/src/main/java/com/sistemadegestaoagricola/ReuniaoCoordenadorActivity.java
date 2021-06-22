@@ -43,10 +43,10 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
         rvProximaReuniao.setAdapter(reuniaoAdapter);
 
 
-        ReuniaoAdapter reuniaoAdapter2 = new ReuniaoAdapter(passadas);
+        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(passadas);
         RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getApplicationContext());
         rvPassadaReuniao.setLayoutManager(layoutManager2);
-        rvPassadaReuniao.setAdapter(reuniaoAdapter2);
+        rvPassadaReuniao.setAdapter(reuniaoPassadaAdapter);
 
         ivVoltar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -15,25 +15,25 @@ import java.util.Calendar;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ReuniaoAdapter extends RecyclerView.Adapter<ReuniaoAdapter.MyViewHolder> {
+public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAdapter.MyViewHolder> {
 
     ArrayList<AgendamentoReuniao> agendamentoReuniaos = new ArrayList<AgendamentoReuniao>();
 
-    public ReuniaoAdapter(ArrayList<AgendamentoReuniao> agendamentos) {
+    public ReuniaoPassadaAdapter(ArrayList<AgendamentoReuniao> agendamentos) {
         this.agendamentoReuniaos = agendamentos;
     }
 
     @NonNull
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.reuniao_adapter,parent,false);
+    public ReuniaoPassadaAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.reuniao_passada_adapter,parent,false);
 
         return new MyViewHolder(itemLista);
     }
 
     @Override
-    public void onBindViewHolder( ReuniaoAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder( ReuniaoPassadaAdapter.MyViewHolder holder, int position) {
         //Retorna somente o que exitir
         if(position < agendamentoReuniaos.size()) {
             AgendamentoReuniao agenda  = agendamentoReuniaos.get(position);
@@ -46,8 +46,8 @@ public class ReuniaoAdapter extends RecyclerView.Adapter<ReuniaoAdapter.MyViewHo
             String diaDaSemana = Util.calendarioIntParaStringDia(calendar.get(Calendar.DAY_OF_WEEK));
             holder.dia.setText(diaDaSemana.substring(0,3));
             holder.data.setText(data);
-            holder.hora.setVisibility(View.GONE);
-            holder.hora.setText("");
+            holder.status.setText("Evento realizado");
+
         }
     }
 
@@ -57,15 +57,14 @@ public class ReuniaoAdapter extends RecyclerView.Adapter<ReuniaoAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView dia, data, hora;
+        TextView dia, data, status;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            dia = itemView.findViewById(R.id.tvDiaReuniaoAdapter);
-            data = itemView.findViewById(R.id.tvDataReuniaoAdapter);
-            hora = itemView.findViewById(R.id.tvHoraReuniaoAdapter);
+            dia = itemView.findViewById(R.id.tvDiaReuniaoPassadaAdapter);
+            data = itemView.findViewById(R.id.tvDataReuniaoPassadaAdapter);
+            status = itemView.findViewById(R.id.tvStatusReuniaoPassadaAdapter);
+
         }
     }
-
-
 }
