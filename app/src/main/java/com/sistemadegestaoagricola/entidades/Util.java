@@ -138,4 +138,23 @@ public class Util {
             }
         }
     }
+
+    public static String formatarDiaHoraCalendar(int dia){
+        String d = String.valueOf(dia);
+
+        if(dia < 10){
+            d = "0"+ dia;
+        }
+        return d;
+    }
+
+    public static String formatarMesCalendar(int mes){
+        String mf;
+        mes++;
+        mf = String.valueOf(mes);
+        if(mes < 10){
+            mf = "0"+ mes;
+        }
+        return mf;
+    }
 }

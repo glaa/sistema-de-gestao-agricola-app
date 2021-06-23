@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
-        <activity android:name=".CadastroCidadeActivity"></activity>
+        <activity android:name=".NovaReuniaoActivity"></activity>
+        <activity android:name=".CadastroCidadeActivity" />
         <activity android:name=".CadastroCepActivity" />
         <activity android:name=".CadastroLocalizacaoActivity" />
         <activity
@@ -94,7 +95,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
     </application>
 

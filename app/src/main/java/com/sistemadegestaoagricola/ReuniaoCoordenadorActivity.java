@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
@@ -21,6 +23,7 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
     private ArrayList<AgendamentoReuniao> agendametos = new ArrayList<>();
     private ArrayList<AgendamentoReuniao> proximas = new ArrayList<>();
     private ArrayList<AgendamentoReuniao> passadas = new ArrayList<>();
+    private Button btAdicionar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
 //        Toolbar toolbar = findViewById(R.id.toolbarReuniao);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("Voltar");
+        btAdicionar = findViewById(R.id.btAdicionarReuniaoCoodernador);
 
         ivVoltar = findViewById(R.id.ivVoltarReuniaoCoordenador);
         rvProximaReuniao = findViewById(R.id.rvProximaReuniaoCoordenador);
@@ -56,14 +60,17 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
             }
         });
 
+        btAdicionar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),NovaReuniaoActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        onBackPressed();
-//        finish();
-//        return super.onSupportNavigateUp();
-//    }
+
 
     private void classificarAgendamentos(){
         agendametos = Util.getAgendamentos();
