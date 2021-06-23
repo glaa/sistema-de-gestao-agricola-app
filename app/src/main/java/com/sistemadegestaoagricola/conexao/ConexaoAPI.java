@@ -67,7 +67,7 @@ public class ConexaoAPI {
                 this.setCabecalhos(cabecalhos);
             }
 
-            this.conexao.setConnectTimeout(10000);
+            this.conexao.setConnectTimeout(90000);
             if(this.metodo == "POST"){
                 this.conexao.setDoOutput(true);
                 this.conexao.setChunkedStreamingMode(0);
@@ -178,21 +178,6 @@ public class ConexaoAPI {
 
         }
         ds.writeBytes(doisTracos + boundary + doisTracos + fim);
-        ds.flush();
-        ds.close();
-    }
-
-    private void corpoLogin() throws IOException {
-        String end = "\r\n";
-        String twoHyphens = "--";
-        String boundary = "*****++++++************++++++++++++";
-
-        DataOutputStream ds = new DataOutputStream(conexao.getOutputStream());
-        ds.writeBytes(twoHyphens + boundary + end);
-        ds.writeBytes("Content-Disposition: form-data; name=\"email\""+end+end+"11111111111"+end);
-        ds.writeBytes(twoHyphens + boundary + end);
-        ds.writeBytes("Content-Disposition: form-data; name=\"password\""+end+end+"123123123"+end);
-        ds.writeBytes(twoHyphens + boundary + twoHyphens + end);
         ds.flush();
         ds.close();
     }
