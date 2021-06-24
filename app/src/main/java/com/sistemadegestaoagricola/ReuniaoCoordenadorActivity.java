@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 public class ReuniaoCoordenadorActivity extends AppCompatActivity {
 
     private RecyclerView rvProximaReuniao, rvPassadaReuniao;
-    private ImageView ivVoltar;
+    private LinearLayout llVoltar;
     private ArrayList<AgendamentoReuniao> agendametos = new ArrayList<>();
     private ArrayList<AgendamentoReuniao> proximas = new ArrayList<>();
     private ArrayList<AgendamentoReuniao> passadas = new ArrayList<>();
@@ -35,7 +36,7 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
 //        getSupportActionBar().setTitle("Voltar");
         btAdicionar = findViewById(R.id.btAdicionarReuniaoCoodernador);
 
-        ivVoltar = findViewById(R.id.ivVoltarReuniaoCoordenador);
+        llVoltar = findViewById(R.id.llVoltarReuniaoCoordenador);
         rvProximaReuniao = findViewById(R.id.rvProximaReuniaoCoordenador);
         rvPassadaReuniao = findViewById(R.id.rvPassadaReuniaoCoordenador);
         Log.d("testeX", "reunioies passada = " + passadas.size() + " total = " + Util.getAgendamentos().size());
@@ -52,7 +53,7 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
         rvPassadaReuniao.setLayoutManager(layoutManager2);
         rvPassadaReuniao.setAdapter(reuniaoPassadaAdapter);
 
-        ivVoltar.setOnClickListener(new View.OnClickListener() {
+        llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 onBackPressed();
