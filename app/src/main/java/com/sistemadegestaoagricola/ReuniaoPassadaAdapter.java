@@ -1,5 +1,8 @@
 package com.sistemadegestaoagricola;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -18,9 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAdapter.MyViewHolder> {
 
     ArrayList<AgendamentoReuniao> agendamentoReuniaos = new ArrayList<AgendamentoReuniao>();
+    Context context;
 
-    public ReuniaoPassadaAdapter(ArrayList<AgendamentoReuniao> agendamentos) {
+    public ReuniaoPassadaAdapter(Context contexto, ArrayList<AgendamentoReuniao> agendamentos) {
         this.agendamentoReuniaos = agendamentos;
+        this.context = contexto;
     }
 
     @NonNull
@@ -48,6 +54,15 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
             holder.data.setText(data);
             holder.status.setText("Evento realizado");
 
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context,ReuniaoRealizadaCoordenadorActivity.class);
+                    intent.putExtra("REUNIAO", agenda);
+                    context.startActivity(intent);
+                    Log.d("testeX","reuniao passada = " + agenda.getData());
+                }
+            });
         }
     }
 
@@ -64,7 +79,6 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
             dia = itemView.findViewById(R.id.tvDiaReuniaoPassadaAdapter);
             data = itemView.findViewById(R.id.tvDataReuniaoPassadaAdapter);
             status = itemView.findViewById(R.id.tvStatusReuniaoPassadaAdapter);
-
         }
     }
 }

@@ -16,20 +16,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
         <activity
-            android:name=".ProximaReuniaoCoordenadorActivity"
+            android:name=".ReuniaoRealizadaCoordenadorActivity"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ProximaReuniaoCoordenadorActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NovaReuniaoActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroCidadeActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroCepActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroLocalizacaoActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".CadastroFonteAguaActivity"
             android:screenOrientation="portrait" />

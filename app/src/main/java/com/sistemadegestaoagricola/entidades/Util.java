@@ -139,6 +139,7 @@ public class Util {
         }
     }
 
+    /*Receber um número e devolver uma String com dois digítos*/
     public static String formatarDiaHoraCalendar(int dia){
         String d = String.valueOf(dia);
 
@@ -148,6 +149,7 @@ public class Util {
         return d;
     }
 
+    /*Receber um número e devolver uma String com dois digítos*/
     public static String formatarMesCalendar(int mes){
         String mf;
         mes++;

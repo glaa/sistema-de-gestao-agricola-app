@@ -1,8 +1,9 @@
 package com.sistemadegestaoagricola.entidades;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AgendamentoReuniao {
+public class AgendamentoReuniao implements Serializable {
 
     private int id;
     private String nome;

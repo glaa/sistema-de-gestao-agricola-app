@@ -48,10 +48,11 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
         rvProximaReuniao.setAdapter(reuniaoAdapter);
 
 
-        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(passadas);
+        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(ReuniaoCoordenadorActivity.this,passadas);
         RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getApplicationContext());
         rvPassadaReuniao.setLayoutManager(layoutManager2);
         rvPassadaReuniao.setAdapter(reuniaoPassadaAdapter);
+
 
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +72,6 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
 
     }
 
-
-
     private void classificarAgendamentos(){
         agendametos = Util.getAgendamentos();
         for(AgendamentoReuniao agenda : agendametos){
@@ -83,4 +82,12 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
             }
         }
     }
+
+//    class ObterReuniaoPassada implements ReuniaoPassadaAdapter.ItemClicked{
+//
+//        @Override
+//        public void onItemClicked(int index) {
+//            Log.d("testeX", "reuniao passada = " + index);
+//        }
+//    }
 }
