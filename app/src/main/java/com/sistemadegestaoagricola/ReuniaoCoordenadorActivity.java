@@ -42,7 +42,7 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
         Log.d("testeX", "reunioies passada = " + passadas.size() + " total = " + Util.getAgendamentos().size());
         classificarAgendamentos();
 
-        ReuniaoAdapter reuniaoAdapter = new ReuniaoAdapter(proximas);
+        ReuniaoAdapter reuniaoAdapter = new ReuniaoAdapter(this,proximas);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         rvProximaReuniao.setLayoutManager(layoutManager);
         rvProximaReuniao.setAdapter(reuniaoAdapter);

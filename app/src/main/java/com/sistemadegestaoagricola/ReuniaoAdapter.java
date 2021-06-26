@@ -1,5 +1,7 @@
 package com.sistemadegestaoagricola;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ReuniaoAdapter extends RecyclerView.Adapter<ReuniaoAdapter.MyViewHolder> {
 
     ArrayList<AgendamentoReuniao> agendamentoReuniaos = new ArrayList<AgendamentoReuniao>();
+    Context contexto;
 
-    public ReuniaoAdapter(ArrayList<AgendamentoReuniao> agendamentos) {
+    public ReuniaoAdapter(Context context, ArrayList<AgendamentoReuniao> agendamentos) {
         this.agendamentoReuniaos = agendamentos;
+        this.contexto = context;
     }
 
     @NonNull
@@ -48,6 +52,15 @@ public class ReuniaoAdapter extends RecyclerView.Adapter<ReuniaoAdapter.MyViewHo
             holder.data.setText(data);
             holder.hora.setVisibility(View.GONE);
             holder.hora.setText("");
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(contexto,ProximaReuniaoCoordenadorActivity.class);
+                    intent.putExtra("REUNIAO",agenda);
+                    contexto.startActivity(intent);
+                }
+            });
         }
     }
 
