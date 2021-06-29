@@ -57,7 +57,8 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent(ReuniaoCoordenadorActivity.this,HomeActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -67,13 +68,19 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),NovaReuniaoActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
     }
 
     private void classificarAgendamentos(){
-        agendametos = Util.getAgendamentos();
+        agendametos.clear();
+
+        for(AgendamentoReuniao agenda : Util.getAgendamentos()){
+            agendametos.add(agenda);
+        }
+
         for(AgendamentoReuniao agenda : agendametos){
             if(agenda.isRegistrada()){
                 passadas.add(agenda);
@@ -82,12 +89,4 @@ public class ReuniaoCoordenadorActivity extends AppCompatActivity {
             }
         }
     }
-
-//    class ObterReuniaoPassada implements ReuniaoPassadaAdapter.ItemClicked{
-//
-//        @Override
-//        public void onItemClicked(int index) {
-//            Log.d("testeX", "reuniao passada = " + index);
-//        }
-//    }
 }

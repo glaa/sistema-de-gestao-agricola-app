@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_verde"
+    android:orientation="vertical"
+    tools:context=".EditarReuniaoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/llVoltarEditarReuniao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView220"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+            <TextView
+                android:id="@+id/textView110"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Voltar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/rotulo_padrao" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView620"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Reuniões"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView650"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Editar reunião"
+                    android:textColor="@color/white"
+                    android:textSize="32sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView660"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:text="Tema"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/rotulo_medio" />
+
+                <EditText
+                    android:id="@+id/etTemaEditarReuniao"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:inputType="textCapSentences|textAutoComplete"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ed_tamanho_fonte" />
+
+                <TextView
+                    android:id="@+id/textVie0"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="16dp"
+                    android:text="Data"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/rotulo_medio" />
+
+                <EditText
+                    android:id="@+id/etDataEditarReuniao"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:editable="false"
+                    android:ems="10"
+                    android:inputType="date|textPersonName"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ed_tamanho_fonte" />
+
+                <TextView
+                    android:id="@+id/textVie20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="16dp"
+                    android:text="Hora"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/rotulo_medio" />
+
+                <EditText
+                    android:id="@+id/etHoraEditarReuniao"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:editable="false"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ed_tamanho_fonte" />
+
+                <TextView
+                    android:id="@+id/textVie30"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="16dp"
+                    android:text="Local"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/rotulo_medio" />
+
+                <EditText
+                    android:id="@+id/etLocalEditarReuniao"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:gravity="start|top"
+                    android:inputType="textCapSentences|textAutoComplete"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/ed_tamanho_fonte" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btSalvarEditarReuniao"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bt_altura_principal"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/bt_arredondado"
+                    android:backgroundTint="@color/white"
+                    android:text="Salvar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/verde_escuro"
+                    android:textSize="@dimen/bt_tamanho_fonte" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

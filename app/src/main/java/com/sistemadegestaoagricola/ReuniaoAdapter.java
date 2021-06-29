@@ -50,8 +50,9 @@ public class ReuniaoAdapter extends RecyclerView.Adapter<ReuniaoAdapter.MyViewHo
             String diaDaSemana = Util.calendarioIntParaStringDia(calendar.get(Calendar.DAY_OF_WEEK));
             holder.dia.setText(diaDaSemana.substring(0,3));
             holder.data.setText(data);
-            holder.hora.setVisibility(View.GONE);
-            holder.hora.setText("");
+            String horario = Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR_OF_DAY)) + ":" +
+                    Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE));
+            holder.hora.setText(horario);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

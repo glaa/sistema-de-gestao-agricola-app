@@ -15,9 +15,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
+        <activity android:name=".EditarReuniaoActivity"></activity>
         <activity
             android:name=".ReuniaoRealizadaCoordenadorActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ProximaReuniaoCoordenadorActivity"
             android:screenOrientation="portrait" />

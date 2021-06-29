@@ -4,9 +4,13 @@ import android.util.Log;
 
 import com.sistemadegestaoagricola.entidades.Parametro;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -19,7 +23,7 @@ public class ConexaoAPI {
     public static HttpURLConnection conexao;
     private URL agroEndpoint;
     private String url = "http://%s/api/%s";
-    private final String host = "192.168.0.105/site/sistema-de-gestao-agricola/public";
+    private final String host = "192.168.0.107/site/sistema-de-gestao-agricola/public";
     private String rota;
     private String parametros;
     private String metodo;
@@ -72,6 +76,11 @@ public class ConexaoAPI {
                 this.conexao.setDoOutput(true);
                 this.conexao.setChunkedStreamingMode(0);
                 this.conexao.setRequestMethod("POST");
+                criarCorpo();
+            } else if(this.metodo == "PUT"){
+                this.conexao.setDoOutput(true);
+                this.conexao.setChunkedStreamingMode(0);
+                this.conexao.setRequestMethod("PUT");
                 criarCorpo();
             }
 
@@ -180,5 +189,10 @@ public class ConexaoAPI {
         ds.writeBytes(doisTracos + boundary + doisTracos + fim);
         ds.flush();
         ds.close();
+    }
+
+    private void novoCorpo()throws Exception{
+
+        
     }
 }

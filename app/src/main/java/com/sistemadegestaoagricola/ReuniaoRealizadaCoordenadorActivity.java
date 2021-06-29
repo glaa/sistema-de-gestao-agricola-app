@@ -104,6 +104,18 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
         tvDiaMes.setText(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
         tvMes.setText(Util.calendarioIntParaStringMes(calendar.get(Calendar.MONTH)));
         tvAno.setText(String.valueOf(calendar.get(Calendar.YEAR)));
+        tvHora.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR)));
+        tvMinuto.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE)));
+        int am_pm = calendar.get(Calendar.AM_PM);
+        if(am_pm == 0){
+            tvTurno.setText("manhã");
+        } else {
+            if(calendar.get(Calendar.HOUR) < 6){
+                tvTurno.setText("tarde");
+            } else {
+                tvTurno.setText("noite");
+            }
+        }
         tvLocal.setText(reuniao.getLocal());
     }
 }

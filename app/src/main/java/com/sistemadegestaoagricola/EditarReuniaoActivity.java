@@ -1,13 +1,11 @@
 package com.sistemadegestaoagricola;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,20 +19,17 @@ import android.widget.Toast;
 
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaAgendarReuniao;
-import com.sistemadegestaoagricola.conexao.RotaGetUser;
-import com.sistemadegestaoagricola.conexao.RotaLogin;
-import com.sistemadegestaoagricola.entidades.Produtor;
-import com.sistemadegestaoagricola.entidades.Usuario;
+import com.sistemadegestaoagricola.conexao.RotaEditarReuniao;
+import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
+public class EditarReuniaoActivity extends AppCompatActivity implements Runnable{
 
     private LinearLayout llVoltar;
     private EditText etTema;
@@ -58,20 +53,27 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
     private String[] mensagensExceptions;
     private AlertDialog salvamento;
+    private AgendamentoReuniao reuniao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nova_reuniao);
+        setContentView(R.layout.activity_editar_reuniao);
 
-        llVoltar = findViewById(R.id.llVoltarNovaReuniao);
-        etTema = findViewById(R.id.etTemaNovaReuniao);
-        etData = findViewById(R.id.etDataNovaReuniao);
-        etHora = findViewById(R.id.etHoraNovaReuniao);
-        etLocal = findViewById(R.id.etLocalNovaReuniao);
-        btSalvar = findViewById(R.id.btSalvarNovaReuniao);
+        llVoltar = findViewById(R.id.llVoltarEditarReuniao);
+        etTema = findViewById(R.id.etTemaEditarReuniao);
+        etData = findViewById(R.id.etDataEditarReuniao);
+        etHora = findViewById(R.id.etHoraEditarReuniao);
+        etLocal = findViewById(R.id.etLocalEditarReuniao);
+        btSalvar = findViewById(R.id.btSalvarEditarReuniao);
 
         CarregarDialog carregarDialog = new CarregarDialog(this);
+
+        if(getIntent().hasExtra("REUNIAO")){
+            Bundle bundle = getIntent().getExtras();
+            reuniao = (AgendamentoReuniao) bundle.get("REUNIAO");
+            preencherCampo(reuniao);
+        }
 
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,11 +104,17 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
                 if(verificarCampos()){
                     salvamento = carregarDialog.criarDialogSalvarInformacoes();
                     salvamento.show();
-                    thread = new Thread( NovaReuniaoActivity.this);
+                    thread = new Thread( EditarReuniaoActivity.this);
                     thread.start();
                 }
             }
         });
+
+    }
+
+    private void voltar(){
+        onBackPressed();
+        finish();
     }
 
     private void exirDatePicker(){
@@ -117,7 +125,7 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
         dia = calendar.get(Calendar.DAY_OF_MONTH);
         mes = calendar.get(Calendar.MONTH);
         ano = calendar.get(Calendar.YEAR);
-        datePickerDialog = new DatePickerDialog(NovaReuniaoActivity.this, new DatePickerDialog.OnDateSetListener() {
+        datePickerDialog = new DatePickerDialog(EditarReuniaoActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
                 String diaString = Util.formatarDiaHoraCalendar(dia);
@@ -144,7 +152,7 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
                 etHora.setText(horaString+ ":" +minutoString);
             }
         };
-        timePickerDialog = new TimePickerDialog(NovaReuniaoActivity.this, timeSetListener,hora, minuto, true);
+        timePickerDialog = new TimePickerDialog(EditarReuniaoActivity.this, timeSetListener,hora, minuto, true);
         timePickerDialog.show();
     }
 
@@ -163,10 +171,11 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
         return true;
     }
 
-    private void voltar(){
-        Intent intent = new Intent(NovaReuniaoActivity.this,ReuniaoCoordenadorActivity.class);
-        startActivity(intent);
-        finish();
+    private void preencherCampo(AgendamentoReuniao reuniao){
+        etTema.setText(reuniao.getNome());
+        etData.setText(Util.converterDateString(reuniao.getData()));
+        etHora.setText(Util.extrairHoraDeData(reuniao.getData()));
+        etLocal.setText(reuniao.getLocal());
     }
 
     @Override
@@ -177,7 +186,7 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
         /**
          *  Chama a classe RotaAgendarReuniao que irá se conectar com a rota /api/agendar-reuniao em uma thread
          */
-        RotaAgendarReuniao agendarReuniao = new RotaAgendarReuniao(tema,data,local);
+        RotaEditarReuniao agendarReuniao = new RotaEditarReuniao(tema,data,local,reuniao.getId());
         Future<ConexaoAPI> future1 = threadpool.submit(agendarReuniao);
 
         while(!future1.isDone()){

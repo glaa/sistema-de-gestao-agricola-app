@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Util {
@@ -32,7 +33,7 @@ public class Util {
     }
 
     public static Date converterStringDate(String data) {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Date d1 = null;
         try {
@@ -158,5 +159,19 @@ public class Util {
             mf = "0"+ mes;
         }
         return mf;
+    }
+
+    public static String converterPraBase64(String texto){
+        String code = null;
+            code = Base64.encodeToString(texto.getBytes(),Base64.DEFAULT);
+        return code;
+    }
+
+    public static String extrairHoraDeData(Date data){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(data);
+        String horario;
+        horario = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE);
+        return horario;
     }
 }

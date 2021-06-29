@@ -1,35 +1,31 @@
 package com.sistemadegestaoagricola.conexao;
 
-import android.os.StrictMode;
-import android.util.JsonReader;
-import android.util.Log;
-
 import com.sistemadegestaoagricola.entidades.Parametro;
 import com.sistemadegestaoagricola.entidades.Util;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
-public class RotaAgendarReuniao implements Callable<ConexaoAPI> {
+public class RotaEditarReuniao implements Callable<ConexaoAPI> {
+
     private String tema;
     private String data;
     private String local;
+    private int idReuniao;
 
-    public RotaAgendarReuniao(String tema, String data, String local){
+    public RotaEditarReuniao(String tema, String data, String local, int idReuniao){
         this.tema = tema;
         this.data = data;
         this.local = local;
+        this.idReuniao = idReuniao;
     }
 
     @Override
     public ConexaoAPI call() throws Exception {
-        String rota = "agendar-reuniao";
+        String rota = "editar-agenda-reuniao";
         String boundary = UUID.randomUUID().toString();
         String metodo = "POST";
 
@@ -39,6 +35,7 @@ public class RotaAgendarReuniao implements Callable<ConexaoAPI> {
         cabecalhos.put("Accept","application/json");
 
         ArrayList<Parametro> parametros = new ArrayList<Parametro>();
+        parametros.add(new Parametro("id",null,idReuniao));
         parametros.add(new Parametro("nome",null, Util.converterPraBase64(tema)));
         parametros.add(new Parametro("data",null,Util.converterPraBase64(data)));
         parametros.add(new Parametro("local",null,Util.converterPraBase64(local)));

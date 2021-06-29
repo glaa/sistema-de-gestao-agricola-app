@@ -76,4 +76,15 @@ public class CarregarDialog {
         return builder.create();
     }
 
+    public AlertDialog criarDialogExcluirInformacoes(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        LayoutInflater inflater = activity.getLayoutInflater();
+        View view = inflater.inflate(R.layout.progressbar_carregamento,null);
+        TextView tvMensagem = view.findViewById(R.id.tvMensagemCarregamento);
+        tvMensagem.setText("Excluindo...");
+        builder.setView(view);
+        builder.setCancelable(false);
+        return builder.create();
+    }
+
 }

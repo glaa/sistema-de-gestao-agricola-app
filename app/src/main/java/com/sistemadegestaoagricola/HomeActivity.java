@@ -125,6 +125,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), ReuniaoCoordenadorActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -213,8 +214,11 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
             diaDaSemana = Util.calendarioIntParaStringDia(calendarMin.get(Calendar.DAY_OF_WEEK));
-            diaDoMes = String.valueOf(calendarMin.get(Calendar.DAY_OF_MONTH));
+            diaDoMes = Util.formatarDiaHoraCalendar(calendarMin.get(Calendar.DAY_OF_MONTH));
             mesDoAno =  Util.calendarioIntParaStringMes(calendarMin.get(Calendar.MONTH));
+
+            horario = Util.formatarDiaHoraCalendar(calendarMin.get(Calendar.HOUR_OF_DAY)) + "h" +
+                    Util.formatarDiaHoraCalendar(calendarMin.get(Calendar.MINUTE));
             reuniaoAgendada = true;
         }
         return reuniaoAgendada;

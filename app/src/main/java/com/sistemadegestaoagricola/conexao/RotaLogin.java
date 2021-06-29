@@ -4,6 +4,7 @@ import android.os.StrictMode;
 import android.util.JsonReader;
 
 import com.sistemadegestaoagricola.entidades.Parametro;
+import com.sistemadegestaoagricola.entidades.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -36,8 +37,8 @@ public class RotaLogin implements Callable<ConexaoAPI> {
         cabecalhos.put("Accept","application/json");
 
         ArrayList<Parametro> parametros = new ArrayList<Parametro>();
-        parametros.add(new Parametro("email",null,email));
-        parametros.add(new Parametro("password",null,password));
+        parametros.add(new Parametro("email",null, Util.converterPraBase64(email)));
+        parametros.add(new Parametro("password",null,Util.converterPraBase64(password)));
 
         Requisicao requisicao = new Requisicao(metodo,cabecalhos,parametros,boundary);
         ConexaoAPI con = new ConexaoAPI(rota,requisicao);
