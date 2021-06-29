@@ -171,7 +171,8 @@ public class Util {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(data);
         String horario;
-        horario = calendar.get(Calendar.HOUR_OF_DAY)+":"+calendar.get(Calendar.MINUTE);
+        horario = formatarDiaHoraCalendar(calendar.get(Calendar.HOUR_OF_DAY))+":"+
+                formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE));
         return horario;
     }
 }

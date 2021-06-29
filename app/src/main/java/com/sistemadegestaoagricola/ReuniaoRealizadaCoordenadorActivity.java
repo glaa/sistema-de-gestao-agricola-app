@@ -5,10 +5,13 @@ import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
@@ -19,6 +22,8 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private TabItem tiAta, tiReuniao;
+    private PageAdapter pageAdapter;
     private LinearLayout llVoltar;
     private TextView tvTema;
     private TextView tvDiaSemana;
@@ -50,11 +55,16 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tlOpcoesReuniaoRealizadaCoordenador);
         viewPager = findViewById(R.id.vpOpcoesReuniaoRealizadaCoordenador);
+        tiAta = findViewById(R.id.tiAtaReuniaoRealizadaCoordenador);
+        tiReuniao = findViewById(R.id.tiReuniaoRealizadaCoordenador);
+
+        pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pageAdapter);
+
 
         //tabLayout.addTab(tabLayout.newTab().setText("Ata da reunião"));
        // tabLayout.addTab(tabLayout.newTab().setText("Reunião"));
 
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         AgendamentoReuniao reuniao = null;
         if(getIntent().hasExtra("REUNIAO")){
@@ -63,16 +73,18 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
             preencherCampo(reuniao);
         }
 
-        ReuniaoRealizadaAdapter reuniaoRealizadaAdapter = new ReuniaoRealizadaAdapter(getSupportFragmentManager());
-        reuniaoRealizadaAdapter.adicionar(new AtaReuniaoFragment(), "Ata da reunião");
-        reuniaoRealizadaAdapter.adicionar(new ReuniaoFragment(), "Reunião");
-        viewPager.setAdapter(reuniaoRealizadaAdapter);
-
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+                if(tab.getPosition() == 0){
+                    Log.d("testeX", "fragment ATA");
+                    pageAdapter.notifyDataSetChanged();
+                } else if(tab.getPosition() == 1){
+                    Log.d("testeX", "fragment Reuniao");
+                    pageAdapter.notifyDataSetChanged();
 
+                }
             }
 
             @Override
@@ -85,6 +97,8 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
 
             }
         });
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
