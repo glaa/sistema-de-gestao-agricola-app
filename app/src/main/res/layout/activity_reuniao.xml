@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_verde"
     android:orientation="vertical"
-    tools:context=".ReuniaoCoordenadorActivity">
+    tools:context=".reuniao.ReuniaoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,7 +56,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -89,7 +90,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView59"
+                    android:id="@+id/tvProximaReuniaoCoordenador"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -104,7 +105,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProximaReuniaoCoordenador"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
 
             <LinearLayout
@@ -116,7 +117,7 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textView60"
+                    android:id="@+id/tvReuniaoPassadaCoordenador"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -128,7 +129,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvPassadaReuniaoCoordenador"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp" />
         </LinearLayout>
     </ScrollView>

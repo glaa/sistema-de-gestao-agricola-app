@@ -1,15 +1,10 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.primeiroacesso;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,16 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.CepAPI;
-import com.sistemadegestaoagricola.conexao.ConexaoAPI;
-import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
 import com.sistemadegestaoagricola.entidades.Propriedade;
 import com.sistemadegestaoagricola.entidades.Util;
 
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class CadastroCepActivity extends AppCompatActivity implements Runnable{
 

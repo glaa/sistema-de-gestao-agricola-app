@@ -1,9 +1,11 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.versaoantiga;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+
+import com.sistemadegestaoagricola.R;
 
 public class ExibirInformacoesPessoaisActivity extends AppCompatActivity {
 

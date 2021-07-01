@@ -15,45 +15,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
-        <activity android:name=".EditarReuniaoActivity"></activity>
+        <activity android:name=".produtor.ProximaReuniaoProdutorActivity"></activity>
+        <activity android:name=".produtor.ReuniaoRealizadaProdutorActivity" />
+        <activity android:name=".reuniao.EditarReuniaoActivity" />
         <activity
-            android:name=".ReuniaoRealizadaCoordenadorActivity"
+            android:name=".coordenador.ReuniaoRealizadaCoordenadorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ProximaReuniaoCoordenadorActivity"
+            android:name=".coordenador.ProximaReuniaoCoordenadorActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NovaReuniaoActivity"
+            android:name=".reuniao.NovaReuniaoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroCidadeActivity"
+            android:name=".primeiroacesso.CadastroCidadeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroCepActivity"
+            android:name=".primeiroacesso.CadastroCepActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroLocalizacaoActivity"
+            android:name=".primeiroacesso.CadastroLocalizacaoActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroFonteAguaActivity"
+            android:name=".primeiroacesso.CadastroFonteAguaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ExibirFotografiaMapaActivity"
+            android:name=".primeiroacesso.ExibirFotografiaMapaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ExemploMapaActivity"
+            android:name=".primeiroacesso.ExemploMapaActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroMapaPropriedadeActivity"
+            android:name=".primeiroacesso.CadastroMapaPropriedadeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroTamanhoPropriedadeActivity"
+            android:name=".primeiroacesso.CadastroTamanhoPropriedadeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".TamanhoPropriedadeActivity"
+            android:name=".versaoantiga.TamanhoPropriedadeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".CadastroInicioActivity"
+            android:name=".primeiroacesso.CadastroInicioActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
@@ -61,19 +63,19 @@
             android:resource="@drawable/et_style" />
 
         <activity
-            android:name=".ExibirInformacoesPessoaisActivity"
+            android:name=".versaoantiga.ExibirInformacoesPessoaisActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ReuniaoCoordenadorActivity"
+            android:name=".reuniao.ReuniaoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".MinhasInformacoesActivity"
+            android:name=".versaoantiga.MinhasInformacoesActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".MinhaPropriedadeActivity"
+            android:name=".versaoantiga.MinhaPropriedadeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity

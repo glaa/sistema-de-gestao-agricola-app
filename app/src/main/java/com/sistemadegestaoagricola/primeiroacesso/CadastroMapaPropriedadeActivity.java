@@ -1,4 +1,4 @@
- package com.sistemadegestaoagricola;
+ package com.sistemadegestaoagricola.primeiroacesso;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
@@ -11,7 +11,6 @@ import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,6 +19,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
+import com.sistemadegestaoagricola.R;
 
 import java.io.File;
 import java.io.IOException;

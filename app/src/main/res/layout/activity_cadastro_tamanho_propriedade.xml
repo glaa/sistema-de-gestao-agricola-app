@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_verde"
-    tools:context=".CadastroTamanhoPropriedadeActivity">
+    tools:context=".primeiroacesso.CadastroTamanhoPropriedadeActivity">
 
     <TextView
         android:id="@+id/textView32"

@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.entidades;
 
 import android.app.Activity;
 import android.text.Layout;

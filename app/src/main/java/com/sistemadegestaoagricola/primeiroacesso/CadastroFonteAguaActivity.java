@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.primeiroacesso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.entidades.Propriedade;
 
 import java.util.ArrayList;

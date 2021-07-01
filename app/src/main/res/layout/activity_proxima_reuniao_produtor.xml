@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background_verde"
     android:orientation="vertical"
-    tools:context=".coordenador.ProximaReuniaoCoordenadorActivity">
+    tools:context=".produtor.ProximaReuniaoProdutorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,20 +17,20 @@
         android:paddingBottom="8dp">
 
         <LinearLayout
-            android:id="@+id/llVoltarProximaReuniaoCoordenador"
+            android:id="@+id/llVoltarProximaReuniaoProdutor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/ivVoltar"
+                android:id="@+id/ivVoltar1"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
                 app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
             <TextView
-                android:id="@+id/textVi"
+                android:id="@+id/textVi1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -40,7 +40,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textVi2"
+            android:id="@+id/textVi21"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -78,7 +78,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView23"
+                    android:id="@+id/imageView231"
                     android:layout_width="@dimen/icone_botao"
                     android:layout_height="@dimen/icone_botao"
                     android:layout_weight="1"
@@ -86,7 +86,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvTemaProximaReuniaoCoordenador"
+                android:id="@+id/tvTemaProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -97,7 +97,7 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/divider"
+            android:id="@+id/divider1"
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -116,13 +116,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView24"
+                android:id="@+id/imageView241"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_baseline_date_range_24_vermelho" />
 
             <TextView
-                android:id="@+id/tvDiaSemanaProximaReuniaoCoordenador"
+                android:id="@+id/tvDiaSemanaProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -131,7 +131,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/textView69"
+                android:id="@+id/textView691"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=","
@@ -139,7 +139,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/tvDiaMesProximaReuniaoCoordenador"
+                android:id="@+id/tvDiaMesProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -148,7 +148,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/textView71"
+                android:id="@+id/textView711"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -157,7 +157,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/tvMesProximaReuniaoCoordenador"
+                android:id="@+id/tvMesProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -166,7 +166,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/textView74"
+                android:id="@+id/textView741"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -175,7 +175,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/tvAnoProximaReuniaoCoordenador"
+                android:id="@+id/tvAnoProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -194,13 +194,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView25"
+                android:id="@+id/imageView251"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_baseline_access_time_filled_24_azul" />
 
             <TextView
-                android:id="@+id/tvHorarioProximaReuniaoCoordenador"
+                android:id="@+id/tvHorarioProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -209,7 +209,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/textView76"
+                android:id="@+id/textView761"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="h"
@@ -228,13 +228,13 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:id="@+id/imageView26"
+                android:id="@+id/imageView261"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_baseline_location_on_24_verde" />
 
             <TextView
-                android:id="@+id/tvLocalProximaReuniaoCoordenador"
+                android:id="@+id/tvLocalProximaReuniaoProdutor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -245,81 +245,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/divider3"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:background="?android:attr/listDivider"
-            android:backgroundTint="@color/cinza_escuro" />
-
-        <LinearLayout
-            android:id="@+id/llEditarProximaReuniaoCoordenador"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView27"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_baseline_edit_24" />
-
-            <TextView
-                android:id="@+id/tvEditarProximaReuniaoCoordenador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_weight="1"
-                android:text="Editar reunião"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
-        </LinearLayout>
-
-        <View
-            android:id="@+id/divider4"
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:background="?android:attr/listDivider"
-            android:backgroundTint="@color/cinza_escuro" />
-
-        <LinearLayout
-            android:id="@+id/llExcluirProximaReuniaoCoordenador"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView28"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
-
-            <TextView
-                android:id="@+id/tvExcluirProximaReuniaoCoordenador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="1"
-                android:text="Excluir reunião"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
-        </LinearLayout>
-
     </LinearLayout>
+
 
 </LinearLayout>

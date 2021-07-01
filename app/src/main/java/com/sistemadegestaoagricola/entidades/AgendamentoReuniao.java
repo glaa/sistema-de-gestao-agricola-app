@@ -3,7 +3,7 @@ package com.sistemadegestaoagricola.entidades;
 import java.io.Serializable;
 import java.util.Date;
 
-public class AgendamentoReuniao implements Serializable {
+public class AgendamentoReuniao implements Serializable, Comparable {
 
     private int id;
     private String nome;
@@ -67,5 +67,16 @@ public class AgendamentoReuniao implements Serializable {
 
     public void setOcs_id(int ocs_id) {
         this.ocs_id = ocs_id;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        AgendamentoReuniao agenda = (AgendamentoReuniao) o;
+        if(this.data.compareTo(agenda.getData()) > 0){
+            return 1;
+        } else if(this.data.compareTo(agenda.getData()) < 0){
+            return -1;
+        }
+        return 0;
     }
 }

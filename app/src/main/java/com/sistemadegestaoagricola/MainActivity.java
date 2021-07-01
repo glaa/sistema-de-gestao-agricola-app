@@ -17,8 +17,10 @@ import android.widget.Toast;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaGetUser;
 import com.sistemadegestaoagricola.conexao.RotaLogin;
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Produtor;
 import com.sistemadegestaoagricola.entidades.Usuario;
+import com.sistemadegestaoagricola.primeiroacesso.CadastroInicioActivity;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                 conexao.fechar();
                                 if(Usuario.getPerfil().equals("Coordenador") || Usuario.getPerfil().equals("Produtor")){
                                     if(Produtor.isPrimeiroAcesso()){
-                                        Intent intent = new Intent(getApplicationContext(),CadastroInicioActivity.class);
+                                        Intent intent = new Intent(getApplicationContext(), CadastroInicioActivity.class);
                                         startActivity(intent);
                                         finish();
                                     } else {

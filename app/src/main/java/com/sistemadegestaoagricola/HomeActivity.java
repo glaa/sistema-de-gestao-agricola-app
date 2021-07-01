@@ -15,9 +15,12 @@ import android.widget.Toast;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.ConexaoAPIVelha;
 import com.sistemadegestaoagricola.conexao.RotaListarReunioes;
+import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
+import com.sistemadegestaoagricola.versaoantiga.MinhaPropriedadeActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -107,7 +110,7 @@ public class HomeActivity extends AppCompatActivity {
         btMinhaPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MinhaPropriedadeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MinhaPropriedadeActivity.class);
                 startActivity(intent);
             }
         });
@@ -123,7 +126,7 @@ public class HomeActivity extends AppCompatActivity {
         btReuniao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReuniaoCoordenadorActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ReuniaoActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -196,7 +199,12 @@ public class HomeActivity extends AppCompatActivity {
 
         for(AgendamentoReuniao agendamentoReuniao : Util.getAgendamentos()){
             if(!agendamentoReuniao.isRegistrada()){
-                agendamentos.add(agendamentoReuniao);
+                Date dataAtual = new Date();
+                dataAtual.setHours(00);
+                dataAtual.setMinutes(01);
+                if(dataAtual.before(agendamentoReuniao.getData())){
+                    agendamentos.add(agendamentoReuniao);
+                }
             }
         }
 

@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.primeiroacesso;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,10 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
+import com.sistemadegestaoagricola.ErroActivity;
+import com.sistemadegestaoagricola.HomeActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
 import com.sistemadegestaoagricola.entidades.Propriedade;
@@ -306,7 +310,7 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
                         conexao.fechar();
                     }
                     salvando.dismiss();
-                    Intent intent = new Intent(CadastroLocalizacaoActivity.this,HomeActivity.class);
+                    Intent intent = new Intent(CadastroLocalizacaoActivity.this, HomeActivity.class);
                     startActivity(intent);
                     finishAffinity();
                 }

@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.coordenador;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
+import com.sistemadegestaoagricola.reuniao.EditarReuniaoActivity;
+import com.sistemadegestaoagricola.ErroActivity;
+import com.sistemadegestaoagricola.HomeActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
-import com.sistemadegestaoagricola.conexao.RotaAgendarReuniao;
 import com.sistemadegestaoagricola.conexao.RotaExcluirReuniao;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
+import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
@@ -30,9 +35,7 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
     private TextView tvDiaMes;
     private TextView tvMes;
     private TextView tvAno;
-    private TextView tvHora;
-    private TextView tvMinuto;
-    private TextView tvTurno;
+    private TextView tvHorario;
     private TextView tvLocal;
     private LinearLayout llEditar;
     private LinearLayout llExcluir;
@@ -55,9 +58,7 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
         tvDiaMes = findViewById(R.id.tvDiaMesProximaReuniaoCoordenador);
         tvMes = findViewById(R.id.tvMesProximaReuniaoCoordenador);
         tvAno = findViewById(R.id.tvAnoProximaReuniaoCoordenador);
-        tvHora = findViewById(R.id.tvHoraProximaReuniaoCoordenador);
-        tvMinuto = findViewById(R.id.tvMinutoProximaReuniaoCoordenador);
-        tvTurno = findViewById(R.id.tvTurnoProximaReuniaoCoordenador);
+        tvHorario = findViewById(R.id.tvHorarioProximaReuniaoCoordenador);
         tvLocal = findViewById(R.id.tvLocalProximaReuniaoCoordenador);
         llEditar = findViewById(R.id.llEditarProximaReuniaoCoordenador);
         llExcluir = findViewById(R.id.llExcluirProximaReuniaoCoordenador);
@@ -84,7 +85,7 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 Log.d("testeX", "id reuniao = " + reuniao.getId());
-                Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this,EditarReuniaoActivity.class);
+                Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, EditarReuniaoActivity.class);
                 intent.putExtra("REUNIAO",reuniao);
                 startActivity(intent);
             }
@@ -110,18 +111,8 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
                 substring(0,3));
         tvDiaMes.setText(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
         tvMes.setText(Util.calendarioIntParaStringMes(calendar.get(Calendar.MONTH)));
-        tvHora.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR)));
-        tvMinuto.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE)));
-        int am_pm = calendar.get(Calendar.AM_PM);
-        if(am_pm == 0){
-            tvTurno.setText("manhã");
-        } else {
-            if(calendar.get(Calendar.HOUR) < 6){
-                tvTurno.setText("tarde");
-            } else {
-                tvTurno.setText("noite");
-            }
-        }
+        tvHorario.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR_OF_DAY)) +
+                ":" + Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE)));
         tvAno.setText(String.valueOf(calendar.get(Calendar.YEAR)));
         tvLocal.setText(reuniao.getLocal());
     }
@@ -204,7 +195,7 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
     }
 
     private void voltar(){
-        Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this,ReuniaoCoordenadorActivity.class);
+        Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, ReuniaoActivity.class);
         startActivity(intent);
     }
 }

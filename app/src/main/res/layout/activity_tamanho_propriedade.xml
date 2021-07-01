@@ -7,7 +7,7 @@
     android:background="@color/verde_padrao"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context=".TamanhoPropriedadeActivity">
+    tools:context=".versaoantiga.TamanhoPropriedadeActivity">
 
 
     <LinearLayout

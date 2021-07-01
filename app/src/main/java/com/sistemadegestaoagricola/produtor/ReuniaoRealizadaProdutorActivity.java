@@ -1,24 +1,24 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.produtor;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+import com.sistemadegestaoagricola.R;
+import com.sistemadegestaoagricola.adapter.PageAdapter;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
 
 import java.util.Calendar;
 
-public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
+public class ReuniaoRealizadaProdutorActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -30,41 +30,30 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
     private TextView tvDiaMes;
     private TextView tvMes;
     private TextView tvAno;
-    private TextView tvHora;
-    private TextView tvMinuto;
-    private TextView tvTurno;
+    private TextView tvHorario;
     private TextView tvLocal;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reuniao_realizada_coordenador);
+        setContentView(R.layout.activity_reuniao_realizada_produtor);
 
-        llVoltar = findViewById(R.id.llVoltarReuniaoRealizadaCoordenador);
-        tvTema = findViewById(R.id.tvTemaReuniaoRealizadaCoordenador);
-        tvDiaSemana = findViewById(R.id.tvDiaSemanaReuniaoRealizadaCoordenador);
-        tvDiaMes = findViewById(R.id.tvDiaMesReuniaoRealizadaCoordenador);
-        tvMes = findViewById(R.id.tvMesReuniaoRealizadaCoordenador);
-        tvAno = findViewById(R.id.tvAnoReuniaoRealizadaCoordenador);
-        tvHora = findViewById(R.id.tvHoraReuniaoRealizadaCoordenador);
-        tvMinuto = findViewById(R.id.tvMinutoReuniaoRealizadaCoordenador);
-        tvTurno = findViewById(R.id.tvTurnoReuniaoRealizadaCoordenador);
-        tvLocal = findViewById(R.id.tvLocalReuniaoRealizadaCoordenador);
+        llVoltar = findViewById(R.id.llVoltarReuniaoRealizadaProdutor);
+        tvTema = findViewById(R.id.tvTemaReuniaoRealizadaProdutor);
+        tvDiaSemana = findViewById(R.id.tvDiaSemanaReuniaoRealizadaProdutor);
+        tvDiaMes = findViewById(R.id.tvDiaMesReuniaoRealizadaProdutor);
+        tvMes = findViewById(R.id.tvMesReuniaoRealizadaProdutor);
+        tvAno = findViewById(R.id.tvAnoReuniaoRealizadaProdutor);
+        tvHorario = findViewById(R.id.tvHorarioReuniaoRealizadaProdutor);
+        tvLocal = findViewById(R.id.tvLocalReuniaoRealizadaProdutor);
 
-        tabLayout = findViewById(R.id.tlOpcoesReuniaoRealizadaCoordenador);
-        viewPager = findViewById(R.id.vpOpcoesReuniaoRealizadaCoordenador);
-        tiAta = findViewById(R.id.tiAtaReuniaoRealizadaCoordenador);
-        tiReuniao = findViewById(R.id.tiReuniaoRealizadaCoordenador);
+        tabLayout = findViewById(R.id.tlOpcoesReuniaoRealizadaProdutor);
+        viewPager = findViewById(R.id.vpOpcoesReuniaoRealizadaProdutor);
+        tiAta = findViewById(R.id.tiAtaReuniaoRealizadaProdutor);
+        tiReuniao = findViewById(R.id.tiReuniaoRealizadaProdutor);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
-
-
-        //tabLayout.addTab(tabLayout.newTab().setText("Ata da reunião"));
-       // tabLayout.addTab(tabLayout.newTab().setText("Reunião"));
-
 
         AgendamentoReuniao reuniao = null;
         if(getIntent().hasExtra("REUNIAO")){
@@ -78,10 +67,8 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
                 if(tab.getPosition() == 0){
-                    Log.d("testeX", "fragment ATA");
                     pageAdapter.notifyDataSetChanged();
                 } else if(tab.getPosition() == 1){
-                    Log.d("testeX", "fragment Reuniao");
                     pageAdapter.notifyDataSetChanged();
 
                 }
@@ -118,18 +105,8 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
         tvDiaMes.setText(String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)));
         tvMes.setText(Util.calendarioIntParaStringMes(calendar.get(Calendar.MONTH)));
         tvAno.setText(String.valueOf(calendar.get(Calendar.YEAR)));
-        tvHora.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR)));
-        tvMinuto.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE)));
-        int am_pm = calendar.get(Calendar.AM_PM);
-        if(am_pm == 0){
-            tvTurno.setText("manhã");
-        } else {
-            if(calendar.get(Calendar.HOUR) < 6){
-                tvTurno.setText("tarde");
-            } else {
-                tvTurno.setText("noite");
-            }
-        }
+        tvHorario.setText(Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR_OF_DAY)) +
+                ":" + Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE)));
         tvLocal.setText(reuniao.getLocal());
     }
 }

@@ -7,7 +7,7 @@
     android:background="@color/verde_padrao"
     android:orientation="vertical"
     android:weightSum="5"
-    tools:context=".CadastroInicioActivity">
+    tools:context=".primeiroacesso.CadastroInicioActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

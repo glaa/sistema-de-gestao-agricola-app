@@ -1,4 +1,7 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.adapter;
+
+import com.sistemadegestaoagricola.reuniao.AtaReuniaoFragment;
+import com.sistemadegestaoagricola.reuniao.ReuniaoFragment;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

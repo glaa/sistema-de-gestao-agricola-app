@@ -1,45 +1,47 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sistemadegestaoagricola.produtor.ProximaReuniaoProdutorActivity;
+import com.sistemadegestaoagricola.coordenador.ProximaReuniaoCoordenadorActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
+import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAdapter.MyViewHolder> {
+public class ReuniaoProximaAdapter extends RecyclerView.Adapter<ReuniaoProximaAdapter.MyViewHolder> {
 
     ArrayList<AgendamentoReuniao> agendamentoReuniaos = new ArrayList<AgendamentoReuniao>();
-    Context context;
+    Context contexto;
 
-    public ReuniaoPassadaAdapter(Context contexto, ArrayList<AgendamentoReuniao> agendamentos) {
+    public ReuniaoProximaAdapter(Context context, ArrayList<AgendamentoReuniao> agendamentos) {
         this.agendamentoReuniaos = agendamentos;
-        this.context = contexto;
+        this.contexto = context;
     }
 
     @NonNull
 
     @Override
-    public ReuniaoPassadaAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.reuniao_passada_adapter,parent,false);
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.reuniao_adapter,parent,false);
 
         return new MyViewHolder(itemLista);
     }
 
     @Override
-    public void onBindViewHolder( ReuniaoPassadaAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(ReuniaoProximaAdapter.MyViewHolder holder, int position) {
         //Retorna somente o que exitir
         if(position < agendamentoReuniaos.size()) {
             AgendamentoReuniao agenda  = agendamentoReuniaos.get(position);
@@ -52,15 +54,22 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
             String diaDaSemana = Util.calendarioIntParaStringDia(calendar.get(Calendar.DAY_OF_WEEK));
             holder.dia.setText(diaDaSemana.substring(0,3));
             holder.data.setText(data);
-            holder.status.setText("Evento realizado");
+            String horario = Util.formatarDiaHoraCalendar(calendar.get(Calendar.HOUR_OF_DAY)) + ":" +
+                    Util.formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE));
+            holder.hora.setText(horario);
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context,ReuniaoRealizadaCoordenadorActivity.class);
-                    intent.putExtra("REUNIAO", agenda);
-                    context.startActivity(intent);
-                    Log.d("testeX","reuniao passada = " + agenda.getData());
+                    if(Usuario.getPerfil().equals("Coordenador")){
+                        Intent intent = new Intent(contexto, ProximaReuniaoCoordenadorActivity.class);
+                        intent.putExtra("REUNIAO",agenda);
+                        contexto.startActivity(intent);
+                    } else if(Usuario.getPerfil().equals("Produtor")){
+                        Intent intent = new Intent(contexto, ProximaReuniaoProdutorActivity.class);
+                        intent.putExtra("REUNIAO",agenda);
+                        contexto.startActivity(intent);
+                    }
                 }
             });
         }
@@ -72,13 +81,15 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView dia, data, status;
+        TextView dia, data, hora;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            dia = itemView.findViewById(R.id.tvDiaReuniaoPassadaAdapter);
-            data = itemView.findViewById(R.id.tvDataReuniaoPassadaAdapter);
-            status = itemView.findViewById(R.id.tvStatusReuniaoPassadaAdapter);
+            dia = itemView.findViewById(R.id.tvDiaReuniaoAdapter);
+            data = itemView.findViewById(R.id.tvDataReuniaoAdapter);
+            hora = itemView.findViewById(R.id.tvHoraReuniaoAdapter);
         }
     }
+
+
 }

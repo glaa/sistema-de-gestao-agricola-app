@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.versaoantiga;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.sistemadegestaoagricola.HomeActivity;
+import com.sistemadegestaoagricola.R;
 
 public class TamanhoPropriedadeActivity extends AppCompatActivity {
 
@@ -45,7 +48,7 @@ public class TamanhoPropriedadeActivity extends AppCompatActivity {
         btProximo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 startActivity(intent);
                 Log.d("testeX","Clicou");
             }

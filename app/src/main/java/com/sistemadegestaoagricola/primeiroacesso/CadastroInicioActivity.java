@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.primeiroacesso;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.entidades.Propriedade;
 import com.sistemadegestaoagricola.entidades.Usuario;
+import com.sistemadegestaoagricola.primeiroacesso.CadastroTamanhoPropriedadeActivity;
 
 public class CadastroInicioActivity extends AppCompatActivity {
 
@@ -32,7 +34,7 @@ public class CadastroInicioActivity extends AppCompatActivity {
         btComecar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),CadastroTamanhoPropriedadeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), CadastroTamanhoPropriedadeActivity.class);
                 startActivity(intent);
             }
         });
