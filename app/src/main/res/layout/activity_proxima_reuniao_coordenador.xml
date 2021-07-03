@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="Reuniões"
+            android:text="Reunião"
             android:textColor="@color/white"
             android:textSize="28sp" />
     </LinearLayout>
