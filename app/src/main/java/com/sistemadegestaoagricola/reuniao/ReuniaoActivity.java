@@ -52,16 +52,17 @@ public class ReuniaoActivity extends AppCompatActivity {
         classificarAgendamentos();
 
         ReuniaoProximaAdapter reuniaoProximaAdapter = new ReuniaoProximaAdapter(this,proximas);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvProximaReuniao.setLayoutManager(layoutManager);
         rvProximaReuniao.setAdapter(reuniaoProximaAdapter);
 
 
-        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(ReuniaoActivity.this,passadas);
-        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(getApplicationContext());
+        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(this,passadas);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this);
         rvPassadaReuniao.setLayoutManager(layoutManager2);
         rvPassadaReuniao.setAdapter(reuniaoPassadaAdapter);
 
+        //Colocar rótulos no plural caso necessário
         if(proximas.size() > 1){
             tvProximaReuniao.setText("Próximas reuniões");
         } else {
@@ -86,7 +87,7 @@ public class ReuniaoActivity extends AppCompatActivity {
         btAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NovaReuniaoActivity.class);
+                Intent intent = new Intent(ReuniaoActivity.this, NovaReuniaoActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -113,7 +114,7 @@ public class ReuniaoActivity extends AppCompatActivity {
             }
         }
 
-        ordenarArray(passadas);
+        inverterOrdemArray(passadas);
         ordenarArray(proximas);
     }
 
@@ -126,5 +127,9 @@ public class ReuniaoActivity extends AppCompatActivity {
 
     private void ordenarArray(ArrayList agendametos){
         Collections.sort(agendametos);
+    }
+
+    private void inverterOrdemArray(ArrayList agendametos){
+        Collections.reverse(agendametos);
     }
 }

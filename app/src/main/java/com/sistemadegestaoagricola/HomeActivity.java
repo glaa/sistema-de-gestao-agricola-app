@@ -25,6 +25,8 @@ import com.sistemadegestaoagricola.versaoantiga.MinhaPropriedadeActivity;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -76,34 +78,25 @@ public class HomeActivity extends AppCompatActivity {
         AlertDialog carregando = carregarDialog.criarDialogCarregamento();
 
         carregando.show();
-        Util.esvaziarAgendamentos();
-        buscarReunioes();
-        if(exibirProximaReuniao()){
-            tvDiaDaSemana = findViewById(R.id.tvDiaSemanaHome);
-            tvDiaDoMes = findViewById(R.id.tvDiaMesHome);
-            tvMesDoAno = findViewById(R.id.tvMesHome);
-            tvHorario = findViewById(R.id.tvHorarioHome);
-            Log.d("testeX", "exibiuReunião");
-
-            tvDiaDaSemana.setText(diaDaSemana);
-            tvDiaDoMes.setText(diaDoMes);
-            tvMesDoAno.setText(mesDoAno);
-            if(horario != null){
-                tvHorario.setText(horario);
-            } else {
-                tvHorario.setVisibility(View.GONE);
-            }
-        } else {
-            cvProximaReuniao.setVisibility(View.GONE);
-        }
+        atualizarReuniao();
         carregando.dismiss();
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                swipeRefreshLayout.setRefreshing(true);
-                finish();
-                startActivity(getIntent());
+                //swipeRefreshLayout.setRefreshing(true);
+                atualizarReuniao();
+
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        Log.d("testeX","iniciou task");
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                },2000);
+
+
             }
         });
 
@@ -144,6 +137,29 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    private void atualizarReuniao(){
+        Util.esvaziarAgendamentos();
+        buscarReunioes();
+        if(exibirProximaReuniao()){
+            tvDiaDaSemana = findViewById(R.id.tvDiaSemanaHome);
+            tvDiaDoMes = findViewById(R.id.tvDiaMesHome);
+            tvMesDoAno = findViewById(R.id.tvMesHome);
+            tvHorario = findViewById(R.id.tvHorarioHome);
+            Log.d("testeX", "exibiuReunião");
+
+            tvDiaDaSemana.setText(diaDaSemana);
+            tvDiaDoMes.setText(diaDoMes);
+            tvMesDoAno.setText(mesDoAno);
+            if(horario != null){
+                tvHorario.setText(horario);
+            } else {
+                tvHorario.setVisibility(View.GONE);
+            }
+        } else {
+            cvProximaReuniao.setVisibility(View.GONE);
+        }
     }
 
     public void buscarReunioes(){

@@ -6,12 +6,14 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.sistemadegestaoagricola.R;
+import com.sistemadegestaoagricola.adapter.AtaReuniaoAdapter;
 import com.sistemadegestaoagricola.adapter.PageAdapter;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
@@ -32,6 +34,7 @@ public class ReuniaoRealizadaProdutorActivity extends AppCompatActivity {
     private TextView tvAno;
     private TextView tvHorario;
     private TextView tvLocal;
+    private GridView gridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,7 @@ public class ReuniaoRealizadaProdutorActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.vpOpcoesReuniaoRealizadaProdutor);
         tiAta = findViewById(R.id.tiAtaReuniaoRealizadaProdutor);
         tiReuniao = findViewById(R.id.tiReuniaoRealizadaProdutor);
+        gridView = findViewById(R.id.gvAtaReuniaoFragment);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
@@ -94,6 +98,8 @@ public class ReuniaoRealizadaProdutorActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
 
     private void preencherCampo(AgendamentoReuniao reuniao){

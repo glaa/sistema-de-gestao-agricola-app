@@ -51,13 +51,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="1">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,7 +104,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvProximaReuniaoCoordenador"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp" />
 
             <LinearLayout
@@ -130,7 +129,8 @@
                 android:id="@+id/rvPassadaReuniaoCoordenador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="8dp"
+                android:layout_weight="1" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

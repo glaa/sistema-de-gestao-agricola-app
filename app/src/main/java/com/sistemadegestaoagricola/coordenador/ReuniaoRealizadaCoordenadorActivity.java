@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
     private TextView tvAno;
     private TextView tvHorario;
     private TextView tvLocal;
-
+    private GridView gridView;
 
 
     @Override
@@ -53,6 +54,8 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.vpOpcoesReuniaoRealizadaCoordenador);
         tiAta = findViewById(R.id.tiAtaReuniaoRealizadaCoordenador);
         tiReuniao = findViewById(R.id.tiReuniaoRealizadaCoordenador);
+
+        gridView = findViewById(R.id.gvAtaReuniaoFragment);
 
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);

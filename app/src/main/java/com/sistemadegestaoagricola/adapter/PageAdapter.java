@@ -1,5 +1,8 @@
 package com.sistemadegestaoagricola.adapter;
 
+import android.content.Context;
+import android.widget.GridView;
+
 import com.sistemadegestaoagricola.reuniao.AtaReuniaoFragment;
 import com.sistemadegestaoagricola.reuniao.ReuniaoFragment;
 
@@ -12,9 +15,11 @@ public class PageAdapter extends FragmentStatePagerAdapter {
 
     private int numerosTabelas;
 
+
     public PageAdapter(FragmentManager fm, int numerosTabelas) {
         super(fm);
         this.numerosTabelas = numerosTabelas;
+
     }
 
     @NonNull
