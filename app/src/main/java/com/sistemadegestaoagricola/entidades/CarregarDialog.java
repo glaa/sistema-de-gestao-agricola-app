@@ -87,4 +87,20 @@ public class CarregarDialog {
         return builder.create();
     }
 
+    public AlertDialog criarDialogExcluirReuniao(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
+        builder.setTitle("Aviso");
+        builder.setMessage("Deseja realmente excluir esta reunião");
+        builder.setCancelable(false);
+        return builder.create();
+    }
+
+    public AlertDialog criarDialogRegistroNaoPermitido(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
+        builder.setTitle("Reunião futura");
+        builder.setMessage("Esta reunião ainda não pode ser registrada.");
+        builder.setCancelable(true);
+        return builder.create();
+    }
+
 }

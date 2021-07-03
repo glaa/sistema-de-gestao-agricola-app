@@ -3,10 +3,12 @@ package com.sistemadegestaoagricola.coordenador;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +25,7 @@ import com.sistemadegestaoagricola.entidades.Util;
 import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -39,9 +42,12 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
     private TextView tvLocal;
     private LinearLayout llEditar;
     private LinearLayout llExcluir;
+    private LinearLayout llAta;
+    private LinearLayout llFotos;
     private LinearLayout llVoltar;
+    private Button btRegistrar;
     AgendamentoReuniao reuniao;
-    private AlertDialog excluindo;
+    private AlertDialog excluindo,confirmando;
     private Thread thread;
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
     private String[] mensagensExceptions;
@@ -62,7 +68,10 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
         tvLocal = findViewById(R.id.tvLocalProximaReuniaoCoordenador);
         llEditar = findViewById(R.id.llEditarProximaReuniaoCoordenador);
         llExcluir = findViewById(R.id.llExcluirProximaReuniaoCoordenador);
+        llAta = findViewById(R.id.llAtaProximaReuniaoCoordenador);
+        llFotos = findViewById(R.id.llFotosProximaReuniaoCoordenador);
         llVoltar = findViewById(R.id.llVoltarProximaReuniaoCoordenador);
+        btRegistrar = findViewById(R.id.btRegistrarProximaReuniao);
 
         CarregarDialog carregarDialog = new CarregarDialog(this);
 
@@ -94,10 +103,59 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
         llExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                excluindo = carregarDialog.criarDialogExcluirInformacoes();
-                excluindo.show();
-                thread = new Thread( ProximaReuniaoCoordenadorActivity.this);
-                thread.start();
+                confirmando = carregarDialog.criarDialogExcluirReuniao();
+                confirmando.setButton(DialogInterface.BUTTON_POSITIVE, "Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        excluindo = carregarDialog.criarDialogExcluirInformacoes();
+                        excluindo.show();
+                        thread = new Thread( ProximaReuniaoCoordenadorActivity.this);
+                        thread.start();
+                    }
+                });
+
+                confirmando.setButton(DialogInterface.BUTTON_NEGATIVE, "Não", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                confirmando.show();
+            }
+        });
+
+        llAta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(permitiRegistro()){
+
+                } else {
+                    Log.d("testeX","não permitida");
+                    carregarDialog.criarDialogRegistroNaoPermitido().show();
+                }
+            }
+        });
+
+        llFotos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(permitiRegistro()){
+
+                } else {
+                    carregarDialog.criarDialogRegistroNaoPermitido().show();
+                }
+            }
+        });
+
+        btRegistrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(permitiRegistro()){
+
+                } else {
+                    carregarDialog.criarDialogRegistroNaoPermitido().show();
+                }
             }
         });
 
@@ -197,5 +255,17 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
     private void voltar(){
         Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, ReuniaoActivity.class);
         startActivity(intent);
+    }
+
+    private boolean permitiRegistro(){
+        Date dataAtual = new Date();
+        dataAtual.setHours(23);
+        dataAtual.setMinutes(59);
+
+        if(reuniao.getData().before(dataAtual)){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
