@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
-        <activity android:name=".produtor.ProximaReuniaoProdutorActivity"></activity>
+        <activity android:name=".AtaReuniaoActivity"></activity>
+        <activity android:name=".produtor.ProximaReuniaoProdutorActivity" />
         <activity android:name=".produtor.ReuniaoRealizadaProdutorActivity" />
         <activity android:name=".reuniao.EditarReuniaoActivity" />
         <activity

@@ -1,6 +1,7 @@
 package com.sistemadegestaoagricola.entidades;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Base64;
 import android.widget.EditText;
 
@@ -15,6 +16,34 @@ import java.util.Date;
 public class Util {
 
     private static ArrayList<AgendamentoReuniao> agendamentos = new ArrayList<AgendamentoReuniao>();
+
+    private static ArrayList<Uri> ata = new ArrayList<>();
+
+    private static ArrayList<Uri> fotos = new ArrayList<>();
+
+    public static ArrayList<Uri> getAta() {
+        return ata;
+    }
+
+    public static void setAta(ArrayList<Uri> ata) {
+        Util.ata = ata;
+    }
+
+    public static void addAta(Uri uri){
+        Util.ata.add(uri);
+    }
+
+    public static ArrayList<Uri> getFotos() {
+        return fotos;
+    }
+
+    public static void setFotos(ArrayList<Uri> fotos) {
+        Util.fotos = fotos;
+    }
+
+    public static void addFotos(Uri uri){
+        Util.fotos.add(uri);
+    }
 
     public static ArrayList<AgendamentoReuniao> getAgendamentos() {
         return agendamentos;

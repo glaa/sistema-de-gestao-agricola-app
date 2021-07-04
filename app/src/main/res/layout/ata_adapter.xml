@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/bt_arredondado"
+    android:gravity="center"
+    android:padding="5dp">
+
+
+    <ImageView
+        android:id="@+id/ivFotoAtaAdapter"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/ic_baseline_camera_alt_24" />
+</LinearLayout>

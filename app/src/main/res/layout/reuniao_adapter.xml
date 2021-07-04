@@ -66,14 +66,27 @@
                 android:textSize="@dimen/bt_tamanho_fonte" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvHoraReuniaoAdapter"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="17:00"
-            android:textColor="@color/cinza_escuro"
-            android:textSize="@dimen/rotulo_padrao"
-            tools:visibility="visible" />
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvHoraReuniaoAdapter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17:00"
+                android:textColor="@color/cinza_escuro"
+                android:textSize="@dimen/rotulo_padrao"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/textView67"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="h"
+                android:textColor="@color/cinza_escuro"
+                android:textSize="@dimen/rotulo_padrao" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

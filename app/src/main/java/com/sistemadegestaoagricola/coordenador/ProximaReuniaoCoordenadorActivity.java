@@ -1,11 +1,15 @@
 package com.sistemadegestaoagricola.coordenador;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.AtaReuniaoActivity;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.reuniao.EditarReuniaoActivity;
 import com.sistemadegestaoagricola.ErroActivity;
@@ -24,6 +29,8 @@ import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
 import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
@@ -129,7 +136,13 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 if(permitiRegistro()){
+//                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//                    startActivityForResult(intent,1);
 
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    startActivityForResult(Intent.createChooser(intent, "Selecione suas fotos"), 1);
                 } else {
                     Log.d("testeX","não permitida");
                     carregarDialog.criarDialogRegistroNaoPermitido().show();
@@ -159,6 +172,23 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data.getClipData() != null) {
+            int j = data.getClipData().getItemCount();
+            ArrayList<Uri> imagesUri = new ArrayList<>();
+            for (int i = 0; i < j; i++){
+                imagesUri.add(data.getClipData().getItemAt(i).getUri());
+            }
+            Util.setAta(imagesUri);
+        }
+
+        Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, AtaReuniaoActivity.class);
+        startActivity(intent);
     }
 
     private void preencherCampo(AgendamentoReuniao reuniao){

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sistemadegestaoagricola.R;
+import com.sistemadegestaoagricola.coordenador.ProximaReuniaoCoordenadorActivity;
+import com.sistemadegestaoagricola.produtor.ProximaReuniaoProdutorActivity;
 import com.sistemadegestaoagricola.produtor.ReuniaoRealizadaProdutorActivity;
 import com.sistemadegestaoagricola.coordenador.ReuniaoRealizadaCoordenadorActivity;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
@@ -65,13 +67,27 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
                 @Override
                 public void onClick(View view) {
                     if(Usuario.getPerfil().equals("Coordenador")){
-                        Intent intent = new Intent(context, ReuniaoRealizadaCoordenadorActivity.class);
-                        intent.putExtra("REUNIAO", agenda);
-                        context.startActivity(intent);
+                        if(agenda.isRegistrada()){
+                            Intent intent = new Intent(context, ReuniaoRealizadaCoordenadorActivity.class);
+                            intent.putExtra("REUNIAO", agenda);
+                            context.startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(context, ProximaReuniaoCoordenadorActivity.class);
+                            intent.putExtra("REUNIAO", agenda);
+                            context.startActivity(intent);
+                        }
+
                     } else if(Usuario.getPerfil().equals("Produtor")){
-                        Intent intent = new Intent(context, ReuniaoRealizadaProdutorActivity.class);
-                        intent.putExtra("REUNIAO", agenda);
-                        context.startActivity(intent);
+                        if(agenda.isRegistrada()){
+                            Intent intent = new Intent(context, ReuniaoRealizadaProdutorActivity.class);
+                            intent.putExtra("REUNIAO", agenda);
+                            context.startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(context, ProximaReuniaoProdutorActivity.class);
+                            intent.putExtra("REUNIAO", agenda);
+                            context.startActivity(intent);
+                        }
+
                     }
                 }
             });
