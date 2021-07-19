@@ -1,9 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_verde"
+    android:orientation="vertical"
     tools:context=".PropriedadeActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/llVoltarPropriedade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivVoltarPropriedade"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+            <TextView
+                android:id="@+id/tvVoltarPropriedade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Voltar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/rotulo_padrao" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv1Propriedade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Propriedade"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvInformacoesPropriedade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_altura_principal"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/layout_circulo"
+                android:backgroundTint="@color/background_verde"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv1Propriedade"
+                    android:layout_width="@dimen/icone_botao"
+                    android:layout_height="@dimen/icone_botao"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_house_24" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvInformacoesPropriedade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Informações"
+                    android:textColor="@color/verde_escuro"
+                    android:textSize="@dimen/bt_tamanho_fonte" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvEnderecoPropriedade"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/bt_altura_principal"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:backgroundTint="@color/white"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/layout_circulo"
+                android:backgroundTint="@color/background_verde"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv2Propriedade"
+                    android:layout_width="@dimen/icone_botao"
+                    android:layout_height="@dimen/icone_botao"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_location_on_24_branco" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/tvEnderecoPropriedade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:text="Endereço"
+                    android:textColor="@color/verde_escuro"
+                    android:textSize="@dimen/bt_tamanho_fonte" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

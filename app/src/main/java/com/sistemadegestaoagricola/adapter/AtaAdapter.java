@@ -8,9 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.sistemadegestaoagricola.AtaReuniaoActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.entidades.Util;
 
@@ -45,10 +43,10 @@ public class AtaAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater)contexto.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.ata_adapter,null);
+            view = layoutInflater.inflate(R.layout.item_imagem_adapter,null);
         }
 
-        ImageView imageView = view.findViewById(R.id.ivFotoAtaAdapter);
+        ImageView imageView = view.findViewById(R.id.ivItemImagemAdapter);
         imageView.setImageURI(lista.get(i));
         imageView.setAdjustViewBounds(true);
         imageView.setBackground(contexto.getDrawable(R.drawable.bt_arredondado));

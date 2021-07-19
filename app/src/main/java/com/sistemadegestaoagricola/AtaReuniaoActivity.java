@@ -37,7 +37,7 @@ public class AtaReuniaoActivity extends AppCompatActivity{
         gridView.setAdapter(adapter);
 
         //Aviso ao iniciar a activity
-        Toast.makeText(AtaReuniaoActivity.this, "Mantenha um item pressionado para excluir", Toast.LENGTH_LONG).show();
+        Toast.makeText(AtaReuniaoActivity.this, "Mantenha um item pressionado para excluir", Toast.LENGTH_SHORT).show();
 
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

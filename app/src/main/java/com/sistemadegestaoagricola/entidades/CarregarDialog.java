@@ -90,7 +90,7 @@ public class CarregarDialog {
     public AlertDialog criarDialogExcluirReuniao(){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity,R.style.DialogAviso);
         builder.setTitle("Aviso");
-        builder.setMessage("Deseja realmente excluir esta reunião");
+        builder.setMessage("Deseja realmente excluir esta reunião?");
         builder.setCancelable(false);
         return builder.create();
     }

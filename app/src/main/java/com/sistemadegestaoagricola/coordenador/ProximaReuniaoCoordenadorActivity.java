@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sistemadegestaoagricola.AtaReuniaoActivity;
+import com.sistemadegestaoagricola.FotosReuniaoActivity;
+import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
+import com.sistemadegestaoagricola.conexao.RotaRegistrarReuniao;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
+import com.sistemadegestaoagricola.entidades.Propriedade;
+import com.sistemadegestaoagricola.primeiroacesso.CadastroLocalizacaoActivity;
 import com.sistemadegestaoagricola.reuniao.EditarReuniaoActivity;
 import com.sistemadegestaoagricola.ErroActivity;
 import com.sistemadegestaoagricola.HomeActivity;
@@ -29,6 +36,11 @@ import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
 import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,12 +66,14 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
     private LinearLayout llVoltar;
     private Button btRegistrar;
     AgendamentoReuniao reuniao;
-    private AlertDialog excluindo,confirmando;
+    private AlertDialog excluindo,confirmando,salvando;
     private Thread thread;
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
     private String[] mensagensExceptions;
     private ConexaoAPI conexao;
     private int status;
+    private final int CODE_ATA = 1;
+    private final int CODE_FOTOS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,13 +150,13 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 if(permitiRegistro()){
-//                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    startActivityForResult(intent,1);
 
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("image/*");
                     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                    startActivityForResult(Intent.createChooser(intent, "Selecione suas fotos"), 1);
+                    //intent.putExtra(Intent.)
+                    startActivityForResult(intent,CODE_ATA);
+                    //startActivityForResult(Intent.createChooser(intent, "Selecione suas fotos"), CODE_ATA);
                 } else {
                     Log.d("testeX","não permitida");
                     carregarDialog.criarDialogRegistroNaoPermitido().show();
@@ -154,7 +168,10 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 if(permitiRegistro()){
-
+                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                    intent.setType("image/*");
+                    intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                    startActivityForResult(Intent.createChooser(intent, "Selecione suas fotos"), CODE_FOTOS);
                 } else {
                     carregarDialog.criarDialogRegistroNaoPermitido().show();
                 }
@@ -165,7 +182,31 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 if(permitiRegistro()){
+                    ArrayList<Uri> ata = Util.getAta();
+                    ArrayList<Uri> fotos = Util.getFotos();
+                    ArrayList<String> arquivosAta = new ArrayList<>();
+                    ArrayList<String> arquivosFotos = new ArrayList<>();
 
+                    if(ata.isEmpty()){
+                        Toast.makeText(ProximaReuniaoCoordenadorActivity.this,"Adicione a ata da reunião",Toast.LENGTH_LONG).show();
+                    } else if(fotos.isEmpty()){
+                        Toast.makeText(ProximaReuniaoCoordenadorActivity.this,"Adicione as fotos da reunião",Toast.LENGTH_LONG).show();
+                    } else {
+                        for(Uri uri : ata){
+                            //File file = new File(uri.getPath());
+                            arquivosAta.add(getImagePath(uri));
+                            Log.d("testeX", "ata " );
+                        }
+                        for(Uri uri : fotos){
+                            //File file = new File(uri.getPath()  );
+                            arquivosFotos.add( getImagePath(uri));
+                            Log.d("testeX", "foto " +  getImagePath(uri));
+
+                        }
+                        salvando = carregarDialog.criarDialogSalvarInformacoes();
+                        salvando.show();
+                        salvarCadastroAPI(arquivosAta,arquivosFotos);
+                    }
                 } else {
                     carregarDialog.criarDialogRegistroNaoPermitido().show();
                 }
@@ -178,16 +219,46 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
     protected void onActivityResult(int requestCode, int resultCode,  Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data.getClipData() != null) {
-            int j = data.getClipData().getItemCount();
+        Intent intent = null;
+
+        if(requestCode == CODE_ATA && resultCode == Activity.RESULT_OK) {
             ArrayList<Uri> imagesUri = new ArrayList<>();
-            for (int i = 0; i < j; i++){
-                imagesUri.add(data.getClipData().getItemAt(i).getUri());
+
+            if(data.getClipData() != null){
+                //Multiplos itens foram selecionados
+                int j = data.getClipData().getItemCount();
+
+                for (int i = 0; i < j; i++){
+                    imagesUri.add(data.getClipData().getItemAt(i).getUri());
+                }
+            } else if(data.getData() != null){
+                //Apenas um item selecionado
+                imagesUri.add(data.getData());
             }
             Util.setAta(imagesUri);
+
+        } else if(requestCode == CODE_FOTOS && resultCode == Activity.RESULT_OK){
+            ArrayList<Uri> imagesUri = new ArrayList<>();
+            if(data.getClipData() != null){
+                //Multiplos itens foram selecionados
+                int j = data.getClipData().getItemCount();
+
+                for (int i = 0; i < j; i++){
+                    imagesUri.add(data.getClipData().getItemAt(i).getUri());
+                }
+            } else if( data.getData() != null){
+                //Apenas um item selecionado
+                imagesUri.add(data.getData());
+            }
+            Util.setFotos(imagesUri);
         }
 
-        Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, AtaReuniaoActivity.class);
+        //Abrir Activity mesmo que não tenha selecionado imagens
+        if(requestCode == CODE_ATA){
+            intent = new Intent(ProximaReuniaoCoordenadorActivity.this, AtaReuniaoActivity.class);
+        } else if(requestCode == CODE_FOTOS){
+            intent = new Intent(ProximaReuniaoCoordenadorActivity.this, FotosReuniaoActivity.class);
+        }
         startActivity(intent);
     }
 
@@ -298,4 +369,96 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             return false;
         }
     }
+
+    public String getImagePath(Uri contentUri) {
+        String filePath = null;
+        //Uri _uri = data.getData();
+        Log.d("","URI = "+ contentUri);
+        if (contentUri != null && "content".equals(contentUri.getScheme())) {
+            Cursor cursor = this.getContentResolver().query(contentUri, new String[] { "com.android.providers.media.documents" }, null, null, null);
+            cursor.moveToFirst();
+            filePath = cursor.getString(0);
+            cursor.close();
+        } else {
+            filePath = contentUri.getPath();
+        }
+        Log.d("","Chosen path = "+ filePath);
+        return filePath;
+//        String[] campos = { MediaStore.Images.Media.DATA };
+//        Cursor cursor = getContentResolver().query(contentUri, campos, null, null, null);
+//        if (cursor == null) return null;
+//        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//        cursor.moveToFirst();
+//        String s=cursor.getString(column_index);
+//        cursor.close();
+//        return s;
+
+//        cursor.moveToFirst();
+//        String path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
+//        cursor.close();
+//        return path;
+    }
+
+    private void salvarCadastroAPI(ArrayList<String> ata, ArrayList<String> fotos){
+        thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("testeX","iniciou registro ");
+
+                RotaRegistrarReuniao rotaRegistrarReuniao = new RotaRegistrarReuniao(reuniao.getId(),ata,fotos);
+                Future<ConexaoAPI> future = threadpool.submit(rotaRegistrarReuniao);
+
+                while(!future.isDone()){
+                    //Aguardando
+                }
+
+                ConexaoAPI conexao = null;
+                try{
+                    conexao = future.get();
+
+                    mensagensExceptions = conexao.getMensagensExceptions();
+
+                    if(mensagensExceptions == null){
+                        //Sem erro de conexão
+                        status = conexao.getCodigoStatus();
+                        Log.d("testeX","status registro = " + status);
+                        if(status == 200){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //Salvo com sucesso
+                                    Toast.makeText(ProximaReuniaoCoordenadorActivity.this, "Dados salvos com sucesso", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    //Erro ao salvar
+                                    Toast.makeText(ProximaReuniaoCoordenadorActivity.this, "Dados não puderam ser salvos", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    } else {
+                        Erro(mensagensExceptions[0],mensagensExceptions[1]);
+                    }
+
+                } catch (InterruptedException | ExecutionException e){
+                    e.printStackTrace();
+                    Erro("Falha na conexão","Tente novamente em alguns minutos");
+                } finally {
+                    if(conexao != null){
+                        conexao.fechar();
+                    }
+                    salvando.dismiss();
+                    Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+        thread.start();
+    }
+
+
 }

@@ -17,6 +17,7 @@ import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.ReuniaoProximaAdapter;
 import com.sistemadegestaoagricola.adapter.ReuniaoPassadaAdapter;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
+import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
 
 import java.util.ArrayList;
@@ -48,6 +49,10 @@ public class ReuniaoActivity extends AppCompatActivity {
         llVoltar = findViewById(R.id.llVoltarReuniaoCoordenador);
         rvProximaReuniao = findViewById(R.id.rvProximaReuniaoCoordenador);
         rvPassadaReuniao = findViewById(R.id.rvPassadaReuniaoCoordenador);
+
+        //Verifica o perfil do usuário caso seja produtor o botão adicionar será ocultado
+        verificarPerfil();
+
         Log.d("testeX", "reunioies passada = " + passadas.size() + " total = " + Util.getAgendamentos().size());
         classificarAgendamentos();
 
@@ -131,5 +136,11 @@ public class ReuniaoActivity extends AppCompatActivity {
 
     private void inverterOrdemArray(ArrayList agendametos){
         Collections.reverse(agendametos);
+    }
+
+    private void verificarPerfil(){
+        if(Usuario.getPerfil().equals("Produtor")){
+            btAdicionar.setVisibility(View.GONE);
+        }
     }
 }

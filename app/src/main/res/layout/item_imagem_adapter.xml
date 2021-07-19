@@ -14,7 +14,7 @@
 
 
     <ImageView
-        android:id="@+id/ivFotoAtaAdapter"
+        android:id="@+id/ivItemImagemAdapter"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:srcCompat="@drawable/ic_baseline_camera_alt_24" />

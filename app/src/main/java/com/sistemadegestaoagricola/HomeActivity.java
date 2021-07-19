@@ -41,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView tvSaudacao;
     private CardView cvProximaReuniao;
-    private CardView btMinhaPropriedade;
+    private CardView btPropriedade;
     private CardView btMinhasInformacoes;
     private CardView btReuniao;
     private CardView btSair;
@@ -69,7 +69,7 @@ public class HomeActivity extends AppCompatActivity {
         tvSaudacao.setText(Usuario.getNome() + "!");
 
         cvProximaReuniao = findViewById(R.id.cvProximaReuniaoHome);
-        btMinhaPropriedade = findViewById(R.id.cvPropriedadeHome);
+        btPropriedade = findViewById(R.id.cvPropriedadeHome);
         //btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
         btReuniao = findViewById(R.id.cvReunioesHome);
         btSair = findViewById(R.id.cvSairHome);
@@ -100,10 +100,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btMinhaPropriedade.setOnClickListener(new View.OnClickListener() {
+        btPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MinhaPropriedadeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PropriedadeActivity.class);
                 startActivity(intent);
             }
         });

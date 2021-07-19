@@ -128,7 +128,7 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             salvando.show();
-                            verificarCampos();
+                            verificarCamposESalvar();
                         }
                     });
                     alertaCep.setButton(DialogInterface.BUTTON_NEGATIVE, "Corrigir", new DialogInterface.OnClickListener() {
@@ -141,13 +141,13 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
                 } else {
                     salvando.show();
                     btConfirmar.setClickable(false);
-                    verificarCampos();
+                    verificarCamposESalvar();
                 }
             }
         });
     }
 
-    private void verificarCampos(){
+    private void verificarCamposESalvar(){
         if(!edtCidade.getText().toString().isEmpty() && !estado.isEmpty()){
             //Propriedade.setMapa(null);
             Log.d("testeX","" + Propriedade.getMapa());
