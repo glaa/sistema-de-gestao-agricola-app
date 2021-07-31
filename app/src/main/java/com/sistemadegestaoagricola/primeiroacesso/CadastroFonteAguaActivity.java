@@ -133,9 +133,9 @@ public class CadastroFonteAguaActivity extends AppCompatActivity {
     private void salvarDados(){
         String fonteAgua = "";
         for(String f: fonte){
-            fonteAgua += f + ", ";
+            fonteAgua += f + ",";
         }
-        fonteAgua = fonteAgua.substring(0,fonteAgua.length()-2);
+        fonteAgua = fonteAgua.substring(0,fonteAgua.length()-1);
 
         Propriedade.setFonteAgua(fonteAgua);
     }
