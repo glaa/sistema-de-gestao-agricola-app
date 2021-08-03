@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".primeiroacesso.CadastroLocalizacaoActivity">
+    android:layout_height="match_parent"
+    tools:context=".AlterarLocalizacaoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,30 +12,60 @@
         android:background="@color/background_verde"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvTituloCadastroLocalizacao"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
-            android:text="@string/confirme_localizacao"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tv_perguntas_cadastro_propriedade" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp">
+
+            <LinearLayout
+                android:id="@+id/llVoltarAlterarLocalizacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivVoltarAlterarLocalizacao"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+                <TextView
+                    android:id="@+id/tvVoltarAlterarLocalizacao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Voltar"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/rotulo_padrao" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv1AlterarLocalizacao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:text="Endereço"
+                android:textColor="@color/white"
+                android:textSize="28sp" />
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/textView49"
+            android:id="@+id/text1AlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
             android:text="Logradouro"
             android:textColor="@color/white"
-            android:textSize="@dimen/rotulo_padrao"/>
+            android:textSize="@dimen/rotulo_padrao" />
 
         <EditText
-            android:id="@+id/edtLogradouroLocalizacao"
+            android:id="@+id/edtLogradouroAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -48,7 +78,7 @@
             android:textSize="@dimen/ed_tamanho_fonte" />
 
         <TextView
-            android:id="@+id/textView50"
+            android:id="@+id/textView2AlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -59,7 +89,7 @@
             android:textSize="@dimen/rotulo_padrao" />
 
         <EditText
-            android:id="@+id/edtNumeroLocalizacao"
+            android:id="@+id/edtNumeroAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -72,7 +102,7 @@
             android:textSize="@dimen/ed_tamanho_fonte" />
 
         <TextView
-            android:id="@+id/textView51"
+            android:id="@+id/textView3AlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -83,7 +113,7 @@
             android:textSize="@dimen/rotulo_padrao" />
 
         <EditText
-            android:id="@+id/edtBairroLocalizacao"
+            android:id="@+id/edtBairroAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -105,7 +135,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView52"
+                android:id="@+id/textView4AlterarLocalizacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -114,7 +144,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/tvCidadaInvalidaLocalizacao"
+                android:id="@+id/tvCidadaInvalidaAlterarLocalizacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Cidade inválida"
@@ -124,7 +154,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/edtCidadeLocalizacao"
+            android:id="@+id/edtCidadeAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -146,7 +176,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView53"
+                android:id="@+id/textView5AlterarLocalizacao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -155,7 +185,7 @@
                 android:textSize="@dimen/rotulo_padrao" />
 
             <TextView
-                android:id="@+id/tvEstadoInvalidoLocalizao"
+                android:id="@+id/tvEstadoInvalidoAlterarLocalizacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Estado inválido"
@@ -167,7 +197,7 @@
         </LinearLayout>
 
         <Spinner
-            android:id="@+id/spinnerLocalizacao"
+            android:id="@+id/spinnerAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -175,7 +205,7 @@
             android:background="@drawable/et_style" />
 
         <TextView
-            android:id="@+id/textView54"
+            android:id="@+id/textView6AlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -186,7 +216,7 @@
             android:textSize="@dimen/rotulo_padrao" />
 
         <EditText
-            android:id="@+id/edtReferenciaLocalizacao"
+            android:id="@+id/edtReferenciaAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -199,7 +229,7 @@
             android:textSize="@dimen/rotulo_padrao" />
 
         <TextView
-            android:id="@+id/tvCepLocalizacao"
+            android:id="@+id/tvCepAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -210,7 +240,7 @@
             android:textSize="@dimen/rotulo_padrao" />
 
         <EditText
-            android:id="@+id/edtCepLocalizacao"
+            android:id="@+id/edtCepAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/ed_altura_padrao"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -223,7 +253,7 @@
             android:textSize="@dimen/rotulo_padrao" />
 
         <Button
-            android:id="@+id/btConfirmarLocalizacao"
+            android:id="@+id/btAtualizarAlterarLocalizacao"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bt_altura_principal"
             android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -232,10 +262,10 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/bt_arredondado"
             android:backgroundTint="@color/white"
-            android:text="Confirmar"
+            android:text="Atualizar"
             android:textAllCaps="false"
             android:textColor="@color/verde_escuro"
             android:textSize="@dimen/bt_tamanho_fonte" />
-
     </LinearLayout>
+
 </ScrollView>

@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
-        <activity android:name=".InformacoesActivity"></activity>
+        <activity android:name=".AlterarLocalizacaoActivity"></activity>
+        <activity android:name=".InformacoesActivity" />
         <activity android:name=".PropriedadeActivity" />
         <activity android:name=".FotosReuniaoActivity" />
         <activity android:name=".AtaReuniaoActivity" />

@@ -204,4 +204,5 @@ public class Util {
                 formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE));
         return horario;
     }
+
 }
