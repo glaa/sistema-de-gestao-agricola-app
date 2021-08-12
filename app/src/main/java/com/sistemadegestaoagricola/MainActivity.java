@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         btEntrar = findViewById(R.id.btEntrarMain);
         tvEsqueceuSenha = findViewById(R.id.tvEsqueceuSenhaMain);
 
-        edtCpfEmail.setText("11111111111");
+        edtCpfEmail.setText("41045345369");
         edtSenha.setText("123123123");
 
         CarregarDialog carregarDialog = new CarregarDialog(MainActivity.this);

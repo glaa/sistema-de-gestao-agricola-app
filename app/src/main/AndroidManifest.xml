@@ -20,7 +20,9 @@
         <activity android:name=".PropriedadeActivity" />
         <activity android:name=".FotosReuniaoActivity" />
         <activity android:name=".AtaReuniaoActivity" />
-        <activity android:name=".produtor.ProximaReuniaoProdutorActivity" />
+        <activity
+            android:name=".produtor.ProximaReuniaoProdutorActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".produtor.ReuniaoRealizadaProdutorActivity" />
         <activity android:name=".reuniao.EditarReuniaoActivity" />
         <activity

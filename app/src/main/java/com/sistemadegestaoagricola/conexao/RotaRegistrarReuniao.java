@@ -1,5 +1,6 @@
 package com.sistemadegestaoagricola.conexao;
 
+import android.net.Uri;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -20,10 +21,10 @@ public class RotaRegistrarReuniao implements Callable<ConexaoAPI> {
     private ArrayList<String> ata = new ArrayList<>();
     private ArrayList<String> fotos = new ArrayList<>();
 
-    public RotaRegistrarReuniao(int idAgendaReuniao, ArrayList<String> ata, ArrayList<String> fotos){
+    public RotaRegistrarReuniao(int idAgendaReuniao){
         this.id = idAgendaReuniao;
-        this.ata = ata;
-        this.fotos = fotos;
+        this.ata = Util.getAta();
+        this.fotos = Util.getFotos();
     }
 
     @Override
@@ -43,13 +44,15 @@ public class RotaRegistrarReuniao implements Callable<ConexaoAPI> {
         parametros.add(new Parametro("id_agenda",null, this.id));
 
         for(int i = 0; i < this.ata.size(); i++){
-            parametros.add(new Parametro("ata", new Date().getTime()+".jpg", ata.get(i)));
-            Log.d("testeX", "adicionou = " + new Date().getTime()+".jpg + " +  ata.get(i));
+            parametros.add(new Parametro(
+                    "ata[]", "ata_" + i + "_" + new Date().getTime() + ".jpg", ata.get(i)));
+            Log.d("testeX", "adicionou = " +"ata_" + i + "_" + new Date().getTime() + ".jpg " +  ata.get(i));
         }
 
         for(int i = 0; i < this.fotos.size(); i++){
-            parametros.add(new Parametro("foto", new Date().getTime()+".jpg", fotos.get(i)));
-            Log.d("testeX", "adicionou = " + new Date().getTime()+".jpg + " +  fotos.get(i));
+            parametros.add(new Parametro(
+                    "fotos[]", "fotos_" + i + "_" + new Date().getTime() + ".jpg", fotos.get(i)));
+            Log.d("testeX", "adicionou = " + "fotos_" + i + "_" + new Date().getTime() + ".jpg " +  fotos.get(i));
 
         }
 

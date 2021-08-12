@@ -17,32 +17,32 @@ public class Util {
 
     private static ArrayList<AgendamentoReuniao> agendamentos = new ArrayList<AgendamentoReuniao>();
 
-    private static ArrayList<Uri> ata = new ArrayList<>();
+    private static ArrayList<String> ata = new ArrayList<>();
 
-    private static ArrayList<Uri> fotos = new ArrayList<>();
+    private static ArrayList<String> fotos = new ArrayList<>();
 
-    public static ArrayList<Uri> getAta() {
+    public static ArrayList<String> getAta() {
         return ata;
     }
 
-    public static void setAta(ArrayList<Uri> ata) {
+    public static void setAta(ArrayList<String> ata) {
         Util.ata = ata;
     }
 
-    public static void addAta(Uri uri){
-        Util.ata.add(uri);
+    public static void addAta(String path){
+        Util.ata.add(path);
     }
 
-    public static ArrayList<Uri> getFotos() {
+    public static ArrayList<String> getFotos() {
         return fotos;
     }
 
-    public static void setFotos(ArrayList<Uri> fotos) {
+    public static void setFotos(ArrayList<String> fotos) {
         Util.fotos = fotos;
     }
 
-    public static void addFotos(Uri uri){
-        Util.fotos.add(uri);
+    public static void addFotos(String path){
+        Util.fotos.add(path);
     }
 
     public static ArrayList<AgendamentoReuniao> getAgendamentos() {

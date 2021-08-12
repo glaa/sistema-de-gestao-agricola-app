@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class AtaReuniaoActivity extends AppCompatActivity{
 
     private GridView gridView;
-    private ArrayList<Uri> lista = new ArrayList<>();
+    private ArrayList<String> lista = new ArrayList<>();
     private Button btConfirmar;
 
 

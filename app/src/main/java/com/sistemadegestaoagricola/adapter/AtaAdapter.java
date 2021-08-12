@@ -12,12 +12,13 @@ import android.widget.ImageView;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.entidades.Util;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class AtaAdapter extends BaseAdapter {
 
     private Context contexto;
-    private ArrayList<Uri> lista;
+    private ArrayList<String> lista;
 
     public AtaAdapter(Context contexto) {
         this.contexto = contexto;
@@ -47,7 +48,7 @@ public class AtaAdapter extends BaseAdapter {
         }
 
         ImageView imageView = view.findViewById(R.id.ivItemImagemAdapter);
-        imageView.setImageURI(lista.get(i));
+        imageView.setImageURI(Uri.fromFile(new File(lista.get(i))));
         imageView.setAdjustViewBounds(true);
         imageView.setBackground(contexto.getDrawable(R.drawable.bt_arredondado));
         imageView.setBackgroundTintList(contexto.getResources().getColorStateList(R.color.verde_escuro));
