@@ -53,10 +53,12 @@ public class HomeActivity extends AppCompatActivity {
     private TextView tvDiaDoMes;
     private TextView tvMesDoAno;
     private TextView tvHorario;
+    private TextView tvLocal;
     private String diaDaSemana = null;
     private String diaDoMes = null;
     private String mesDoAno = null;
     private String horario = null;
+    private String local = null;
 
 
     @Override
@@ -147,6 +149,7 @@ public class HomeActivity extends AppCompatActivity {
             tvDiaDoMes = findViewById(R.id.tvDiaMesHome);
             tvMesDoAno = findViewById(R.id.tvMesHome);
             tvHorario = findViewById(R.id.tvHorarioHome);
+            tvLocal = findViewById(R.id.tvLocalHome);
             Log.d("testeX", "exibiuReunião");
 
             tvDiaDaSemana.setText(diaDaSemana);
@@ -157,6 +160,7 @@ public class HomeActivity extends AppCompatActivity {
             } else {
                 tvHorario.setVisibility(View.GONE);
             }
+            tvLocal.setText(local);
         } else {
             cvProximaReuniao.setVisibility(View.GONE);
         }
@@ -212,7 +216,7 @@ public class HomeActivity extends AppCompatActivity {
     private boolean exibirProximaReuniao(){
         boolean reuniaoAgendada = false;
         ArrayList<AgendamentoReuniao> agendamentos = new ArrayList<AgendamentoReuniao>();
-
+        //Seleciona reuniões não registradas e com data futura
         for(AgendamentoReuniao agendamentoReuniao : Util.getAgendamentos()){
             if(!agendamentoReuniao.isRegistrada()){
                 Date dataAtual = new Date();
@@ -223,9 +227,10 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         }
-
+        //Seleciona a reunião futura mais próxima
         if(!agendamentos.isEmpty()){
             Date data0 = agendamentos.get(0).getData();
+            local = agendamentos.get(0).getLocal();
             Calendar calendarMin = Calendar.getInstance();
             calendarMin.setTime(data0);
 
@@ -235,6 +240,7 @@ public class HomeActivity extends AppCompatActivity {
                 calendar.setTime(data1);
                 if(calendar.compareTo(calendarMin) < 0){
                     calendarMin = calendar;
+                    local = agendamento.getLocal();
                 }
             }
             diaDaSemana = Util.calendarioIntParaStringDia(calendarMin.get(Calendar.DAY_OF_WEEK));

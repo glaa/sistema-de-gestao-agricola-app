@@ -156,6 +156,14 @@
                         android:textSize="@dimen/rotulo_padrao"
                         android:textStyle="bold"
                         android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvLocalHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Local"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -344,6 +352,67 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="1"
                         android:text="Reuniões"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/bt_tamanho_fonte" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_baseline_chevron_right_24" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvMapasHome"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/bt_altura_principal"
+            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/layout_circulo"
+                    android:backgroundTint="@color/background_verde"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivMapasHome"
+                        android:layout_width="@dimen/icone_botao"
+                        android:layout_height="@dimen/icone_botao"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_baseline_map_24" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/tvMapaHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:text="Mapas"
                         android:textColor="@color/verde_escuro"
                         android:textSize="@dimen/bt_tamanho_fonte" />
                 </LinearLayout>
