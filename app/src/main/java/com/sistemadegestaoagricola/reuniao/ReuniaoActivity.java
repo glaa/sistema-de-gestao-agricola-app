@@ -1,5 +1,6 @@
 package com.sistemadegestaoagricola.reuniao;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,7 +17,9 @@ import com.sistemadegestaoagricola.HomeActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.ReuniaoProximaAdapter;
 import com.sistemadegestaoagricola.adapter.ReuniaoPassadaAdapter;
+import com.sistemadegestaoagricola.coordenador.ReuniaoRealizadaCoordenadorActivity;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
 

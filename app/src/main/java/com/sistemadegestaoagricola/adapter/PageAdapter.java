@@ -1,10 +1,7 @@
 package com.sistemadegestaoagricola.adapter;
 
-import android.content.Context;
-import android.widget.GridView;
-
 import com.sistemadegestaoagricola.reuniao.AtaReuniaoFragment;
-import com.sistemadegestaoagricola.reuniao.ReuniaoFragment;
+import com.sistemadegestaoagricola.reuniao.FotosReuniaoFragment;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,7 +25,7 @@ public class PageAdapter extends FragmentStatePagerAdapter {
         if(position == 0){
             return new AtaReuniaoFragment();
         } else if(position == 1){
-            return new ReuniaoFragment();
+            return new FotosReuniaoFragment();
         } else {
             return null;
         }

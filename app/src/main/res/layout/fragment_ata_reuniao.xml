@@ -12,8 +12,12 @@
         android:id="@+id/gvAtaReuniaoFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:columnWidth="60dp"
+        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+        android:columnWidth="100dp"
         android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit" />
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp" />
 
 </FrameLayout>

@@ -55,7 +55,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
@@ -90,7 +90,6 @@
                             android:id="@+id/imageView230"
                             android:layout_width="@dimen/icone_botao"
                             android:layout_height="@dimen/icone_botao"
-                            android:layout_weight="1"
                             app:srcCompat="@drawable/ic_baseline_event_available_24" />
                     </LinearLayout>
 
@@ -258,7 +257,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <com.google.android.material.tabs.TabLayout
@@ -266,8 +265,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:tabIndicatorColor="@color/white"
-                    app:tabSelectedTextColor="@color/verde_escuro"
-                    app:tabTextColor="@color/white">
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextColor="@color/verde_escuro">
 
                     <com.google.android.material.tabs.TabItem
                         android:id="@+id/tiAtaReuniaoRealizadaCoordenador"

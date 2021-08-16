@@ -72,6 +72,7 @@ public class ConexaoAPI {
             }
 
             this.conexao.setConnectTimeout(90000);
+            this.conexao.setDoInput(true);
             if(this.metodo == "POST"){
                 this.conexao.setDoOutput(true);
                 this.conexao.setChunkedStreamingMode(0);

@@ -1,5 +1,6 @@
 package com.sistemadegestaoagricola.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,23 +11,27 @@ import android.widget.TextView;
 
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.coordenador.ProximaReuniaoCoordenadorActivity;
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.produtor.ProximaReuniaoProdutorActivity;
 import com.sistemadegestaoagricola.produtor.ReuniaoRealizadaProdutorActivity;
 import com.sistemadegestaoagricola.coordenador.ReuniaoRealizadaCoordenadorActivity;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
+import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAdapter.MyViewHolder> {
 
     ArrayList<AgendamentoReuniao> agendamentoReuniaos = new ArrayList<AgendamentoReuniao>();
     Context context;
+
 
     public ReuniaoPassadaAdapter(Context contexto, ArrayList<AgendamentoReuniao> agendamentos) {
         this.agendamentoReuniaos = agendamentos;
@@ -44,6 +49,7 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
 
     @Override
     public void onBindViewHolder( ReuniaoPassadaAdapter.MyViewHolder holder, int position) {
+
         //Retorna somente o que exitir
         if(position < agendamentoReuniaos.size()) {
             AgendamentoReuniao agenda  = agendamentoReuniaos.get(position);

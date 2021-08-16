@@ -1,6 +1,7 @@
 package com.sistemadegestaoagricola.entidades;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Base64;
 import android.widget.EditText;
@@ -143,6 +144,11 @@ public class Util {
         return stream.toByteArray();
     }
 
+    public static Bitmap converterStringParaBitmap(String stringBase64) {
+        byte[] arrayBytes = Base64.decode(stringBase64,Base64.DEFAULT);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(arrayBytes,0,arrayBytes.length);
+        return bitmap;
+    }
     /*
      * Criar máscara para o CEP
      *@param editText Campo a ser aplicado a máscara

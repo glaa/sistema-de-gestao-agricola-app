@@ -122,6 +122,7 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
                 Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, EditarReuniaoActivity.class);
                 intent.putExtra("REUNIAO",reuniao);
                 startActivity(intent);
+                finish();
             }
         });
 
