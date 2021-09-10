@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true" android:focusableInTouchMode="true"
+    android:background="@color/background_verde"
+    android:orientation="vertical"
+    tools:context=".PerfilActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/llVoltarPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/ivVoltarPerfil"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+
+            <TextView
+                android:id="@+id/tvVoltarPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="Voltar"
+                android:textColor="@color/white"
+                android:textSize="@dimen/rotulo_padrao" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv1Perfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:text="Perfil"
+            android:textColor="@color/white"
+            android:textSize="28sp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cvFotoPerfil"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="5dp"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:id="@+id/ivFotoHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/ic_baseline_person_24_cinza" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvNomePerfil"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="Fulano de tal"
+                        android:textColor="@color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvCpfPerfil"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                        android:text="CPF"
+                        android:textColor="@color/white"
+                        android:textSize="24sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Informações Pessoais"
+                    android:textColor="@color/white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tvDataNascimentoPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="Data de nascimento"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtDataNascimentoPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:focusable="false"
+                    android:focusableInTouchMode="true"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvRgPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="RG"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtRgPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:inputType="number"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvTelefonePerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Telefone"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtTelefonePerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="phone"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvEmailPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="E-mail"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtEmailPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvConjugePerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Nome do conjuge"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtConjugePerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ed_altura_padrao"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:inputType="textPersonName|textCapSentences"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tvNomeFilhosPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Nome dos filhos"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/edtNomeFilhosPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/et_style"
+                    android:clickable="false"
+                    android:editable="true"
+                    android:ems="10"
+                    android:focusable="true"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btAtualizarPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/bt_altura_principal"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:layout_marginEnd="@dimen/bt_mrgem_lateral_principal"
+                    android:background="@drawable/bt_arredondado"
+                    android:backgroundTint="@color/white"
+                    android:text="Atualizar"
+                    android:textAllCaps="false"
+                    android:textColor="@color/verde_escuro"
+                    android:textSize="@dimen/bt_tamanho_fonte" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,5 +1,7 @@
 package com.sistemadegestaoagricola.entidades;
 
+import android.graphics.Bitmap;
+
 public class Usuario {
     private static int id;
     private static String nome;
@@ -8,6 +10,7 @@ public class Usuario {
     private static int enderecoId;
     private static String telefone;
     private static String perfil;
+    private static Bitmap foto;
 
     /**
      * @param id
@@ -84,5 +87,13 @@ public class Usuario {
 
     public static void setEnderecoId(int enderecoId) {
         Usuario.enderecoId = enderecoId;
+    }
+
+    public static Bitmap getFoto() {
+        return foto;
+    }
+
+    public static void setFoto(Bitmap foto) {
+        Usuario.foto = foto;
     }
 }

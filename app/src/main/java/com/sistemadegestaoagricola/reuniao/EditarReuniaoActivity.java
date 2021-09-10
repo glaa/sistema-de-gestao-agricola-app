@@ -68,7 +68,7 @@ public class EditarReuniaoActivity extends AppCompatActivity implements Runnable
         etData = findViewById(R.id.etDataEditarReuniao);
         etHora = findViewById(R.id.etHoraEditarReuniao);
         etLocal = findViewById(R.id.etLocalEditarReuniao);
-        btSalvar = findViewById(R.id.btSalvarEditarReuniao);
+        btSalvar = findViewById(R.id.btAtualizarPerfil);
 
         CarregarDialog carregarDialog = new CarregarDialog(this);
 

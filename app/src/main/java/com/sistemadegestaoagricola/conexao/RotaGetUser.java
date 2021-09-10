@@ -8,6 +8,7 @@ import android.util.Log;
 import com.sistemadegestaoagricola.entidades.Parametro;
 import com.sistemadegestaoagricola.entidades.Produtor;
 import com.sistemadegestaoagricola.entidades.Usuario;
+import com.sistemadegestaoagricola.entidades.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -55,7 +56,10 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
                     String key = jsonReader.nextName();
                     if (key.equals("user")) {
                         lerUsuario(jsonReader);
-                    } else {
+                    } else if(key.equals("foto")){
+                        Usuario.setFoto(Util.converterStringParaBitmap(jsonReader.nextString()));
+                    }
+                    else {
                         jsonReader.skipValue();
                     }
                 }
@@ -174,6 +178,8 @@ public class RotaGetUser implements Callable<ConexaoAPI> {
                 case "data_nascimento":
                     if(jsonReader.peek() != JsonToken.NULL){
                         dataNascimento = jsonReader.nextString();
+                        //formatando a data
+                        dataNascimento = Util.dataFormatada(dataNascimento);
                     } else {
                         jsonReader.skipValue();
                     }

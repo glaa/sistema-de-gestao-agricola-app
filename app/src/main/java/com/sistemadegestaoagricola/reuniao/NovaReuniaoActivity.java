@@ -80,7 +80,7 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
         etData.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                exirDatePicker();
+                exibirDatePicker();
                 return false;
             }
         });
@@ -106,7 +106,7 @@ public class NovaReuniaoActivity extends AppCompatActivity implements Runnable{
         });
     }
 
-    private void exirDatePicker(){
+    private void exibirDatePicker(){
         if(datePickerDialog != null && datePickerDialog.isShowing()){
             datePickerDialog.dismiss();
         }

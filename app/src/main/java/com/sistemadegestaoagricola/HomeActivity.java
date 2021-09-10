@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +22,6 @@ import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
-import com.sistemadegestaoagricola.versaoantiga.MinhaPropriedadeActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -39,26 +40,33 @@ public class HomeActivity extends AppCompatActivity {
     private int status;
     private String nome;
     private SwipeRefreshLayout swipeRefreshLayout;
+    private CardView cvFoto;
+    private ImageView ivFoto;
     private TextView tvSaudacao;
     private CardView cvProximaReuniao;
     private CardView btPropriedade;
     private CardView btMinhasInformacoes;
     private CardView btReuniao;
+    private CardView btMapas;
     private CardView btSair;
     private Thread thread;
     private static final ExecutorService threadpool = Executors.newFixedThreadPool(3);
     private String[] mensagensExceptions;
     //Para o card reunião
+    private TextView tvTema;
     private TextView tvDiaDaSemana;
     private TextView tvDiaDoMes;
     private TextView tvMesDoAno;
     private TextView tvHorario;
     private TextView tvLocal;
+    private String tema = null;
     private String diaDaSemana = null;
     private String diaDoMes = null;
     private String mesDoAno = null;
     private String horario = null;
     private String local = null;
+    CarregarDialog carregarDialog = new CarregarDialog(this);
+    AlertDialog carregando;
 
 
     @Override
@@ -67,17 +75,22 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         swipeRefreshLayout = findViewById(R.id.swipeHome);
-        tvSaudacao = findViewById(R.id.tvNomeHome);
+        cvFoto = findViewById(R.id.cvFotoHome);
+        ivFoto = findViewById(R.id.ivFotoHome);
+        tvSaudacao = findViewById(R.id.tvNomePerfil);
         tvSaudacao.setText(Usuario.getNome() + "!");
-
         cvProximaReuniao = findViewById(R.id.cvProximaReuniaoHome);
         btPropriedade = findViewById(R.id.cvPropriedadeHome);
-        //btMinhasInformacoes = findViewById(R.id.btMinhasInformacoesHome);
         btReuniao = findViewById(R.id.cvReunioesHome);
+        btMapas = findViewById(R.id.cvMapasHome);
         btSair = findViewById(R.id.cvSairHome);
 
-        CarregarDialog carregarDialog = new CarregarDialog(this);
-        AlertDialog carregando = carregarDialog.criarDialogCarregamento();
+        carregando = carregarDialog.criarDialogCarregamento();
+
+        Log.d("testeX","foto "+Usuario.getFoto());
+        if(Usuario.getFoto() != null){
+            ivFoto.setImageBitmap(Usuario.getFoto());
+        }
 
         carregando.show();
         atualizarReuniao();
@@ -102,10 +115,18 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        cvFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,PerfilActivity.class);
+                startActivity(intent);
+            }
+        });
+
         btPropriedade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PropriedadeActivity.class);
+                Intent intent = new Intent(HomeActivity.this, PropriedadeActivity.class);
                 startActivity(intent);
             }
         });
@@ -121,7 +142,18 @@ public class HomeActivity extends AppCompatActivity {
         btReuniao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ReuniaoActivity.class);
+                carregando.show();
+                Intent intent = new Intent(HomeActivity.this, ReuniaoActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btMapas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                carregando.show();
+                Intent intent = new Intent(HomeActivity.this, MapasActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -137,7 +169,16 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        if(Usuario.getFoto() != null){
+            ivFoto.setImageBitmap(Usuario.getFoto());
+        }
+        super.onRestart();
+    }
+
+    @Override
     protected void onDestroy() {
+        carregando.dismiss();
         super.onDestroy();
     }
 
@@ -145,6 +186,7 @@ public class HomeActivity extends AppCompatActivity {
         Util.esvaziarAgendamentos();
         buscarReunioes();
         if(exibirProximaReuniao()){
+            tvTema = findViewById(R.id.tvTemaHome);
             tvDiaDaSemana = findViewById(R.id.tvDiaSemanaHome);
             tvDiaDoMes = findViewById(R.id.tvDiaMesHome);
             tvMesDoAno = findViewById(R.id.tvMesHome);
@@ -152,6 +194,7 @@ public class HomeActivity extends AppCompatActivity {
             tvLocal = findViewById(R.id.tvLocalHome);
             Log.d("testeX", "exibiuReunião");
 
+            tvTema.setText(tema);
             tvDiaDaSemana.setText(diaDaSemana);
             tvDiaDoMes.setText(diaDoMes);
             tvMesDoAno.setText(mesDoAno);
@@ -230,6 +273,7 @@ public class HomeActivity extends AppCompatActivity {
         //Seleciona a reunião futura mais próxima
         if(!agendamentos.isEmpty()){
             Date data0 = agendamentos.get(0).getData();
+            tema = agendamentos.get(0).getNome();
             local = agendamentos.get(0).getLocal();
             Calendar calendarMin = Calendar.getInstance();
             calendarMin.setTime(data0);

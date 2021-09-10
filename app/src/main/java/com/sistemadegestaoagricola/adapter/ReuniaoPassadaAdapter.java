@@ -31,11 +31,12 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
 
     ArrayList<AgendamentoReuniao> agendamentoReuniaos = new ArrayList<AgendamentoReuniao>();
     Context context;
+    AlertDialog alertDialog;
 
-
-    public ReuniaoPassadaAdapter(Context contexto, ArrayList<AgendamentoReuniao> agendamentos) {
+    public ReuniaoPassadaAdapter(Context contexto, ArrayList<AgendamentoReuniao> agendamentos, AlertDialog alertDialog) {
         this.agendamentoReuniaos = agendamentos;
         this.context = contexto;
+        this.alertDialog = alertDialog;
     }
 
     @NonNull
@@ -72,11 +73,13 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    alertDialog.show();
                     if(Usuario.getPerfil().equals("Coordenador")){
                         if(agenda.isRegistrada()){
                             Intent intent = new Intent(context, ReuniaoRealizadaCoordenadorActivity.class);
                             intent.putExtra("REUNIAO", agenda);
                             context.startActivity(intent);
+                            Log.d("testeX","Fechou Activity");
                         } else {
                             Intent intent = new Intent(context, ProximaReuniaoCoordenadorActivity.class);
                             intent.putExtra("REUNIAO", agenda);
@@ -85,7 +88,7 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
 
                     } else if(Usuario.getPerfil().equals("Produtor")){
                         if(agenda.isRegistrada()){
-                            Intent intent = new Intent(context, ReuniaoRealizadaProdutorActivity.class);
+                            Intent intent = new Intent(context, ReuniaoRealizadaCoordenadorActivity.class);
                             intent.putExtra("REUNIAO", agenda);
                             context.startActivity(intent);
                         } else {
@@ -93,7 +96,6 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
                             intent.putExtra("REUNIAO", agenda);
                             context.startActivity(intent);
                         }
-
                     }
                 }
             });

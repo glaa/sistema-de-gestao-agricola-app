@@ -100,16 +100,17 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
 
         CarregarDialog carregarDialog = new CarregarDialog(this);
 
-         reuniao = null;
+        reuniao = null;
         if(getIntent().hasExtra("REUNIAO")){
             Bundle bundle = getIntent().getExtras();
             reuniao = (AgendamentoReuniao) bundle.get("REUNIAO");
-            preencherCampo(reuniao);
+            preencherCampo();
         }
 
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //carregarDialog.criarDialogCarregamento().show();
                 onBackPressed();
                 finish();
             }
@@ -118,7 +119,6 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
         llEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("testeX", "id reuniao = " + reuniao.getId());
                 Intent intent = new Intent(ProximaReuniaoCoordenadorActivity.this, EditarReuniaoActivity.class);
                 intent.putExtra("REUNIAO",reuniao);
                 startActivity(intent);
@@ -155,14 +155,6 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
             @Override
             public void onClick(View view) {
                 if(permitiRegistro()){
-                    /*
-                     * experimento
-                     */
-//                    Intent intent = new   Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//                    startActivityForResult(intent, CODE_ATA);
-
-                    /**/
-
                     Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                     intent.setType("image/*");
                     intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
@@ -194,26 +186,12 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
                 if(permitiRegistro()){
                     ArrayList<String> ata = Util.getAta();
                     ArrayList<String> fotos = Util.getFotos();
-//                    ArrayList<String> arquivosAta = new ArrayList<>();
-//                    ArrayList<String> arquivosFotos = new ArrayList<>();
 
                     if(ata.isEmpty()){
                         Toast.makeText(ProximaReuniaoCoordenadorActivity.this,"Adicione a ata da reunião",Toast.LENGTH_LONG).show();
                     } else if(fotos.isEmpty()){
                         Toast.makeText(ProximaReuniaoCoordenadorActivity.this,"Adicione as fotos da reunião",Toast.LENGTH_LONG).show();
                     } else {
-//                        for(Uri uri : ata){
-//                            //File file = new File(uri.getPath());
-//
-//                            arquivosAta.add(getImagePath(uri));
-//                            Log.d("testeX", "ata get: " +  getImagePath(uri));
-//                        }
-//                        for(Uri uri : fotos){
-//                            //File file = new File(getImagePath(uri));
-//                            arquivosFotos.add(getImagePath(uri));
-//                            Log.d("testeX", "foto get: " +  getImagePath(uri));
-//
-//                        }
                         salvando = carregarDialog.criarDialogSalvarInformacoes();
                         salvando.show();
                         salvarCadastroAPI();
@@ -277,7 +255,7 @@ public class ProximaReuniaoCoordenadorActivity extends AppCompatActivity impleme
         startActivity(intent);
     }
 
-    private void preencherCampo(AgendamentoReuniao reuniao){
+    private void preencherCampo(){
         tvTema.setText(reuniao.getNome());
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(reuniao.getData());

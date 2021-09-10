@@ -17,12 +17,10 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
 import com.sistemadegestaoagricola.ErroActivity;
-import com.sistemadegestaoagricola.PropriedadeActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.PageAdapter;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
-import com.sistemadegestaoagricola.conexao.RotaExibirReuniao;
-import com.sistemadegestaoagricola.conexao.RotaGetPropriedade;
+import com.sistemadegestaoagricola.conexao.RotaGetExibirReuniao;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Reuniao;
@@ -80,7 +78,7 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
         //gridView = findViewById(R.id.gvAtaReuniaoFragment);
         pageAdapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageAdapter);
-
+        Log.d("testeX","Abriu Activity");
         if(getIntent().hasExtra("REUNIAO")){
             Bundle bundle = getIntent().getExtras();
             reuniao = (AgendamentoReuniao) bundle.get("REUNIAO");
@@ -122,6 +120,7 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //carregando.show();
                 onBackPressed();
                 finish();
             }
@@ -144,8 +143,8 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
 
     private void buscarReuniao(){
         if(reuniao != null){
-            RotaExibirReuniao rotaExibirReuniao = new RotaExibirReuniao(reuniao.getId());
-            Future<ConexaoAPI> future = threadpool.submit(rotaExibirReuniao);
+            RotaGetExibirReuniao rotaGetExibirReuniao = new RotaGetExibirReuniao(reuniao.getId());
+            Future<ConexaoAPI> future = threadpool.submit(rotaGetExibirReuniao);
 
             while(!future.isDone()){
                 //Aguardando

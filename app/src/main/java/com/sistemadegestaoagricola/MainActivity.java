@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         tvEsqueceuSenha = findViewById(R.id.tvEsqueceuSenhaMain);
 
         edtCpfEmail.setText("41045345369");
-        edtSenha.setText("123123123");
+        edtSenha.setText("123456");
 
         CarregarDialog carregarDialog = new CarregarDialog(MainActivity.this);
         carregamento = carregarDialog.criarDialogCarregamento();
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 cpfEmail = edtCpfEmail.getText().toString();
                 /** Apresenta mensagem de campo obrigatório */
                 if(!hasFocus){
-                    if(cpfEmail.isEmpty()){
+                    if(cpfEmail.isEmpty() || !CPFValido()){
                         findViewById(R.id.tvCpfCnpjInvalidoMain).setVisibility(View.VISIBLE);
                     } else {
                         findViewById(R.id.tvCpfCnpjInvalidoMain).setVisibility(View.GONE);
@@ -240,6 +240,52 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     btEntrar.setClickable(true);
                 }
             });
+        }
+    }
+
+    private boolean CPFValido(){
+        String cpf = edtCpfEmail.getText().toString();
+        int digito1 = Integer.parseInt(String.valueOf(cpf.charAt(9)));
+        int digito2 = Integer.parseInt(String.valueOf(cpf.charAt(10)));
+
+        //Verifica primeiro dígito
+        int somatorio = 0;
+        for(int i = 0; i < 9; i++){
+            int digito = Integer.parseInt(String.valueOf(cpf.charAt(i)));
+            int multiplicador = 10 - i;
+            somatorio += digito * multiplicador;
+        }
+        int resto  = somatorio % 11;
+        Log.d("testeX","s = " + somatorio + " d = " + digito1 + " r = " + resto);
+        int verificador;
+        if((11 - resto) > 10){
+            verificador = 0;
+        } else {
+            verificador = 11 - resto;
+        }
+
+        if(verificador == digito1){
+            //Verifica segungo dígito
+            somatorio = 0;
+            for(int i = 0; i < 10; i++){
+                int digito = Integer.parseInt(String.valueOf(cpf.charAt(i)));
+                int multiplicador = 11 - i;
+                somatorio += digito * multiplicador;
+            }
+            resto  = somatorio % 11;
+            Log.d("testeX","s = " + somatorio + " d2 = " + digito2 + " r = " + resto);
+            if(11 - resto > 10){
+                verificador = 0;
+            } else {
+                verificador = 11 - resto;
+            }
+            if(verificador == digito2){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
         }
     }
 }

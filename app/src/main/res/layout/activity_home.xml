@@ -30,26 +30,57 @@
             android:text="@string/nome_logo"
             android:textSize="@dimen/nome_logo" />
 
-        <TextView
-            android:id="@+id/textView41"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
-            android:layout_marginTop="48dp"
-            android:text="Olá,"
-            android:textColor="@color/white"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/tvNomeHome"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:text="Fulano de tal!"
-            android:textColor="@color/white"
-            android:textSize="34sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvFotoHome"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="10dp">
+
+                <ImageView
+                    android:id="@+id/ivFotoHome"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_baseline_person_24_cinza" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCpfPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
+                    android:text="Olá,"
+                    android:textColor="@color/white"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/tvNomePerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="Fulano de tal!"
+                    android:textColor="@color/white"
+                    android:textSize="34sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvProximaReuniaoHome"
@@ -94,6 +125,14 @@
                         android:layout_height="wrap_content"
                         android:text="Próxima reunião:"
                         android:textColor="@color/cardview_dark_background" />
+
+                    <TextView
+                        android:id="@+id/tvTemaHome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Tema"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
 
                     <LinearLayout
                         android:layout_width="match_parent"

@@ -48,7 +48,7 @@ public class ExibirFotografiaMapaActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 salvarFoto();
-                Intent intent = new Intent(getApplicationContext(),CadastroFonteAguaActivity.class);
+                Intent intent = new Intent(ExibirFotografiaMapaActivity.this,CadastroFonteAguaActivity.class);
                 startActivity(intent);
                 finish();
             }

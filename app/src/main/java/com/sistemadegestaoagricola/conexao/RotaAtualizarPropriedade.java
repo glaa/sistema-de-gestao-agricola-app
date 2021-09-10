@@ -36,6 +36,5 @@ public class RotaAtualizarPropriedade implements Callable<ConexaoAPI> {
         ConexaoAPI con = new ConexaoAPI(rota,requisicao);
 
         return con;
-
     }
 }

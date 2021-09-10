@@ -17,7 +17,6 @@ import com.sistemadegestaoagricola.HomeActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.ReuniaoProximaAdapter;
 import com.sistemadegestaoagricola.adapter.ReuniaoPassadaAdapter;
-import com.sistemadegestaoagricola.coordenador.ReuniaoRealizadaCoordenadorActivity;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Usuario;
@@ -32,19 +31,20 @@ public class ReuniaoActivity extends AppCompatActivity {
     private RecyclerView rvProximaReuniao, rvPassadaReuniao;
     private LinearLayout llVoltar;
     private TextView tvProximaReuniao, tvReuniaoPassada;
-    private ArrayList<AgendamentoReuniao> agendametos = new ArrayList<>();
+    private ArrayList<AgendamentoReuniao> agendamentos = new ArrayList<>();
     private ArrayList<AgendamentoReuniao> proximas = new ArrayList<>();
     private ArrayList<AgendamentoReuniao> passadas = new ArrayList<>();
     private Button btAdicionar;
+    CarregarDialog carregarDialog = new CarregarDialog(ReuniaoActivity.this);
+    AlertDialog carregando;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reuniao);
 
-//        Toolbar toolbar = findViewById(R.id.toolbarReuniao);
-//        setSupportActionBar(toolbar);
-//        getSupportActionBar().setTitle("Voltar");
+        carregando = carregarDialog.criarDialogCarregamento();
+
         btAdicionar = findViewById(R.id.btAdicionarReuniaoCoodernador);
         tvProximaReuniao = findViewById(R.id.tvProximaReuniaoCoordenador);
         tvReuniaoPassada = findViewById(R.id.tvReuniaoPassadaCoordenador);
@@ -53,24 +53,12 @@ public class ReuniaoActivity extends AppCompatActivity {
         rvProximaReuniao = findViewById(R.id.rvProximaReuniaoCoordenador);
         rvPassadaReuniao = findViewById(R.id.rvPassadaReuniaoCoordenador);
 
-        //Verifica o perfil do usuário caso seja produtor o botão adicionar será ocultado
+        //Verifica o perfil do usuário, caso seja produtor, o botão adicionar será ocultado
         verificarPerfil();
 
-        Log.d("testeX", "reunioies passada = " + passadas.size() + " total = " + Util.getAgendamentos().size());
-        classificarAgendamentos();
+        carregarReunioes();
 
-        ReuniaoProximaAdapter reuniaoProximaAdapter = new ReuniaoProximaAdapter(this,proximas);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvProximaReuniao.setLayoutManager(layoutManager);
-        rvProximaReuniao.setAdapter(reuniaoProximaAdapter);
-
-
-        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(this,passadas);
-        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this);
-        rvPassadaReuniao.setLayoutManager(layoutManager2);
-        rvPassadaReuniao.setAdapter(reuniaoPassadaAdapter);
-
-        //Colocar rótulos no plural caso necessário
+        //Colocar rótulos no plural, caso necessário
         if(proximas.size() > 1){
             tvProximaReuniao.setText("Próximas reuniões");
         } else {
@@ -86,6 +74,8 @@ public class ReuniaoActivity extends AppCompatActivity {
         llVoltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                carregando = carregarDialog.criarDialogCarregamento();
+                carregando.show();
                 Intent intent = new Intent(ReuniaoActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
@@ -100,17 +90,32 @@ public class ReuniaoActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
 
+    private void carregarReunioes(){
+        classificarAgendamentos();
+
+        ReuniaoProximaAdapter reuniaoProximaAdapter = new ReuniaoProximaAdapter(this,proximas);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        rvProximaReuniao.setLayoutManager(layoutManager);
+        rvProximaReuniao.setAdapter(reuniaoProximaAdapter);
+
+        ReuniaoPassadaAdapter reuniaoPassadaAdapter = new ReuniaoPassadaAdapter(this,passadas,carregando);
+        RecyclerView.LayoutManager layoutManager2 = new LinearLayoutManager(this);
+        rvPassadaReuniao.setLayoutManager(layoutManager2);
+        rvPassadaReuniao.setAdapter(reuniaoPassadaAdapter);
     }
 
     private void classificarAgendamentos(){
-        agendametos.clear();
+        agendamentos.clear();
+        passadas.clear();
+        proximas.clear();
 
         for(AgendamentoReuniao agenda : Util.getAgendamentos()){
-            agendametos.add(agenda);
+            agendamentos.add(agenda);
         }
 
-        for(AgendamentoReuniao agenda : agendametos){
+        for(AgendamentoReuniao agenda : agendamentos){
             if(agenda.isRegistrada()){
                 passadas.add(agenda);
             } else {
@@ -122,6 +127,8 @@ public class ReuniaoActivity extends AppCompatActivity {
             }
         }
 
+        //inverterOrdemArray(passadas);
+        ordenarArray(passadas);
         inverterOrdemArray(passadas);
         ordenarArray(proximas);
     }
@@ -145,5 +152,17 @@ public class ReuniaoActivity extends AppCompatActivity {
         if(Usuario.getPerfil().equals("Produtor")){
             btAdicionar.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        carregarReunioes();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        carregando.dismiss();
     }
 }

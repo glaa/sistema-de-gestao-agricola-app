@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.EditText;
 
 import java.io.ByteArrayOutputStream;
@@ -62,6 +63,10 @@ public class Util {
         Util.agendamentos.clear();
     }
 
+    /*
+    * @param data É uma string do tipo yyyy-MM-dd HH:mm:ss
+    * @return Um objeto do tipo Date
+    * */
     public static Date converterStringDate(String data) {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -74,6 +79,10 @@ public class Util {
         return d1;
     }
 
+    /*
+    * @method retorna uma string no formato 00/00/0000
+    * @param data objeto do tipi Date
+    */
     public static String converterDateString(Date data){
         String d1;
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
@@ -202,6 +211,7 @@ public class Util {
         return code;
     }
 
+    /*Recebe um objeto date e retorna uma string do horário no formato 00:00*/
     public static String extrairHoraDeData(Date data){
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(data);
@@ -209,6 +219,21 @@ public class Util {
         horario = formatarDiaHoraCalendar(calendar.get(Calendar.HOUR_OF_DAY))+":"+
                 formatarDiaHoraCalendar(calendar.get(Calendar.MINUTE));
         return horario;
+    }
+
+    /*Recebe uma string de apenas númreros e retorna uma string no formato 000.000.000-00*/
+    public static String cpfFormatado(String cpf){
+        String cpfFormatado;
+        cpfFormatado = cpf.substring(0,3) + "." + cpf.substring(3,6) + "." + cpf.substring(6,9) + "-" + cpf.substring(9);
+        return cpfFormatado;
+    }
+
+    /*Recebe uma string data padrão internacional e retorna uma string no formato 00/00/0000*/
+    public static String dataFormatada(String data){
+        Log.d("testeX",""+data.length());
+        String dataFormatada;
+        dataFormatada = data.substring(8,10) + "/" + data.substring(5,7) + "/" + data.substring(0,4);
+        return dataFormatada;
     }
 
 }

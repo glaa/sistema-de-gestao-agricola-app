@@ -41,7 +41,7 @@
                 android:textSize="34sp" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/tvDataNascimentoPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -51,7 +51,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/etNomeCompletoExibirInformacoesPessoais"
+                android:id="@+id/edtDataNascimentoPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -63,7 +63,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/tvRgPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -74,7 +74,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/etDataNascimentoExibirInformacoesPessoais"
+                android:id="@+id/edtRgPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -86,7 +86,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textView15"
+                android:id="@+id/tvTelefonePerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -97,7 +97,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/etRGExibirInformacoesPessoais"
+                android:id="@+id/edtTelefonePerfil"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -109,7 +109,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textView16"
+                android:id="@+id/tvEmailPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -120,7 +120,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/edtBairroLocalizacao"
+                android:id="@+id/edtEmailPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"
@@ -132,7 +132,7 @@
                 android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/textView17"
+                android:id="@+id/tvNomeFilhosPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -143,7 +143,7 @@
                 android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/edtCidadeLocalizacao"
+                android:id="@+id/edtNomeFilhosPerfil"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/ed_altura_padrao"
                 android:layout_marginStart="@dimen/bt_mrgem_lateral_principal"

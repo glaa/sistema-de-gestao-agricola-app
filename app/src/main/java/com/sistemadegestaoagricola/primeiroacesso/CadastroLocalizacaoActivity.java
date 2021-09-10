@@ -55,8 +55,8 @@ public class CadastroLocalizacaoActivity extends AppCompatActivity implements Ad
 
         edtLogradouro = findViewById(R.id.edtLogradouroLocalizacao);
         edtNumero = findViewById(R.id.edtNumeroLocalizacao);
-        edtBairro = findViewById(R.id.edtBairroLocalizacao);
-        edtCidade = findViewById(R.id.edtCidadeLocalizacao);
+        edtBairro = findViewById(R.id.edtEmailPerfil);
+        edtCidade = findViewById(R.id.edtNomeFilhosPerfil);
         edtReferencia = findViewById(R.id.edtReferenciaLocalizacao);
         btConfirmar = findViewById(R.id.btConfirmarLocalizacao);
         edtCep = findViewById(R.id.edtCepLocalizacao);

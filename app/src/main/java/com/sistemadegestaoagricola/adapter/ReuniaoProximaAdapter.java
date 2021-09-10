@@ -1,5 +1,6 @@
 package com.sistemadegestaoagricola.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.produtor.ProximaReuniaoProdutorActivity;
 import com.sistemadegestaoagricola.coordenador.ProximaReuniaoCoordenadorActivity;
 import com.sistemadegestaoagricola.R;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ReuniaoProximaAdapter extends RecyclerView.Adapter<ReuniaoProximaAdapter.MyViewHolder> {
@@ -29,6 +32,7 @@ public class ReuniaoProximaAdapter extends RecyclerView.Adapter<ReuniaoProximaAd
     public ReuniaoProximaAdapter(Context context, ArrayList<AgendamentoReuniao> agendamentos) {
         this.agendamentoReuniaos = agendamentos;
         this.contexto = context;
+
     }
 
     @NonNull

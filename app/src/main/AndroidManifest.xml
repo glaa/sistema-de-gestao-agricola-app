@@ -15,16 +15,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
-        <activity android:name=".AlterarLocalizacaoActivity"></activity>
-        <activity android:name=".InformacoesActivity" />
-        <activity android:name=".PropriedadeActivity" />
-        <activity android:name=".FotosReuniaoActivity" />
-        <activity android:name=".AtaReuniaoActivity" />
+        <activity
+            android:name=".PerfilActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ExibirFotoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ExibirFotografiaNovoMapaActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".MapasActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AlterarLocalizacaoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".InformacoesActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PropriedadeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".FotosReuniaoActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AtaReuniaoActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".produtor.ProximaReuniaoProdutorActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".produtor.ReuniaoRealizadaProdutorActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".produtor.ReuniaoRealizadaProdutorActivity" />
-        <activity android:name=".reuniao.EditarReuniaoActivity" />
+        <activity
+            android:name=".reuniao.EditarReuniaoActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".coordenador.ReuniaoRealizadaCoordenadorActivity"
             android:screenOrientation="portrait" />
