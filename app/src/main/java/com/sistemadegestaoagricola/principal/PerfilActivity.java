@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.principal;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaAtualizarInformacaoProdutor;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;

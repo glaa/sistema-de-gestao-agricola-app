@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.mapa;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +22,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.MapasAdapter;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaGetMapas;
@@ -83,7 +86,7 @@ public class MapasActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 carregando.show();
-                Intent intent = new Intent(MapasActivity.this,HomeActivity.class);
+                Intent intent = new Intent(MapasActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }

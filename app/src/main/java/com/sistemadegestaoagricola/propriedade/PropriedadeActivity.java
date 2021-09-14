@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.propriedade;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,10 +11,11 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaGetEndereco;
 import com.sistemadegestaoagricola.conexao.RotaGetPropriedade;
-import com.sistemadegestaoagricola.conexao.RotaListarReunioes;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 
 import java.util.concurrent.ExecutionException;

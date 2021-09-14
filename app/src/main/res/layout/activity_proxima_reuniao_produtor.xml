@@ -121,67 +121,86 @@
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_baseline_date_range_24_vermelho" />
 
-            <TextView
-                android:id="@+id/tvDiaSemanaProximaReuniaoProdutor"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="Dia"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView691"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=","
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvDiaMesProximaReuniaoProdutor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="00"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                    <TextView
+                        android:id="@+id/tvDiaSemanaProximaReuniaoProdutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Dia"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
 
-            <TextView
-                android:id="@+id/textView711"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="de"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                    <TextView
+                        android:id="@+id/textView691"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=","
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
 
-            <TextView
-                android:id="@+id/tvMesProximaReuniaoProdutor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="dezembro"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                    <TextView
+                        android:id="@+id/tvDiaMesProximaReuniaoProdutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="00"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
 
-            <TextView
-                android:id="@+id/textView741"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="de"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                    <TextView
+                        android:id="@+id/textView711"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="de"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
 
-            <TextView
-                android:id="@+id/tvAnoProximaReuniaoProdutor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="2021"
-                android:textColor="@color/verde_escuro"
-                android:textSize="@dimen/rotulo_padrao" />
+                    <TextView
+                        android:id="@+id/tvMesProximaReuniaoProdutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="dezembro"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView741"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="de"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
+
+                    <TextView
+                        android:id="@+id/tvAnoProximaReuniaoProdutor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="2021"
+                        android:textColor="@color/verde_escuro"
+                        android:textSize="@dimen/rotulo_padrao" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
         <LinearLayout

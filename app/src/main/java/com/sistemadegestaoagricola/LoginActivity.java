@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaGetUser;
 import com.sistemadegestaoagricola.conexao.RotaLogin;
@@ -21,13 +22,14 @@ import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Produtor;
 import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.primeiroacesso.CadastroInicioActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class MainActivity extends AppCompatActivity implements Runnable {
+public class LoginActivity extends AppCompatActivity implements Runnable {
 
     private EditText edtCpfEmail;
     private EditText edtSenha;
@@ -45,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         edtCpfEmail = findViewById(R.id.edtCpfEmailMain);
         edtSenha = findViewById(R.id.edtSenhaMain);
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
         edtCpfEmail.setText("41045345369");
         edtSenha.setText("123456");
 
-        CarregarDialog carregarDialog = new CarregarDialog(MainActivity.this);
+        CarregarDialog carregarDialog = new CarregarDialog(LoginActivity.this);
         carregamento = carregarDialog.criarDialogCarregamento();
 
         /** Sublinhar o texto "Esqueceu a senha?" */
@@ -101,15 +103,15 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                 cpfEmail = edtCpfEmail.getText().toString();
                 password = edtSenha.getText().toString();
 
-                if(!cpfEmail.isEmpty() && !password.isEmpty()){
+                if(!cpfEmail.isEmpty() && !password.isEmpty() && CPFValido()){
                     carregamento.show();
 
-                    thread = new Thread(MainActivity.this);
+                    thread = new Thread(LoginActivity.this);
                     thread.start();
                     btEntrar.setClickable(false);
 
                 } else {
-                    Toast.makeText(getApplicationContext(),"CPF e Senha devem ser preenchidos!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"CPF e Senha devem ser preenchidos corretamente!",Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -181,7 +183,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            new CarregarDialog(MainActivity.this).criarDialogAvisoPerfil().show();
+                                            new CarregarDialog(LoginActivity.this).criarDialogAvisoPerfil().show();
                                         }
                                     });
                                 }
@@ -190,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText(MainActivity.this,"Houve falha na comunicação com o servidor",Toast.LENGTH_LONG).show();
+                                        Toast.makeText(LoginActivity.this,"Houve falha na comunicação com o servidor",Toast.LENGTH_LONG).show();
                                     }
                                 });
                             }
@@ -204,7 +206,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this,"CPF ou Senha inválidos!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this,"CPF ou Senha inválidos!",Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -213,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements Runnable {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(MainActivity.this,"Erro ao realizar login!",Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this,"Erro ao realizar login!",Toast.LENGTH_LONG).show();
 
                         }
                     });
@@ -245,6 +247,10 @@ public class MainActivity extends AppCompatActivity implements Runnable {
 
     private boolean CPFValido(){
         String cpf = edtCpfEmail.getText().toString();
+        //Caso a quantidade de dígito esteja incorreto
+        if(cpf.length() != 11){
+            return false;
+        }
         int digito1 = Integer.parseInt(String.valueOf(cpf.charAt(9)));
         int digito2 = Integer.parseInt(String.valueOf(cpf.charAt(10)));
 

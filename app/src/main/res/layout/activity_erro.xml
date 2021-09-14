@@ -8,7 +8,7 @@
     android:background="@color/verde_padrao"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ErroActivity">
+    tools:context=".auxiliar.ErroActivity">
 
     <ImageView
         android:id="@+id/imageView5"

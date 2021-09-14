@@ -1,6 +1,5 @@
 package com.sistemadegestaoagricola.adapter;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -10,27 +9,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sistemadegestaoagricola.ErroActivity;
-import com.sistemadegestaoagricola.ExibirFotoActivity;
-import com.sistemadegestaoagricola.MapasActivity;
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.auxiliar.ExibirFotoActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaGetMapa;
-import com.sistemadegestaoagricola.conexao.RotaGetMapas;
-import com.sistemadegestaoagricola.coordenador.ProximaReuniaoCoordenadorActivity;
-import com.sistemadegestaoagricola.coordenador.ReuniaoRealizadaCoordenadorActivity;
-import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
-import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Mapa;
-import com.sistemadegestaoagricola.entidades.Usuario;
 import com.sistemadegestaoagricola.entidades.Util;
-import com.sistemadegestaoagricola.produtor.ProximaReuniaoProdutorActivity;
-import com.sistemadegestaoagricola.produtor.ReuniaoRealizadaProdutorActivity;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -7,13 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.sistemadegestaoagricola.HomeActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.ReuniaoProximaAdapter;
 import com.sistemadegestaoagricola.adapter.ReuniaoPassadaAdapter;

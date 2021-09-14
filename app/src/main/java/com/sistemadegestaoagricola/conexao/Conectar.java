@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.conexao;
 
 import android.os.AsyncTask;
 

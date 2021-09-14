@@ -17,8 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.sistemadegestaoagricola.ErroActivity;
-import com.sistemadegestaoagricola.HomeActivity;
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaEditarReuniao;

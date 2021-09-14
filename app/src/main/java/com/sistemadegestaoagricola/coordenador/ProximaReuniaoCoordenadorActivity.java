@@ -1,6 +1,5 @@
 package com.sistemadegestaoagricola.coordenador;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,12 +7,9 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,16 +17,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sistemadegestaoagricola.AtaReuniaoActivity;
-import com.sistemadegestaoagricola.FotosReuniaoActivity;
-import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
+import com.sistemadegestaoagricola.reuniao.AtaReuniaoActivity;
+import com.sistemadegestaoagricola.reuniao.FotosReuniaoActivity;
 import com.sistemadegestaoagricola.conexao.RotaRegistrarReuniao;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
-import com.sistemadegestaoagricola.entidades.Propriedade;
-import com.sistemadegestaoagricola.primeiroacesso.CadastroLocalizacaoActivity;
 import com.sistemadegestaoagricola.reuniao.EditarReuniaoActivity;
-import com.sistemadegestaoagricola.ErroActivity;
-import com.sistemadegestaoagricola.HomeActivity;
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaExcluirReuniao;
@@ -38,14 +31,6 @@ import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.Util;
 import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
-import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

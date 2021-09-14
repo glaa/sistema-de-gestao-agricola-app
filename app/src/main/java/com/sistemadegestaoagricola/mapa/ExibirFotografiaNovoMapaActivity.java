@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.mapa;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaSalvarMapa;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;

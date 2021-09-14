@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.propriedade;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,13 +16,14 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaAtualizarEndereco;
-import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Propriedade;
 import com.sistemadegestaoagricola.entidades.Util;
-import com.sistemadegestaoagricola.primeiroacesso.CadastroLocalizacaoActivity;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -134,6 +134,7 @@ public class AlterarLocalizacaoActivity extends AppCompatActivity implements Ada
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             atualizando.show();
+                            btAtualizar.setClickable(false);
                             verificarCamposESalvar();
                         }
                     });
@@ -146,6 +147,7 @@ public class AlterarLocalizacaoActivity extends AppCompatActivity implements Ada
                     alertaCep.show();
                 } else {
                     atualizando.show();
+                    btAtualizar.setClickable(false);
                     verificarCamposESalvar();
                 }
             }

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.sistemadegestaoagricola.ExibirFotoActivity;
+import com.sistemadegestaoagricola.auxiliar.ExibirFotoActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.AtaFotosReuniaoAdapter;
 import com.sistemadegestaoagricola.entidades.Reuniao;

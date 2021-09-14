@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaIndex;
 
@@ -54,7 +54,7 @@ public class AberturaActivity extends AppCompatActivity implements Runnable{
 
             /** mensagensExceptions será null no caso em que a conexão não gerou exceções */
             if(mensagensExceptions == null){
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class);
                 this.startActivity(intent);
                 finish();
             } else {

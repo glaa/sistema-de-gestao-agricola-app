@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.principal;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,13 +10,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.ConexaoAPIVelha;
 import com.sistemadegestaoagricola.conexao.RotaListarReunioes;
+import com.sistemadegestaoagricola.mapa.MapasActivity;
+import com.sistemadegestaoagricola.propriedade.PropriedadeActivity;
 import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 import com.sistemadegestaoagricola.entidades.AgendamentoReuniao;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
@@ -118,7 +121,7 @@ public class HomeActivity extends AppCompatActivity {
         cvFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeActivity.this,PerfilActivity.class);
+                Intent intent = new Intent(HomeActivity.this, PerfilActivity.class);
                 startActivity(intent);
             }
         });

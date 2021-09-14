@@ -1,8 +1,7 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.propriedade;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,12 +12,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
+import com.sistemadegestaoagricola.principal.HomeActivity;
+import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;
 import com.sistemadegestaoagricola.conexao.RotaAtualizarPropriedade;
-import com.sistemadegestaoagricola.conexao.RotaCadastrarPropriedade;
 import com.sistemadegestaoagricola.entidades.CarregarDialog;
 import com.sistemadegestaoagricola.entidades.Propriedade;
-import com.sistemadegestaoagricola.primeiroacesso.CadastroLocalizacaoActivity;
 
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
@@ -144,6 +144,7 @@ public class InformacoesActivity extends AppCompatActivity {
                         } else {
                             atualizando = carregarDialog.criarAtualizando();
                             atualizando.show();
+                            btAtualizar.setClickable(false);
                             atualizarPropriedade(fonte);
                         }
                     } else {

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
-import com.sistemadegestaoagricola.ErroActivity;
+import com.sistemadegestaoagricola.auxiliar.ErroActivity;
 import com.sistemadegestaoagricola.R;
 import com.sistemadegestaoagricola.adapter.PageAdapter;
 import com.sistemadegestaoagricola.conexao.ConexaoAPI;

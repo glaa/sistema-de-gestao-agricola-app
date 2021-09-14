@@ -16,31 +16,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SistemaDeGestãoAgrícola">
         <activity
-            android:name=".PerfilActivity"
+            android:name=".principal.PerfilActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ExibirFotoActivity"
+            android:name=".auxiliar.ExibirFotoActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".ExibirFotografiaNovoMapaActivity"
+            android:name=".mapa.ExibirFotografiaNovoMapaActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".MapasActivity"
+            android:name=".mapa.MapasActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".AlterarLocalizacaoActivity"
+            android:name=".propriedade.AlterarLocalizacaoActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".InformacoesActivity"
+            android:name=".propriedade.InformacoesActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".PropriedadeActivity"
+            android:name=".propriedade.PropriedadeActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".FotosReuniaoActivity"
+            android:name=".reuniao.FotosReuniaoActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".AtaReuniaoActivity"
+            android:name=".reuniao.AtaReuniaoActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".produtor.ProximaReuniaoProdutorActivity"
@@ -112,11 +112,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".principal.HomeActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".ErroActivity"
+            android:name=".auxiliar.ErroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -130,7 +130,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>

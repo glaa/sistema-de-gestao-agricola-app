@@ -1,4 +1,4 @@
-package com.sistemadegestaoagricola;
+package com.sistemadegestaoagricola.auxiliar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.sistemadegestaoagricola.AberturaActivity;
+import com.sistemadegestaoagricola.R;
 
 public class ErroActivity extends AppCompatActivity {
 
@@ -37,7 +40,7 @@ public class ErroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(activity.equals("AberturaActivity")){
-                    Intent intent = new Intent(getApplicationContext(),AberturaActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), AberturaActivity.class);
                     startActivity(intent);
                 } else {
                     onBackPressed();
