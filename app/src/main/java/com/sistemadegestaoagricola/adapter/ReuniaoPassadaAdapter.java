@@ -22,6 +22,7 @@ import com.sistemadegestaoagricola.reuniao.ReuniaoActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -54,7 +55,6 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
         //Retorna somente o que exitir
         if(position < agendamentoReuniaos.size()) {
             AgendamentoReuniao agenda  = agendamentoReuniaos.get(position);
-            Log.d("testeX", "" + position + " size = " + agendamentoReuniaos.size());
             //String data = agenda.getData().getDate() + "/" + (agenda.getData().getMonth()+1) + "/" + (agenda.getData().getYear()+1900);
             String data = Util.converterDateString(agenda.getData());
             Calendar calendar = Calendar.getInstance();
@@ -64,9 +64,9 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
             holder.dia.setText(diaDaSemana.substring(0,3));
             holder.data.setText(data);
             if(agenda.isRegistrada()){
-                holder.status.setText("Evento realizado");
+                holder.status.setText(agenda.getStatus());
             } else {
-                holder.status.setText("Pendente de registro");
+                holder.status.setText(agenda.getStatus());
                 holder.status.setTextColor(context.getResources().getColorStateList(R.color.vermelho_alerta));
             }
 
@@ -81,9 +81,17 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
                             context.startActivity(intent);
                             Log.d("testeX","Fechou Activity");
                         } else {
-                            Intent intent = new Intent(context, ProximaReuniaoCoordenadorActivity.class);
-                            intent.putExtra("REUNIAO", agenda);
-                            context.startActivity(intent);
+                            //Caso a reunião esteja cancelada não haverá edição
+                            if(agenda.getStatus().equals("Cancelada")){
+                                Intent intent = new Intent(context, ReuniaoRealizadaCoordenadorActivity.class);
+                                intent.putExtra("REUNIAO", agenda);
+                                context.startActivity(intent);
+                            } else {
+                                Intent intent = new Intent(context, ProximaReuniaoCoordenadorActivity.class);
+                                intent.putExtra("REUNIAO", agenda);
+                                context.startActivity(intent);
+                            }
+
                         }
 
                     } else if(Usuario.getPerfil().equals("Produtor")){
@@ -117,4 +125,6 @@ public class ReuniaoPassadaAdapter extends RecyclerView.Adapter<ReuniaoPassadaAd
             status = itemView.findViewById(R.id.tvStatusReuniaoPassadaAdapter);
         }
     }
+
+
 }

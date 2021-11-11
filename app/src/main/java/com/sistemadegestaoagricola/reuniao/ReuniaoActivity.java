@@ -116,9 +116,15 @@ public class ReuniaoActivity extends AppCompatActivity {
 
         for(AgendamentoReuniao agenda : agendamentos){
             if(agenda.isRegistrada()){
+                agenda.setStatus("Evento realizado");
                 passadas.add(agenda);
             } else {
                 if(reuniaoPendente(agenda)){
+                    if(cancelar(agenda.getData())){
+                        agenda.setStatus("Cancelada");
+                    } else {
+                        agenda.setStatus("Pendente de registro");
+                    }
                     passadas.add(agenda);
                 } else {
                     proximas.add(agenda);
@@ -130,6 +136,10 @@ public class ReuniaoActivity extends AppCompatActivity {
         ordenarArray(passadas);
         inverterOrdemArray(passadas);
         ordenarArray(proximas);
+    }
+
+    private void definirStatus(){
+        
     }
 
     private boolean reuniaoPendente(AgendamentoReuniao agenda){
@@ -151,6 +161,20 @@ public class ReuniaoActivity extends AppCompatActivity {
         if(Usuario.getPerfil().equals("Produtor")){
             btAdicionar.setVisibility(View.GONE);
         }
+    }
+
+    private boolean cancelar(Date data){
+        boolean cancelar = false;
+        long tempoMax = Math.abs(2592000*1000); //30 dias em milisegundos
+        long diaReuniao = data.getTime();
+        long diaAtual = new Date().getTime();
+
+        //Cancelar por tempo - após 30 dias
+        if ((diaAtual - diaReuniao) > tempoMax){
+            cancelar = true;
+        }
+        //
+        return cancelar;
     }
 
     @Override

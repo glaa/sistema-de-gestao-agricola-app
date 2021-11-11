@@ -144,6 +144,7 @@ public class ReuniaoRealizadaCoordenadorActivity extends AppCompatActivity {
     private void buscarReuniao(){
         if(reuniao != null){
             RotaGetExibirReuniao rotaGetExibirReuniao = new RotaGetExibirReuniao(reuniao.getId());
+            Log.d("testeX", " id " + reuniao.getId());
             Future<ConexaoAPI> future = threadpool.submit(rotaGetExibirReuniao);
 
             while(!future.isDone()){

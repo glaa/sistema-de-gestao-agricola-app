@@ -11,6 +11,7 @@ public class AgendamentoReuniao implements Serializable, Comparable {
     private String local;
     private boolean registrada;
     private int ocs_id;
+    private String status;
 
     public AgendamentoReuniao(int id, String nome, Date data, String local, boolean registrada, int ocs_id) {
         this.id = id;
@@ -67,6 +68,14 @@ public class AgendamentoReuniao implements Serializable, Comparable {
 
     public void setOcs_id(int ocs_id) {
         this.ocs_id = ocs_id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
